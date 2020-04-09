@@ -1,203 +1,243 @@
-import Head from 'next/head'
+import Head from "next/head";
+import styled from "styled-components";
+import Layout from "../components/layout";
+import Link from "next/link";
+import { animated } from "react-spring";
+import { getAllPosts } from "../lib/api";
+import { processIngredient } from "../lib/recipeHelper";
 
-const Home = () => (
-  <div className="container">
-    <Head>
-      <title>Create Next App</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
+const RecipeListItem = styled.li`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  overflow: hidden;
+  width: 100%;
+  height: 305px;
+  margin: 7.5px;
+  border-radius: 20px;
+  position: relative;
+  transition: margin ease-in 100ms;
+  flex-direction: column;
+  border: 1.5px solid var(--textNormal);
 
-    <main>
-      <h1 className="title">
-        Welcome to <a href="https://nextjs.org">Next.js!</a>
-      </h1>
+  .recipe__pic {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 60%;
 
-      <p className="description">
-        Get started by editing <code>pages/index.js</code>
-      </p>
+    .gatsby-image-wrapper {
+      z-index: -1;
+      top: 0;
+      left: 0;
+    }
+    &:before {
+      content: "";
+      float: left;
+      padding-top: 100%;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      background: ${({ hrbg }) =>
+        hrbg
+          ? `none`
+          : "repeating-linear-gradient(45deg,#b2b2b2, #b2b2b2 10px,#ccc 10px,#ccc 20px)"};
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      transition: all ease-in 100ms;
+      z-index: -2;
+    }
+  }
+  .recipe__name {
+    padding: 5px 10px;
+    position: absolute;
+    bottom: 0;
+    height: 40%;
+    width: 100%;
+    display: block;
+    border-top: 1.5px solid var(--textNormal);
+    /* border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px; */
+    background: var(--bg-secondary);
+    color: var(--textNormal);
+    .name {
+      /* height: 50%; */
+      display: block;
+    }
+    .remark {
+      margin-top: 5px;
+      height: 3.3rem;
+      font-size: 0.9rem;
+      line-height: 1.1rem;
+      color: #b3b3b3;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
+  }
 
-      <div className="grid">
-        <a href="https://nextjs.org/docs" className="card">
-          <h3>Documentation &rarr;</h3>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a href="https://nextjs.org/learn" className="card">
-          <h3>Learn &rarr;</h3>
-          <p>Learn about Next.js in an interactive course with quizzes!</p>
-        </a>
-
-        <a
-          href="https://github.com/zeit/next.js/tree/master/examples"
-          className="card"
-        >
-          <h3>Examples &rarr;</h3>
-          <p>Discover and deploy boilerplate example Next.js projects.</p>
-        </a>
-
-        <a
-          href="https://zeit.co/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          className="card"
-        >
-          <h3>Deploy &rarr;</h3>
-          <p>
-            Instantly deploy your Next.js site to a public URL with ZEIT Now.
-          </p>
-        </a>
-      </div>
-    </main>
-
-    <footer>
-      <a
-        href="https://zeit.co?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Powered by <img src="/zeit.svg" alt="ZEIT Logo" />
-      </a>
-    </footer>
-
-    <style jsx>{`
-      .container {
-        min-height: 100vh;
-        padding: 0 0.5rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+  @media (min-width: 576px) {
+    margin: 7.5px;
+    .recipe__pic {
+      height: 70%;
+    }
+    .recipe__name {
+      height: 30%;
+      .remark {
+        height: 2.2rem;
+        -webkit-line-clamp: 2;
       }
+    }
+  }
 
-      main {
-        padding: 5rem 0;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
+  @media (min-width: 768px) {
+    margin: 7.5px;
+    height: 305px;
+  }
 
-      footer {
-        width: 100%;
-        height: 100px;
-        border-top: 1px solid #eaeaea;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
+  @media (min-width: 992px) {
+    margin: 10px;
+  }
 
-      footer img {
-        margin-left: 0.5rem;
-      }
+  @media (min-width: 1200px) {
+    margin: 10px;
+  }
+`;
 
-      footer a {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
+const RecipeListLink = styled.a`
+  display: flex;
+  width: 50%;
+  color: #fffaf0;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: normal;
+  transition: 300ms width ease-in-out;
+  &:before {
+    content: "";
+    float: left;
+    padding-top: 100%;
+  }
+  &:visited,
+  &:active {
+    color: #fffaf0;
+  }
 
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
+  @media (min-width: 576px) {
+    width: 33.3%;
+  }
 
-      .title a {
-        color: #0070f3;
-        text-decoration: none;
-      }
+  @media (min-width: 768px) {
+    width: 25%;
+  }
 
-      .title a:hover,
-      .title a:focus,
-      .title a:active {
-        text-decoration: underline;
-      }
+  @media (min-width: 992px) {
+    width: 25%;
+    font-size: 1.2rem;
+  }
 
-      .title {
-        margin: 0;
-        line-height: 1.15;
-        font-size: 4rem;
-      }
+  @media (min-width: 1200px) {
+    width: 25%;
+    font-size: 1.2rem;
+  }
+`;
 
-      .title,
-      .description {
-        text-align: center;
-      }
+const RecipeList = styled.ul`
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  margin: 0 -7.5px;
 
-      .description {
-        line-height: 1.5;
-        font-size: 1.5rem;
-      }
+  @media (min-width: 576px) {
+    margin: 0 -7.5px;
+  }
 
-      code {
-        background: #fafafa;
-        border-radius: 5px;
-        padding: 0.75rem;
-        font-size: 1.1rem;
-        font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-          DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-      }
+  @media (min-width: 768px) {
+    margin: 0 -7.5px;
+  }
 
-      .grid {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: wrap;
+  @media (min-width: 992px) {
+    margin: 0 -10px;
+  }
 
-        max-width: 800px;
-        margin-top: 3rem;
-      }
+  @media (min-width: 1200px) {
+    margin: 0 -10px;
+  }
+`;
 
-      .card {
-        margin: 1rem;
-        flex-basis: 45%;
-        padding: 1.5rem;
-        text-align: left;
-        color: inherit;
-        text-decoration: none;
-        border: 1px solid #eaeaea;
-        border-radius: 10px;
-        transition: color 0.15s ease, border-color 0.15s ease;
-      }
+const Home = ({ allPosts }) => {
+  console.log(allPosts);
+  return (
+    <Layout>
+      <RecipeList>
+        {allPosts.map((item, key) => (
+          <Link prefetch href={item.pagePath} passHref>
+            <RecipeListLink key={item.slug} href={item.pagePath}>
+              <RecipeListItem key={key} hrbg={item.image}>
+                <div className="recipe__pic">
+                  {item.image && (
+                    <img
+                      src={item.image}
+                      className="recipe__pic"
+                      style={{
+                        position: "relative",
+                        display: "block",
+                        width: "100%",
+                        height: "100%",
+                      }}
+                    />
+                  )}
+                </div>
+                <span className="recipe__name">
+                  <span className="name">{item.recipe_name}</span>
+                  <span className="remark">{item.ingredients}</span>
+                </span>
+              </RecipeListItem>
+            </RecipeListLink>
+          </Link>
+        ))}
+      </RecipeList>
+    </Layout>
+  );
+};
 
-      .card:hover,
-      .card:focus,
-      .card:active {
-        color: #0070f3;
-        border-color: #0070f3;
-      }
+export async function getStaticProps() {
+  const allPosts = getAllPosts([
+    "recipe_name",
+    "slug",
+    "image",
+    "date",
+    "serving",
+    "serving_size",
+    "type",
+    "description",
+    "tags",
+    "ingredients",
+    "content",
+  ]);
 
-      .card h3 {
-        margin: 0 0 1rem 0;
-        font-size: 1.5rem;
-      }
+  return {
+    props: {
+      allPosts: allPosts.map((post) => {
+        return {
+          ...post,
+          ingredients: processIngredient(post.ingredients, post.serving).map(item => item.ingredient.map(o => o.ingredientName).join(' ‧ ')).join(' ‧ '),
+        };
+      }),
+    },
+  };
+}
 
-      .card p {
-        margin: 0;
-        font-size: 1.25rem;
-        line-height: 1.5;
-      }
-
-      @media (max-width: 600px) {
-        .grid {
-          width: 100%;
-          flex-direction: column;
-        }
-      }
-    `}</style>
-
-    <style jsx global>{`
-      html,
-      body {
-        padding: 0;
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-          Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-    `}</style>
-  </div>
-)
-
-export default Home
+export default Home;
