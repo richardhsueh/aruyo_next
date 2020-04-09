@@ -70,7 +70,7 @@ const Header = () => {
     <Container>
       <div>
         <Link href="/">
-          <h1>Aruyo*</h1>
+          <h1><a>Aruyo*</a></h1>
         </Link>
         {/* <Selector /> */}
       </div>
