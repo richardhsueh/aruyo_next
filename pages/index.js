@@ -183,7 +183,7 @@ const Home = ({ allPosts }) => {
     <Layout>
       <RecipeList>
         {allPosts.map((item, key) => (
-          <Link prefetch href={item.pagePath} passHref>
+          <Link prefetch href={`/recipe/[slug]`} as={`/recipe/${item.slug}`} passHref>
             <RecipeListLink key={item.slug} href={item.pagePath}>
               <RecipeListItem key={key} hrbg={item.image}>
                 <div className="recipe__pic">
