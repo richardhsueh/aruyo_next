@@ -1,10 +1,14 @@
-import Head from "next/head";
+import { useEffect, useContext, useState } from "react";
 import styled from "styled-components";
 import Layout from "../components/layout";
 import Link from "next/link";
-import { animated } from "react-spring";
-import { getAllPosts } from "../lib/api";
-import { processIngredient } from "../lib/recipeHelper";
+
+import { processIngredient, returnIngredientJson } from "../lib/recipeHelper";
+import RecipeQueryContext from "../lib/RecipeQueryContext";
+import { getAllRecipes } from "../lib/api";
+import { animated, useTransition, config } from "react-spring";
+import orderBy from "lodash/orderBy";
+import SEO from "../components/seo";
 
 const RecipeListItem = styled.li`
   display: flex;
@@ -20,6 +24,8 @@ const RecipeListItem = styled.li`
   transition: margin ease-in 100ms;
   flex-direction: column;
   border: 1.5px solid var(--textNormal);
+  background: var(--textNormal);
+  box-shadow: var(--form-shadow);
 
   .recipe__pic {
     display: flex;
@@ -29,11 +35,16 @@ const RecipeListItem = styled.li`
     top: 0;
     width: 100%;
     height: 60%;
+    z-index: 10;
 
-    .gatsby-image-wrapper {
+    img {
       z-index: -1;
       top: 0;
       left: 0;
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 100%;
     }
     &:before {
       content: "";
@@ -152,7 +163,7 @@ const RecipeListLink = styled.a`
   }
 `;
 
-const RecipeList = styled.ul`
+const RecipeList = styled(animated.ul)`
   padding: 0;
   margin: 0;
   display: flex;
@@ -177,63 +188,94 @@ const RecipeList = styled.ul`
   }
 `;
 
-const Home = ({ allPosts }) => {
-  console.log(allPosts);
+const Home = ({ allRecipes }) => {
+  const { type, query, search, setRecipeJson } = useContext(RecipeQueryContext);
+  const [filteredAry, setFilteredAry] = useState(allRecipes);
+
+  const transitions = useTransition(null, null, {
+    enter: { opacity: 1 },
+    leave: { opacity: 0 },
+    from: { opacity: 0 },
+    config: config.stiff,
+  });
+
+  useEffect(() => {
+    setRecipeJson(allRecipes);
+  }, [allRecipes]);
+
+  useEffect(() => {
+    if (type === "all") setFilteredAry(allRecipes);
+
+    // filter by type
+    if (type !== "all")
+      setFilteredAry(allRecipes.filter((recipe) => recipe.type === type));
+
+    // filter by query string
+    if (query && search.search)
+      setFilteredAry(
+        orderBy(search.search(query), ["date", "slug"], ["desc", "asc"])
+      );
+  }, [type, query, search]);
+
   return (
     <Layout>
-      <RecipeList>
-        {allPosts.map((item, key) => (
-          <Link prefetch href={`/recipe/[slug]`} as={`/recipe/${item.slug}`} passHref>
-            <RecipeListLink key={item.slug} href={item.pagePath}>
-              <RecipeListItem key={key} hrbg={item.image}>
-                <div className="recipe__pic">
-                  {item.image && (
-                    <img
-                      src={item.image}
-                      className="recipe__pic"
-                      style={{
-                        position: "relative",
-                        display: "block",
-                        width: "100%",
-                        height: "100%",
-                      }}
-                    />
-                  )}
-                </div>
-                <span className="recipe__name">
-                  <span className="name">{item.recipe_name}</span>
-                  <span className="remark">{item.ingredients}</span>
-                </span>
-              </RecipeListItem>
-            </RecipeListLink>
-          </Link>
-        ))}
-      </RecipeList>
+      <SEO title="Recipe Blog" type="website" image={"/screencap.jpg"} />
+      {transitions.map(({ key, props }) => (
+        <RecipeList style={props} key={key}>
+          {filteredAry.map((item, key) => (
+            <Link
+              prefetch
+              href={`/recipe/[slug]`}
+              as={`/recipe/${item.slug}`}
+              passHref
+              key={key}
+            >
+              <RecipeListLink key={item.slug}>
+                <RecipeListItem hrbg={item.image}>
+                  <div className="recipe__pic">
+                    {item.image && (
+                      <img src={item.image} className="recipe__pic" />
+                    )}
+                  </div>
+                  <span className="recipe__name">
+                    <span className="name">{item.recipe_name}</span>
+                    <span className="remark">{item.ingredients}</span>
+                  </span>
+                </RecipeListItem>
+              </RecipeListLink>
+            </Link>
+          ))}
+        </RecipeList>
+      ))}
     </Layout>
   );
 };
 
 export async function getStaticProps() {
-  const allPosts = getAllPosts([
+  const allRecipes = getAllRecipes([
     "recipe_name",
     "slug",
     "image",
     "date",
-    "serving",
-    "serving_size",
+    // "serving",
+    // "serving_size",
     "type",
     "description",
     "tags",
     "ingredients",
-    "content",
+    // "content",
   ]);
 
   return {
     props: {
-      allPosts: allPosts.map((post) => {
+      allRecipes: allRecipes.map((post) => {
         return {
           ...post,
-          ingredients: processIngredient(post.ingredients, post.serving).map(item => item.ingredient.map(o => o.ingredientName).join(' ‧ ')).join(' ‧ '),
+          ingredients: processIngredient(post.ingredients, post.serving)
+            .map((item) =>
+              item.ingredient.map((o) => o.ingredientName).join(" ‧ ")
+            )
+            .join(" ‧ "),
         };
       }),
     },

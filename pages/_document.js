@@ -28,8 +28,39 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <Html>
-        <Head />
+      <Html lang="en">
+        <Head>
+          <link
+            rel="preload"
+            href="/fonts/IBMPlexSansCondensed-Bold.woff2"
+            as="font"
+            crossOrigin=""
+          />
+          <link
+            rel="preload"
+            href="/fonts/IBMPlexSansCondensed-Medium.woff2"
+            as="font"
+            crossOrigin=""
+          />
+          <link
+            rel="preload"
+            href="/fonts/IBMPlexSansCondensed-Regular.woff2"
+            as="font"
+            crossOrigin=""
+          />
+          <link
+            rel="preload"
+            href="/fonts/IBMPlexSansCondensed-SemiBold.woff2"
+            as="font"
+            crossOrigin=""
+          />
+          <link
+            rel="preload"
+            href="/fonts/OpenSans-Regular.woff2"
+            as="font"
+            crossOrigin=""
+          />
+        </Head>
         <body className="light">
           <script
             dangerouslySetInnerHTML={{

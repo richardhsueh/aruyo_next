@@ -2,7 +2,7 @@
 recipe_name: 'Bolognese'
 slug: 'bolognese'
 image: '/assets/recipe/bolognese.jpg'
-date: '2020-03-16T05:35:07.322Z'
+date: '2020-02-28T05:35:07.322Z'
 serving: 4
 serving_size: 'pasta'
 type: 'savoury'

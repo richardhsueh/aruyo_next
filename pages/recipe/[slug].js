@@ -1,15 +1,16 @@
+import { useEffect, useState } from "react";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import ErrorPage from "next/error";
-import { getPostBySlug, getAllPosts } from "../../lib/api";
-import Layout from "../../components/layout";
-import Head from "next/head";
-import markdownToHtml from "../../lib/markdownToHtml";
-import { processIngredient } from "../../lib/recipeHelper";
-import { animated } from "react-spring";
+import { animated, useTransition, config } from "react-spring";
 import styled from "styled-components";
 import { format } from "date-fns";
-import { useEffect, useState } from "react";
 import queryString from "query-string";
+
+import { getRecipeBySlug, getAllRecipes } from "../../lib/api";
+import { processIngredient } from "../../lib/recipeHelper";
+import markdownToHtml from "../../lib/markdownToHtml";
+import Layout from "../../components/layout";
 
 const RecipeContainer = styled(animated.div)`
   h2,
@@ -103,7 +104,7 @@ const MetaData = styled.div`
   img {
     order: 1;
     margin: 0 0 20px 0;
-    min-width: 300px;
+    min-width: 350px;
     width: 100% !important;
     max-height: initial;
     border-radius: 20px;
@@ -145,9 +146,9 @@ const MetaData = styled.div`
     flex-direction: row;
     img {
       order: 2;
-      min-width: 300px;
-      width: 300px !important;
-      max-height: 300px;
+      min-width: 350px;
+      width: 350px !important;
+      max-height: 350px;
       /* margin: 0 30px 10px 0; */
     }
     .specification {
@@ -261,14 +262,21 @@ const IngredientsBlk = styled.div`
 `;
 
 export default function Post({ post, morePosts, preview }) {
+  const transitions = useTransition(null, null, {
+    enter: { opacity: 1 },
+    leave: { opacity: 0 },
+    from: { opacity: 0 },
+    config: config.stiff,
+  });
+
   const router = useRouter();
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />;
   }
-  console.log(router);
+  
   let s;
   if (process.browser) {
-      s = queryString.parse(window.location.search).s;
+    s = queryString.parse(window.location.search).s;
   }
   const [serving, setServing] = useState(post.serving || 1);
 
@@ -288,84 +296,85 @@ export default function Post({ post, morePosts, preview }) {
             <Head>
               <title>{post.recipe_name} Recipe | Aruyo*</title>
             </Head>
-            <RecipeContainer>
-              <div className="recipe__header">
-                <h2>{post.recipe_name}</h2>
-                <h6>{format(new Date(post.date), "yyyy - MM - dd")}</h6>
-              </div>
-              <MetaData className="section">
-                <div className="specification">
-                  <div className="servingBlk">
-                    <strong>Serving Size: </strong>
-                    <input
-                      className="servingSize"
-                      type="number"
-                      value={serving}
-                      onChange={(e) => {
-                        setServing(e.target.value);
-                        window.history.replaceState(
-                          {},
-                          "",
-                          location.pathname + "?s=" + e.target.value
-                        );
-                      }}
-                      onBlur={() => {
-                        if (!serving) {
-                          setServing(1);
+            {transitions.map(({ item, key, props }) => (
+              <RecipeContainer style={props} key={key}>
+                <div className="recipe__header">
+                  <h2>{post.recipe_name}</h2>
+                  <h6>{format(new Date(post.date), "yyyy - MM - dd")}</h6>
+                </div>
+                <MetaData className="section">
+                  <div className="specification">
+                    <div className="servingBlk">
+                      <strong>Serving Size: </strong>
+                      <input
+                        className="servingSize"
+                        type="number"
+                        value={serving}
+                        onChange={(e) => {
+                          setServing(e.target.value);
                           window.history.replaceState(
                             {},
                             "",
-                            location.pathname
+                            location.pathname + "?s=" + e.target.value
                           );
-                        }
-                      }}
-                      min={1}
-                    />{" "}
-                    <span>{post.serving_size && post.serving_size}</span>
+                        }}
+                        onBlur={() => {
+                          if (!serving) {
+                            setServing(1);
+                            window.history.replaceState(
+                              {},
+                              "",
+                              location.pathname
+                            );
+                          }
+                        }}
+                        min={1}
+                      />{" "}
+                      <span>{post.serving_size && post.serving_size}</span>
+                    </div>
+                    <IngredientsBlk>
+                      <span>Ingredients</span>
+                      {post.ingredients.map((group, index) => (
+                        <div
+                          className="ingredient__group"
+                          key={`ingredient__group${index}`}
+                        >
+                          <span>{group.group}</span>
+                          <ul>
+                            {group.ingredient.map((item, index) => (
+                              <li key={index} className="ingredient">
+                                <label>
+                                  <input
+                                    type="checkbox"
+                                    name={item.ingredientName}
+                                  />
+                                  <span>
+                                    {`${
+                                      item.amount
+                                        ? item.amount * serving + " "
+                                        : ""
+                                    }`}
+                                    {`${item.scale ? item.scale + " " : ""}`}
+                                    {`${item.ingredientName}`}
+                                  </span>
+                                </label>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </IngredientsBlk>
                   </div>
-                  <IngredientsBlk>
-                    <span>Ingredients</span>
-                    {post.ingredients.map((group, index) => (
-                      <div
-                        className="ingredient__group"
-                        key={`ingredient__group${index}`}
-                      >
-                        <span>{group.group}</span>
-                        <ul>
-                          {group.ingredient.map((item, index) => (
-                            <li key={index} className="ingredient">
-                              <label>
-                                <input
-                                  type="checkbox"
-                                  name={item.ingredientName}
-                                />
-                                <span>
-                                  {`${
-                                    item.amount
-                                      ? item.amount * serving + " "
-                                      : ""
-                                  }`}
-                                  {`${item.scale ? item.scale + " " : ""}`}
-                                  {`${item.ingredientName}`}
-                                </span>
-                              </label>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                  </IngredientsBlk>
-                </div>
-                {post.image && (
-                  <img
-                    src={post.image}
-                    placeholderStyle={{ filter: "blur(6px)" }}
-                    style={{ width: "auto", height: "auto" }}
-                  />
-                )}
-              </MetaData>
-              <div dangerouslySetInnerHTML={{ __html: post.content }}></div>
-            </RecipeContainer>
+                  {post.image && (
+                    <img
+                      src={post.image}
+                      style={{ width: "auto", height: "auto" }}
+                    />
+                  )}
+                </MetaData>
+                <div className="mkd" dangerouslySetInnerHTML={{ __html: post.content }}></div>
+              </RecipeContainer>
+            ))}
           </article>
         </>
       )}
@@ -374,7 +383,7 @@ export default function Post({ post, morePosts, preview }) {
 }
 
 export async function getStaticProps({ params }) {
-  const post = getPostBySlug(params.slug, [
+  const post = getRecipeBySlug(params.slug, [
     "recipe_name",
     "slug",
     "image",
@@ -401,7 +410,7 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const posts = getAllPosts(["slug"]);
+  const posts = getAllRecipes(["slug"]);
 
   return {
     paths: posts.map((posts) => {

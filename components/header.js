@@ -2,9 +2,9 @@ import Link from "next/link";
 import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
-// import Selector from '../components/selector';
-import Toggle from '../components/toggle';
-// import RecipeQueryContext from '../context/RecipeQueryContext';
+import Toggle from "../components/toggle";
+import RecipeQueryContext from "../lib/RecipeQueryContext";
+import Selector from "./selector";
 
 const Container = styled.header`
   margin: 0 auto;
@@ -18,7 +18,7 @@ const Container = styled.header`
   > div {
     display: flex;
     align-items: center;
-    > h1 {
+    h1 {
       height: 36px;
       display: inline-block;
       margin: 0 30px 0 0;
@@ -58,7 +58,7 @@ const Container = styled.header`
 `;
 
 const Header = () => {
-  // const { reset } = React.useContext(RecipeQueryContext);
+  const { reset } = React.useContext(RecipeQueryContext);
   const [theme, setTheme] = React.useState(null);
   React.useEffect(() => {
     setTheme(window.__theme);
@@ -69,22 +69,42 @@ const Header = () => {
   return (
     <Container>
       <div>
-        <Link href="/">
-          <h1><a>Aruyo*</a></h1>
+        <Link href="/" passHref>
+          <a onClick={reset}>
+            <h1>Aruyo*</h1>
+          </a>
         </Link>
-        {/* <Selector /> */}
+        <Selector />
       </div>
       {theme !== null ? (
         <Toggle
           icons={{
-            checked: <img src="/static/moon.png" width="16" height="16" role="presentation" style={{ pointerEvents: 'none' }} />,
-            unchecked: <img src="/static/sun.png" width="16" height="16" role="presentation" style={{ pointerEvents: 'none' }} />
+            checked: (
+              <img
+                src="/moon.png"
+                width="16"
+                height="16"
+                role="presentation"
+                style={{ pointerEvents: "none" }}
+              />
+            ),
+            unchecked: (
+              <img
+                src="/sun.png"
+                width="16"
+                height="16"
+                role="presentation"
+                style={{ pointerEvents: "none" }}
+              />
+            ),
           }}
-          checked={theme === 'dark'}
-          onChange={e => window.__setPreferredTheme(e.target.checked ? 'dark' : 'light')}
+          checked={theme === "dark"}
+          onChange={(e) =>
+            window.__setPreferredTheme(e.target.checked ? "dark" : "light")
+          }
         />
       ) : (
-        <div style={{ height: '24px' }} />
+        <div style={{ height: "24px" }} />
       )}
     </Container>
   );
