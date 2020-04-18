@@ -29,7 +29,7 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head>
+        {/* <Head>
           <link
             rel="preload"
             href="/fonts/IBMPlexSansCondensed-Bold.woff2"
@@ -60,7 +60,7 @@ export default class MyDocument extends Document {
             as="font"
             crossOrigin=""
           />
-        </Head>
+        </Head> */}
         <body className="light">
           <script
             dangerouslySetInnerHTML={{
