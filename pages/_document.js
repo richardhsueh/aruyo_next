@@ -29,7 +29,7 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        {/* <Head>
+        <Head>
           <link
             rel="preload"
             href="/fonts/IBMPlexSansCondensed-Bold.woff2"
@@ -60,7 +60,46 @@ export default class MyDocument extends Document {
             as="font"
             crossOrigin=""
           />
-        </Head> */}
+          <style
+            dangerouslySetInnerHTML={{
+              __html: ` @font-face {
+                          font-family: 'IBM Plex Sans Condensed';
+                          src: url('/fonts/IBMPlexSansCondensed-Regular.woff2'); 
+                          font-weight: normal;
+                          font-style: normal;
+                          font-display: swap;
+                        }
+                        @font-face {
+                          font-family: 'IBM Plex Sans Condensed';
+                          src: url('/fonts/IBMPlexSansCondensed-Bold.woff2'); 
+                          font-weight: bold;
+                          font-style: normal;
+                          font-display: swap;
+                        }
+                        @font-face {
+                          font-family: 'IBM Plex Sans Condensed';
+                          src: url('/fonts/IBMPlexSansCondensed-SemiBold.woff2'); 
+                          font-weight: 600;
+                          font-style: normal;
+                          font-display: swap;
+                        }
+                        @font-face {
+                          font-family: 'IBM Plex Sans Condensed';
+                          src: url('/fonts/IBMPlexSansCondensed-Medium.woff2'); 
+                          font-weight: 500;
+                          font-style: normal;
+                          font-display: swap;
+                        }
+                        @font-face {
+                          font-family: 'Open Sans';
+                          src: url('/fonts/OpenSans-Regular.woff2'); 
+                          font-weight: normal;
+                          font-style: normal;
+                          font-display: swap;
+                        }`,
+            }}
+          />
+        </Head>
         <body className="light">
           <script
             dangerouslySetInnerHTML={{
