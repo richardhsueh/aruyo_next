@@ -23,6 +23,7 @@
     "lodash": "^4.17.15",
     "mousetrap": "^1.6.5",
     "next": "^10.0.0",
+    "query-string": "^6.13.6",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-spring": "^8.0.27",
