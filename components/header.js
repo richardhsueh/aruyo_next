@@ -8,7 +8,7 @@ import Selector from "./selector";
 import Router from "next/router";
 
 const Container = styled.nav`
-  grid-area: auto / 1 / auto / 13;
+  grid-area: auto / 1 / auto / end;
   display: grid;
   row-gap: 40px;
   margin-top: 2rem;
@@ -66,13 +66,14 @@ const Container = styled.nav`
     padding: 15px 15px 15px 30px;
     height: calc(100% - 67px);
     grid-auto-rows: min-content;
+    z-index: 15;
 
     &.active {
       left: 0;
     }
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 961px) {
     grid-area: auto / 1 / auto / 4;
     position: fixed;
     .nav_ctrl {
@@ -180,7 +181,7 @@ const BurgerMenuButton = styled.div`
     }
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 961px) {
     display: none;
   }
 `;
@@ -262,7 +263,11 @@ const Header = () => {
           <ul>
             {recipes.map((o) => (
               <Link href={`/recipe/${o.slug}`} passHref key={o.slug}>
-                <a>
+                <a
+                  onClick={() => {
+                    setShow(false);
+                  }}
+                >
                   <li>{o.recipe_name}</li>
                 </a>
               </Link>

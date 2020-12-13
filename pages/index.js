@@ -18,8 +18,8 @@ const RecipeListItem = styled.li`
   list-style: none;
   overflow: hidden;
   width: 100%;
-  height: 232.92px;
-  margin: 7.5px;
+  /* height: 232.92px; */
+  /* margin: 7.5px; */
   border-radius: 4px;
   position: relative;
   transition: margin ease-in 100ms;
@@ -76,7 +76,7 @@ const RecipeListItem = styled.li`
     height: 88px;
     width: 100%;
     display: block;
-    opacity: 0;
+    opacity: 1;
     background: linear-gradient(
       180deg,
       rgba(196, 196, 196, 0) 0%,
@@ -94,11 +94,10 @@ const RecipeListItem = styled.li`
     }
     .remark {
       margin-top: 3px;
-      height: 3.3rem;
+      height: 3rem;
       font-size: 14px;
-      line-height: 17px;
+      line-height: 16px;
       color: #ffffff;
-
       overflow: hidden;
       display: -webkit-box;
       -webkit-line-clamp: 3;
@@ -106,40 +105,32 @@ const RecipeListItem = styled.li`
     }
   }
 
-  &:hover {
+  @media (min-width: 961px) {
     .recipe__name {
-      opacity: 1;
+      opacity: 0;
     }
-  }
-
-  @media (min-width: 576px) {
-    margin: 7.5px;
-    .recipe__pic {
-    }
-    .recipe__name {
-      .remark {
-        height: 2.2rem;
-        -webkit-line-clamp: 2;
+    &:hover {
+      .recipe__name {
+        opacity: 1;
       }
     }
   }
 
   @media (min-width: 768px) {
-    margin: 7.5px;
+    /* margin: 7.5px; */
   }
 
   @media (min-width: 992px) {
-    margin: 10px;
+    /* margin: 10px; */
   }
 
   @media (min-width: 1200px) {
-    margin: 10px;
+    /* margin: 10px; */
   }
 `;
 
 const RecipeListLink = styled.a`
   display: flex;
-  width: 50%;
   color: #fffaf0;
   text-decoration: none;
   font-size: 1.1rem;
@@ -156,46 +147,41 @@ const RecipeListLink = styled.a`
   }
 
   @media (min-width: 576px) {
-    width: 33.3%;
   }
 
   @media (min-width: 768px) {
-    width: 25%;
   }
 
   @media (min-width: 992px) {
-    width: 25%;
     font-size: 1.2rem;
   }
 
   @media (min-width: 1200px) {
-    width: 25%;
     font-size: 1.2rem;
   }
 `;
 
 const RecipeList = styled(animated.ul)`
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: start;
-  margin: 0 -7.5px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 50vw;
+  grid-gap: 20px 20px;
 
-  @media (min-width: 576px) {
-    margin: 0 -7.5px;
+  @media (min-width: 767px) {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-rows: 35vw;
+    grid-gap: 26px 26px;
   }
 
-  @media (min-width: 768px) {
-    margin: 0 -7.5px;
+  @media (min-width: 961px) {
+    grid-template-columns: 190px 190px 190px;
+    grid-auto-rows: 225px;
+    grid-gap: 24px 24px;
   }
 
-  @media (min-width: 992px) {
-    margin: 0 -10px;
-  }
-
-  @media (min-width: 1200px) {
-    margin: 0 -10px;
+  @media (min-width: 1441px) {
+    grid-template-columns: 205px 205px 205px 205px;
+    grid-auto-rows: 230px;
   }
 `;
 
