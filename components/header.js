@@ -5,39 +5,73 @@ import styled from "styled-components";
 import Toggle from "../components/toggle";
 import RecipeQueryContext from "../lib/RecipeQueryContext";
 import Selector from "./selector";
+import Router from "next/router";
 
-const Container = styled.header`
-  margin: 0 auto;
-  max-width: 960px;
-  padding: 30px 0;
-  text-align: left;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-  > div {
-    display: flex;
-    align-items: center;
-    h1 {
-      height: 36px;
-      display: inline-block;
-      margin: 0 30px 0 0;
-      color: var(--textNormal);
-      font-size: 36px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      display: flex;
-      align-items: center;
-      color: var(--textNormal);
+const Container = styled.nav`
+  grid-area: auto / 1 / auto / 13;
+  display: grid;
+  row-gap: 40px;
+  margin-top: 2rem;
+  h1 {
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 24px;
+    color: var(--primary_text);
+  }
+  .home {
+    color: var(--secondary_text);
+  }
+  h2 {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+  }
+  ul {
+    li {
+      color: var(--secondary_text);
+      font-size: 14px;
+      line-height: 17px;
+      margin: 4px 0;
     }
   }
-  @media screen and (max-width: 767px) {
-    padding: 30px 0 10px 0;
-    flex-direction: row;
-    align-items: baseline;
+  .head_ctrl {
+    display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
-    > div {
+  }
+  .nav_ctrl {
+    display: grid;
+    row-gap: 40px;
+    position: absolute;
+    top: 67px;
+    left: -100%;
+    transition: left 0.4s ease;
+    width: 260px;
+    background: #ffffff;
+    box-shadow: 3px 3px 40px rgba(0, 0, 0, 0.15);
+    border-radius: 0px 4px 4px 0px;
+    padding: 15px 15px 15px 30px;
+    height: calc(100% - 67px);
+    grid-auto-rows: min-content;
+
+    &.active {
+      left: 0;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    grid-area: auto / 1 / auto / 4;
+    position: fixed;
+    .nav_ctrl {
+      display: grid;
+      row-gap: 40px;
+      position: initial;
+      top: initial;
+      left: initial;
+      height: auto;
+      box-shadow: none;
+      padding: 0;
+    }
+    /* > div {
       flex-direction: column;
       align-items: flex-start;
       > a {
@@ -53,30 +87,163 @@ const Container = styled.header`
       position: absolute;
       top: 37px;
       right: 0;
+    } */
+  }
+`;
+
+const BurgerMenuButton = styled.div`
+  @keyframes slideInLeft {
+    0% {
+      transform: translate3d(-250px, 0, 0);
+      visibility: visible;
     }
+
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes slideOutLeft {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+
+    100% {
+      transform: translate3d(-250px, 0, 0);
+      visibility: hidden;
+    }
+  }
+  display: inline-block;
+  background: white;
+  cursor: pointer;
+  height: 30px;
+  padding: 5px 3px;
+  position: relative;
+  transition: all 0.4s ease;
+  user-select: none;
+  width: 30px;
+  z-index: 12;
+
+  .b-bun {
+    background: black;
+    position: relative;
+    transition: all 0.4s ease;
+
+    &--top {
+      height: 2px;
+      top: 0;
+      width: 25px;
+    }
+
+    &--mid {
+      height: 2px;
+      top: 8px;
+      width: 25px;
+    }
+
+    &--bottom {
+      height: 2px;
+      top: 16px;
+      width: 25px;
+    }
+  }
+
+  &.open {
+    .b-bun--top {
+      background: black;
+      top: 9px;
+      transform: rotate(45deg);
+    }
+
+    .b-bun--mid {
+      opacity: 0;
+    }
+
+    .b-bun--bottom {
+      background: black;
+      top: 5px;
+      transform: rotate(-45deg);
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    display: none;
   }
 `;
 
 const Header = () => {
-  const { reset } = React.useContext(RecipeQueryContext);
+  const {
+    type,
+    changeType,
+    inputHandler,
+    query,
+    isOpen,
+    reset,
+  } = React.useContext(RecipeQueryContext);
   const [theme, setTheme] = React.useState(null);
+  const [show, setShow] = React.useState(false);
   React.useEffect(() => {
     setTheme(window.__theme);
     window.__onThemeChange = () => {
       setTheme(window.__theme);
     };
   }, []);
+
+  const toggle = () => {
+    setShow(!show);
+  };
+
+  const onChange = (selectedOption = "all") => () => {
+    if (selectedOption === null) {
+      selectedOption = "all";
+    }
+    Router.push("/");
+    changeType(selectedOption);
+  };
+
   return (
     <Container>
-      <div>
-        <Link href="/" passHref>
-          <a onClick={reset}>
-            <h1>Aruyo*</h1>
-          </a>
-        </Link>
-        <Selector />
+      <div className="head_ctrl">
+        <h1>
+          <Link href="/" passHref>
+            <a onClick={reset} className="home">
+              Aruyo
+            </a>
+          </Link>{" "}
+          /{" "}
+          <Link href="/recipe" onClick={reset}>
+            Recipe
+          </Link>
+        </h1>
+        <BurgerMenuButton
+          className={`b-menu ${show ? "open" : ""}`}
+          onClick={toggle}
+        >
+          <div className="b-bun b-bun--top"></div>
+          <div className="b-bun b-bun--mid"></div>
+          <div className="b-bun b-bun--bottom"></div>
+        </BurgerMenuButton>
       </div>
-      {theme !== null ? (
+      <div className={`nav_ctrl ${show ? "active" : ""}`}>
+        <div>
+          <h2>Type</h2>
+          <ul>
+            <li onClick={onChange("all")}>All</li>
+            <li onClick={onChange("sweet")}>Sweet</li>
+            <li onClick={onChange("savoury")}>Savoury</li>
+          </ul>
+        </div>
+        <div>
+          <h2>Recipe</h2>
+          <ul>
+            <li>Japanese Chili Oil</li>
+            <li>Mr. Cheesecake</li>
+            <li>Braised Moroccan Lamb Shank</li>
+          </ul>
+        </div>
+      </div>
+      {/* <Selector /> */}
+      {/* {theme !== null ? (
         <Toggle
           icons={{
             checked: (
@@ -105,7 +272,7 @@ const Header = () => {
         />
       ) : (
         <div style={{ height: "24px" }} />
-      )}
+      )} */}
     </Container>
   );
 };

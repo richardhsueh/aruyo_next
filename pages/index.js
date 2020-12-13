@@ -2,6 +2,7 @@ import { useEffect, useContext, useState } from "react";
 import styled from "styled-components";
 import Layout from "../components/layout";
 import Link from "next/link";
+import Image from "next/image";
 
 import { processIngredient, returnIngredientJson } from "../lib/recipeHelper";
 import RecipeQueryContext from "../lib/RecipeQueryContext";
@@ -17,14 +18,13 @@ const RecipeListItem = styled.li`
   list-style: none;
   overflow: hidden;
   width: 100%;
-  height: 305px;
+  height: 232.92px;
   margin: 7.5px;
-  border-radius: 20px;
+  border-radius: 4px;
   position: relative;
   transition: margin ease-in 100ms;
   flex-direction: column;
-  border: 1.5px solid var(--textNormal);
-  background: var(--textNormal);
+  border: 1px solid #000000;
   box-shadow: var(--form-shadow);
 
   .recipe__pic {
@@ -34,10 +34,10 @@ const RecipeListItem = styled.li`
     position: absolute;
     top: 0;
     width: 100%;
-    height: 60%;
+    height: 100%;
     z-index: 10;
 
-    img {
+    /* img {
       z-index: -1;
       top: 0;
       left: 0;
@@ -45,7 +45,7 @@ const RecipeListItem = styled.li`
       display: block;
       width: 100%;
       height: 100%;
-    }
+    } */
     &:before {
       content: "";
       float: left;
@@ -70,27 +70,35 @@ const RecipeListItem = styled.li`
     }
   }
   .recipe__name {
-    padding: 5px 10px;
+    padding: 1px 7px;
     position: absolute;
     bottom: 0;
-    height: 40%;
+    height: 88px;
     width: 100%;
     display: block;
-    border-top: 1.5px solid var(--textNormal);
-    /* border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px; */
-    background: var(--bg-secondary);
-    color: var(--textNormal);
+    opacity: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(196, 196, 196, 0) 0%,
+      rgba(77, 77, 77, 0.567708) 56.77%,
+      #646464 100%
+    );
+    color: var(--primary_text);
+    z-index: 10;
+    transition: opacity 200ms ease;
     .name {
-      /* height: 50%; */
+      color: #ffffff;
       display: block;
+      font-size: 18px;
+      line-height: 18px;
     }
     .remark {
-      margin-top: 5px;
+      margin-top: 3px;
       height: 3.3rem;
-      font-size: 0.9rem;
-      line-height: 1.1rem;
-      color: #b3b3b3;
+      font-size: 14px;
+      line-height: 17px;
+      color: #ffffff;
+
       overflow: hidden;
       display: -webkit-box;
       -webkit-line-clamp: 3;
@@ -98,13 +106,17 @@ const RecipeListItem = styled.li`
     }
   }
 
+  &:hover {
+    .recipe__name {
+      opacity: 1;
+    }
+  }
+
   @media (min-width: 576px) {
     margin: 7.5px;
     .recipe__pic {
-      height: 70%;
     }
     .recipe__name {
-      height: 30%;
       .remark {
         height: 2.2rem;
         -webkit-line-clamp: 2;
@@ -114,7 +126,6 @@ const RecipeListItem = styled.li`
 
   @media (min-width: 768px) {
     margin: 7.5px;
-    height: 305px;
   }
 
   @media (min-width: 992px) {
@@ -220,33 +231,35 @@ const Home = ({ allRecipes }) => {
   return (
     <Layout>
       <SEO title="Recipe Blog" type="website" image={"/screencap.jpg"} />
-      {transitions.map(({ key, props }) => (
-        <RecipeList style={props} key={key}>
-          {filteredAry.map((item, key) => (
-            <Link
-              prefetch
-              href={`/recipe/[slug]`}
-              as={`/recipe/${item.slug}`}
-              passHref
-              key={key}
-            >
-              <RecipeListLink key={item.slug}>
-                <RecipeListItem hrbg={item.image}>
-                  <div className="recipe__pic">
-                    {item.image && (
-                      <img src={item.image} className="recipe__pic" />
-                    )}
-                  </div>
-                  <span className="recipe__name">
-                    <span className="name">{item.recipe_name}</span>
-                    <span className="remark">{item.ingredients}</span>
-                  </span>
-                </RecipeListItem>
-              </RecipeListLink>
-            </Link>
-          ))}
-        </RecipeList>
-      ))}
+      <RecipeList>
+        {filteredAry.map((item, key) => (
+          <Link
+            href={`/recipe/[slug]`}
+            as={`/recipe/${item.slug}`}
+            passHref
+            key={key}
+          >
+            <RecipeListLink key={item.slug}>
+              <RecipeListItem hrbg={item.image}>
+                <div className="recipe__pic">
+                  {item.image && (
+                    <Image
+                      src={item.image}
+                      layout="fill"
+                      objectFit="cover"
+                      className="recipe__pic"
+                    />
+                  )}
+                </div>
+                <span className="recipe__name">
+                  <span className="name">{item.recipe_name}</span>
+                  <span className="remark">{item.ingredients}</span>
+                </span>
+              </RecipeListItem>
+            </RecipeListLink>
+          </Link>
+        ))}
+      </RecipeList>
     </Layout>
   );
 };

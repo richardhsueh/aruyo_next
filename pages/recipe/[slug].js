@@ -17,7 +17,7 @@ const RecipeContainer = styled(animated.div)`
   h3,
   h4 {
     margin-bottom: 10px;
-    color: var(--textNormal);
+    color: var(--primary_text);
   }
 
   h2 {
@@ -32,7 +32,7 @@ const RecipeContainer = styled(animated.div)`
     margin-top: 10px;
   }
   h6 {
-    color: var(--textNormal);
+    color: var(--primary_text);
     font-weight: normal;
     margin-bottom: 10px;
   }
@@ -44,7 +44,7 @@ const RecipeContainer = styled(animated.div)`
     margin-left: 30px;
     list-style-type: decimal-leading-zero;
     max-width: 650px;
-    color: var(--textNormal);
+    color: var(--primary_text);
     li {
       margin-bottom: 0;
       font-size: 17px;
@@ -62,7 +62,7 @@ const RecipeContainer = styled(animated.div)`
     list-style-position: outside;
     margin-top: 10px;
     margin-left: 20px;
-    color: var(--textNormal);
+    color: var(--primary_text);
     li {
       line-height: 20px;
       margin-bottom: 0;
@@ -121,7 +121,7 @@ const MetaData = styled.div`
     width: 100%;
     .servingBlk {
       font-size: 17px;
-      color: var(--textNormal);
+      color: var(--primary_text);
       strong {
         font-size: 20px;
         font-weight: 500;
@@ -130,8 +130,8 @@ const MetaData = styled.div`
       .servingSize {
         font-size: 17px;
         width: 50px;
-        border: 1px solid var(--textNormal);
-        color: var(--textNormal);
+        border: 1px solid var(--primary_text);
+        color: var(--primary_text);
         background: var(--bg);
         text-align: center;
       }
@@ -186,14 +186,14 @@ const IngredientsBlk = styled.div`
     font-size: 20px;
     font-weight: 500;
     letter-spacing: 2px;
-    color: var(--textNormal);
+    color: var(--primary_text);
   }
   .ingredient__group {
     margin-top: 10px;
     > span {
       display: block;
       text-decoration: underline;
-      color: var(--textNormal);
+      color: var(--primary_text);
     }
   }
   ul {
@@ -232,14 +232,14 @@ const IngredientsBlk = styled.div`
             content: "";
             height: 12px;
             width: 12px;
-            border: 1.5px solid var(--textNormal);
+            border: 1.5px solid var(--primary_text);
             margin-right: 10px;
             box-sizing: content-box;
           }
           &::after {
             opacity: 0;
             content: "";
-            background: var(--textNormal);
+            background: var(--primary_text);
             height: 18px;
             width: 1.5px;
             transform: rotate(45deg);
@@ -273,7 +273,7 @@ export default function Post({ post, morePosts, preview }) {
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />;
   }
-  
+
   let s;
   if (process.browser) {
     s = queryString.parse(window.location.search).s;
@@ -372,7 +372,10 @@ export default function Post({ post, morePosts, preview }) {
                     />
                   )}
                 </MetaData>
-                <div className="mkd" dangerouslySetInnerHTML={{ __html: post.content }}></div>
+                <div
+                  className="mkd"
+                  dangerouslySetInnerHTML={{ __html: post.content }}
+                ></div>
               </RecipeContainer>
             ))}
           </article>
