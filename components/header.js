@@ -32,6 +32,20 @@ const Container = styled.nav`
       font-size: 14px;
       line-height: 17px;
       margin: 4px 0;
+
+      &.active {
+        color: var(--primary_text);
+      }
+    }
+  }
+  .selector {
+    ul {
+      li {
+        cursor: pointer;
+        &.active {
+          color: var(--primary_text);
+        }
+      }
     }
   }
   .head_ctrl {
@@ -172,14 +186,9 @@ const BurgerMenuButton = styled.div`
 `;
 
 const Header = () => {
-  const {
-    type,
-    changeType,
-    inputHandler,
-    query,
-    isOpen,
-    reset,
-  } = React.useContext(RecipeQueryContext);
+  const { type, changeType, recipes, reset } = React.useContext(
+    RecipeQueryContext
+  );
   const [theme, setTheme] = React.useState(null);
   const [show, setShow] = React.useState(false);
   React.useEffect(() => {
@@ -225,20 +234,39 @@ const Header = () => {
         </BurgerMenuButton>
       </div>
       <div className={`nav_ctrl ${show ? "active" : ""}`}>
-        <div>
+        <div className="selector">
           <h2>Type</h2>
           <ul>
-            <li onClick={onChange("all")}>All</li>
-            <li onClick={onChange("sweet")}>Sweet</li>
-            <li onClick={onChange("savoury")}>Savoury</li>
+            <li
+              className={type === "all" ? "active" : ""}
+              onClick={onChange("all")}
+            >
+              All
+            </li>
+            <li
+              className={type === "sweet" ? "active" : ""}
+              onClick={onChange("sweet")}
+            >
+              Sweet
+            </li>
+            <li
+              className={type === "savoury" ? "active" : ""}
+              onClick={onChange("savoury")}
+            >
+              Savoury
+            </li>
           </ul>
         </div>
         <div>
           <h2>Recipe</h2>
           <ul>
-            <li>Japanese Chili Oil</li>
-            <li>Mr. Cheesecake</li>
-            <li>Braised Moroccan Lamb Shank</li>
+            {recipes.map((o) => (
+              <Link href={`/recipe/${o.slug}`} passHref key={o.slug}>
+                <a>
+                  <li>{o.recipe_name}</li>
+                </a>
+              </Link>
+            ))}
           </ul>
         </div>
       </div>
