@@ -1,26 +1,29 @@
 ---
-recipe_name: 'Caramel Pudding'
-slug: 'caramel-pudding'
-image: '/assets/recipe/pudding.jpg'
-date: '2020-02-06'
+recipe_name: "Caramel Pudding"
+slug: "caramel-pudding"
+image: ["/assets/recipe/pudding.jpg"]
+date: "2020-02-06"
 serving: 4
-serving_size: '4oz/120ml medium size ramekin'
-type: 'sweet'
-description: ''
+serving_size: "4oz/120ml medium size ramekin"
+type: "sweet"
+description: ""
 ingredients:
   [
     {
-      'group': 'For Pudding',
-      'ingredient':
+      "group": "For Pudding",
+      "ingredient":
         [
-          '3        ..... large egg',
-          '200-ml   ..... milk',
-          '150-ml   ..... heavy cream',
-          '60-g     ..... sugar',
-          '1-dash   ..... vanilla extract',
+          "3        ..... large egg",
+          "200-ml   ..... milk",
+          "150-ml   ..... heavy cream",
+          "60-g     ..... sugar",
+          "1-dash   ..... vanilla extract",
         ],
     },
-    { 'group': 'For Caramel', 'ingredient': ['70-g     ..... sugar', '3-tbsp   ..... water'] },
+    {
+      "group": "For Caramel",
+      "ingredient": ["70-g     ..... sugar", "3-tbsp   ..... water"],
+    },
   ]
 ---
 

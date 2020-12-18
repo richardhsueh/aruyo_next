@@ -1,31 +1,31 @@
 ---
-recipe_name: 'Italian Meat Sauce'
-slug: 'italian-meat-sauce'
-image: '/assets/recipe/italian-meat-sauce.jpg'
-date: '2020-02-14'
+recipe_name: "Italian Meat Sauce"
+slug: "italian-meat-sauce"
+image: ["/assets/recipe/italian-meat-sauce.jpg"]
+date: "2020-02-14"
 serving: 1
-serving_size: ''
-type: 'savoury'
-description: ''
-tags: ['pasta']
+serving_size: ""
+type: "savoury"
+description: ""
+tags: ["pasta"]
 ingredients:
   [
     {
-      'group': '',
-      'ingredient':
+      "group": "",
+      "ingredient":
         [
-          '1 ..... large onion',
-          '1 ..... large tomato',
-          '1 ..... can tomato puree',
-          '1-tbsp ..... tomato paste',
-          '2-clove ..... garlic',
-          '200-g   ..... ground beef',
-          'some ..... salt',
-          'some ..... sugar',
-          'some ..... black pepper',
-          'some ..... italian herb',
-          '1-tbsp ..... worcestershire sauce',
-          '1-tsp ..... olive oil',
+          "1 ..... large onion",
+          "1 ..... large tomato",
+          "1 ..... can tomato puree",
+          "1-tbsp ..... tomato paste",
+          "2-clove ..... garlic",
+          "200-g   ..... ground beef",
+          "some ..... salt",
+          "some ..... sugar",
+          "some ..... black pepper",
+          "some ..... italian herb",
+          "1-tbsp ..... worcestershire sauce",
+          "1-tsp ..... olive oil",
         ],
     },
   ]

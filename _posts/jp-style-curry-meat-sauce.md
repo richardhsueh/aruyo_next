@@ -1,28 +1,28 @@
 ---
-recipe_name: 'JP-Style Curry Meat Sauce'
-slug: 'jp-style-curry-meat-sauce'
-image: '/assets/recipe/curry-meat-sauce.jpg'
-date: '2020-02-09'
+recipe_name: "JP-Style Curry Meat Sauce"
+slug: "jp-style-curry-meat-sauce"
+image: ["/assets/recipe/curry-meat-sauce.jpg"]
+date: "2020-02-09"
 serving: 4
-serving_size: 'dish'
-type: 'savoury'
-description: ''
+serving_size: "dish"
+type: "savoury"
+description: ""
 ingredients:
   [
     {
-      'group': '',
-      'ingredient':
+      "group": "",
+      "ingredient":
         [
-          '1 ..... carrot',
-          '1 ..... onion',
-          '2-clove ..... garlic',
-          '2-tbsp ..... curry powder',
-          '200-g ..... ground pork/beef',
-          'null-some ..... salt',
-          'null-some ..... black pepper',
-          '40-g ..... curry block',
-          '1-tbsp ..... mirin',
-          '200-ml ..... water',
+          "1 ..... carrot",
+          "1 ..... onion",
+          "2-clove ..... garlic",
+          "2-tbsp ..... curry powder",
+          "200-g ..... ground pork/beef",
+          "null-some ..... salt",
+          "null-some ..... black pepper",
+          "40-g ..... curry block",
+          "1-tbsp ..... mirin",
+          "200-ml ..... water",
         ],
     },
   ]

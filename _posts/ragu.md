@@ -1,31 +1,31 @@
 ---
-recipe_name: 'Ragu'
-slug: 'ragu'
-image: '/assets/recipe/ragu.jpg'
-date: '2020-02-27'
+recipe_name: "Ragu"
+slug: "ragu"
+image: ["/assets/recipe/ragu.jpg"]
+date: "2020-02-27"
 serving: 4
-serving_size: 'people'
-type: 'savoury'
-description: ''
-tags: ['pasta']
+serving_size: "people"
+type: "savoury"
+description: ""
+tags: ["pasta"]
 ingredients:
   [
     {
-      'group': '',
-      'ingredient':
+      "group": "",
+      "ingredient":
         [
-          '1 ..... onion',
-          '1 ..... carrot',
-          '4-sticks ..... celery',
-          '2-clove ..... garlic',
-          '200-g ..... beef',
-          '200-g ..... ground pork',
-          '375-ml ..... red wine',
-          '375-ml ..... beef stock',
-          '2-tbsp ..... tomato paste',
-          'some ..... italian herb',
-          'some ..... salt',
-          'some ..... olive oil',
+          "1 ..... onion",
+          "1 ..... carrot",
+          "4-sticks ..... celery",
+          "2-clove ..... garlic",
+          "200-g ..... beef",
+          "200-g ..... ground pork",
+          "375-ml ..... red wine",
+          "375-ml ..... beef stock",
+          "2-tbsp ..... tomato paste",
+          "some ..... italian herb",
+          "some ..... salt",
+          "some ..... olive oil",
         ],
     },
   ]

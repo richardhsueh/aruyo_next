@@ -1,27 +1,27 @@
 ---
-recipe_name: 'Fried Rice'
-slug: 'fried-rice'
-image: '/assets/recipe/fried-rice.jpg'
-date: '2020-02-23'
+recipe_name: "Fried Rice"
+slug: "fried-rice"
+image: ["/assets/recipe/fried-rice.jpg"]
+date: "2020-02-23"
 serving: 1
-serving_size: 'people'
-type: 'savoury'
-description: ''
-tags: ['rice']
+serving_size: "people"
+type: "savoury"
+description: ""
+tags: ["rice"]
 ingredients:
   [
     {
-      'group': '',
-      'ingredient':
+      "group": "",
+      "ingredient":
         [
-          '200-g ..... leftover rice',
-          '1 ..... egg',
-          'some ..... veges of your choice',
-          'some ..... meat of your choice',
-          'some ..... salt',
-          'some ..... white pepper',
-          'some ..... oil',
-          'some ..... finely chopped scallions',
+          "200-g ..... leftover rice",
+          "1 ..... egg",
+          "some ..... veges of your choice",
+          "some ..... meat of your choice",
+          "some ..... salt",
+          "some ..... white pepper",
+          "some ..... oil",
+          "some ..... finely chopped scallions",
         ],
     },
   ]

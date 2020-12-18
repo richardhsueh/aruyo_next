@@ -1,25 +1,25 @@
 ---
-recipe_name: 'Garlic Chicken'
-slug: 'garlic-chicken'
-image: '/assets/recipe/garlic-chicken.jpg'
-date: '2020-02-06'
+recipe_name: "Garlic Chicken"
+slug: "garlic-chicken"
+image: ["/assets/recipe/garlic-chicken.jpg"]
+date: "2020-02-06"
 serving: null
 serving_size: null
-type: 'savoury'
+type: "savoury"
 description: null
 ingredients:
   [
     {
-      'group': '',
-      'ingredient':
+      "group": "",
+      "ingredient":
         [
-          '700-g ..... chicken thighs',
-          '3-tbsp ..... garlic soy sauce',
-          '3-tbsp ..... chicken stock',
-          '1-pinch ..... black pepper',
-          '1-pinch ..... salt',
-          '4-clove ..... garlic',
-          '3-tbsp ..... flour',
+          "700-g ..... chicken thighs",
+          "3-tbsp ..... garlic soy sauce",
+          "3-tbsp ..... chicken stock",
+          "1-pinch ..... black pepper",
+          "1-pinch ..... salt",
+          "4-clove ..... garlic",
+          "3-tbsp ..... flour",
         ],
     },
   ]

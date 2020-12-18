@@ -24,10 +24,10 @@ const Wrapper = styled.div`
   @media screen and (min-width: 961px) {
     column-gap: 64px;
     main {
-      grid-column-start: 5;
+      grid-column-start: 4;
       grid-column-end: end;
       max-width: 56em;
-      margin-top: 5em;
+      margin-top: 6em;
       margin-bottom: 10em;
     }
   }

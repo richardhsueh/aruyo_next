@@ -1,8 +1,8 @@
 ---
 recipe_name: "Pork Miso Soup"
 slug: "pork-miso-soup"
-image: '/assets/recipe/pork-miso-soup.jpg'
-date: '2020-03-14'
+image: ["/assets/recipe/pork-miso-soup.jpg"]
+date: "2020-03-14"
 serving: 4
 serving_size: "people"
 type: "savoury"
@@ -44,7 +44,7 @@ ingredients:
 12. Continue simmer for additional 30 mins to soften the carrot and turnip
 13. Done
 
-
 ### Remark
+
 - the reason of using fork is to create mote surface area to absorb more flavour form the soup
 - if you want, you can serve with chop green onion

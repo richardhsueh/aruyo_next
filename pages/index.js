@@ -1,14 +1,15 @@
 import { useEffect, useContext, useState } from "react";
 import styled from "styled-components";
-import Layout from "../components/layout";
 import Link from "next/link";
 import Image from "next/image";
+import { animated, useTransition, config } from "react-spring";
+import orderBy from "lodash/orderBy";
+import { Flipper, Flipped, spring } from "react-flip-toolkit";
 
+import Layout from "../components/layout";
 import { processIngredient, returnIngredientJson } from "../lib/recipeHelper";
 import RecipeQueryContext from "../lib/RecipeQueryContext";
 import { getAllRecipes } from "../lib/api";
-import { animated, useTransition, config } from "react-spring";
-import orderBy from "lodash/orderBy";
 import SEO from "../components/seo";
 
 const RecipeListItem = styled.li`
@@ -184,38 +185,76 @@ const Home = ({ allRecipes }) => {
       );
   }, [type, query, search]);
 
+  const onElementAppear = (el, index) =>
+    spring({
+      onUpdate: (val) => {
+        el.style.opacity = val;
+      },
+      delay: index * 20,
+    });
+
+  const onExit = (el, index, removeElement) => {
+    spring({
+      config: { overshootClamping: true },
+      onUpdate: (val) => {
+        el.style.opacity = 1 - val;
+      },
+      delay: index * 20,
+      onComplete: removeElement,
+    });
+
+    return () => {
+      el.style.opacity = "";
+      removeElement();
+    };
+  };
+
   return (
     <Layout>
       <SEO title="Recipe Blog" type="website" image={"/screencap.jpg"} />
-      <RecipeList>
-        {filteredAry.map((item, key) => (
-          <Link
-            href={`/recipe/[slug]`}
-            as={`/recipe/${item.slug}`}
-            passHref
-            key={key}
-          >
-            <RecipeListLink key={item.slug}>
-              <RecipeListItem hrbg={item.image}>
-                <div className="recipe__pic">
-                  {item.image && (
-                    <Image
-                      src={item.image}
-                      layout="fill"
-                      objectFit="cover"
-                      className="recipe__pic"
-                    />
-                  )}
-                </div>
-                <span className="recipe__name">
-                  <span className="name">{item.recipe_name}</span>
-                  <span className="remark">{item.ingredients}</span>
-                </span>
-              </RecipeListItem>
-            </RecipeListLink>
-          </Link>
-        ))}
-      </RecipeList>
+      {transitions.map(({ item, key, props }) => (
+        <Flipper flipKey={`${query}-${type}-${filteredAry.length.toString()}`}>
+          <RecipeList style={props} key={key}>
+            {filteredAry.map((item, key) => (
+              <Flipped
+                key={item.slug}
+                flipId={item.slug}
+                onAppear={onElementAppear}
+                onExit={onExit}
+                // shouldInvert={false}
+              >
+                {(flippedProps) => (
+                  <Link
+                    href={`/recipe/[slug]`}
+                    as={`/recipe/${item.slug}`}
+                    passHref
+                    key={key}
+                  >
+                    <RecipeListLink key={item.slug} {...flippedProps}>
+                      <RecipeListItem hrbg={item.image && item.image[0]}>
+                        <div className="recipe__pic">
+                          {item.image && item.image.length > 0 && (
+                            <Image
+                              src={item.image[0]}
+                              layout="fill"
+                              objectFit="cover"
+                              className="recipe__pic"
+                            />
+                          )}
+                        </div>
+                        <span className="recipe__name">
+                          <span className="name">{item.recipe_name}</span>
+                          <span className="remark">{item.ingredients}</span>
+                        </span>
+                      </RecipeListItem>
+                    </RecipeListLink>
+                  </Link>
+                )}
+              </Flipped>
+            ))}
+          </RecipeList>
+        </Flipper>
+      ))}
     </Layout>
   );
 };

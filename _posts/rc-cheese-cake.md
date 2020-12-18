@@ -1,25 +1,25 @@
 ---
-recipe_name: 'Rice Cooker Cheese Cake'
-slug: 'rc-cheese-cake'
-image: null
-date: '2020-02-09'
+recipe_name: "Rice Cooker Cheese Cake"
+slug: "rc-cheese-cake"
+image: []
+date: "2020-02-09"
 serving: 1
-serving_size: ''
-type: 'sweet'
-description: ''
-tags: ['cake']
+serving_size: ""
+type: "sweet"
+description: ""
+tags: ["cake"]
 ingredients:
   [
     {
-      'group': '',
-      'ingredient':
+      "group": "",
+      "ingredient":
         [
-          '200-g ..... cream cheese',
-          '200-ml ..... cream',
-          '2 ..... egg',
-          '4-tbsp ..... lemon juice',
-          '120-g ..... sugar',
-          '60-g ..... cake flour',
+          "200-g ..... cream cheese",
+          "200-ml ..... cream",
+          "2 ..... egg",
+          "4-tbsp ..... lemon juice",
+          "120-g ..... sugar",
+          "60-g ..... cake flour",
         ],
     },
   ]

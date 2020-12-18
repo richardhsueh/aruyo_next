@@ -1,15 +1,25 @@
 ---
-recipe_name: 'Coffee Shochu'
-slug: 'coffee-shochu'
-image: '/assets/recipe/coffee-shochu.jpg'
-date: '2020-02-23'
+recipe_name: "Coffee Shochu"
+slug: "coffee-shochu"
+image: ["/assets/recipe/coffee-shochu.jpg"]
+date: "2020-02-23"
 serving: 1
-serving_size: '700ml bottle'
-type: 'sweet'
-description: ''
+serving_size: "700ml bottle"
+type: "sweet"
+description: ""
 tags: []
 ingredients:
-  [{ 'group': '', 'ingredient': ['160-g ..... coffee bean', '96-g ..... rock sugar', '900ml ..... japanese shochu'] }]
+  [
+    {
+      "group": "",
+      "ingredient":
+        [
+          "160-g ..... coffee bean",
+          "96-g ..... rock sugar",
+          "900ml ..... japanese shochu",
+        ],
+    },
+  ]
 ---
 
 ### Steps

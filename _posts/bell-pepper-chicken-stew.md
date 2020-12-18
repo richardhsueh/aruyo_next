@@ -1,28 +1,28 @@
 ---
-recipe_name: 'Bell Pepper Chicken Stew'
-slug: 'bell-pepper-chicken-stew'
-image: '/assets/recipe/bell-pepper-chicken-stew.jpg'
-date: '2020-02-27'
+recipe_name: "Bell Pepper Chicken Stew"
+slug: "bell-pepper-chicken-stew"
+image: ["/assets/recipe/bell-pepper-chicken-stew.jpg"]
+date: "2020-02-27"
 serving: 4
-serving_size: 'people'
-type: 'savoury'
-description: ''
+serving_size: "people"
+type: "savoury"
+description: ""
 tags: []
 ingredients:
   [
     {
-      'group': '',
-      'ingredient':
+      "group": "",
+      "ingredient":
         [
-          '3 ..... bell pepper(different colour)',
-          '3 ..... chicken thigh',
-          '1 ..... onion',
-          '2 ..... garlic',
-          '1-tsp ..... sweet smoke paprika',
-          'some ..... salt',
-          'some ..... black pepper',
-          'some ..... water',
-          'some ..... olive oil',
+          "3 ..... bell pepper(different colour)",
+          "3 ..... chicken thigh",
+          "1 ..... onion",
+          "2 ..... garlic",
+          "1-tsp ..... sweet smoke paprika",
+          "some ..... salt",
+          "some ..... black pepper",
+          "some ..... water",
+          "some ..... olive oil",
         ],
     },
   ]
