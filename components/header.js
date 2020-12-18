@@ -16,7 +16,7 @@ const Container = styled.nav`
     font-weight: normal;
     font-size: 20px;
     line-height: 24px;
-    color: var(--primary_text);
+    color: #000;
   }
   .home {
     color: #b1b2b3;
@@ -34,7 +34,7 @@ const Container = styled.nav`
       margin: 4px 0;
 
       &.active {
-        color: var(--primary_text);
+        color: #000;
       }
     }
   }
@@ -43,7 +43,7 @@ const Container = styled.nav`
       li {
         cursor: pointer;
         &.active {
-          color: var(--primary_text);
+          color: #000;
         }
       }
     }

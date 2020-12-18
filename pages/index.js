@@ -72,7 +72,7 @@ const RecipeListItem = styled.li`
       rgba(77, 77, 77, 0.567708) 56.77%,
       #646464 100%
     );
-    color: var(--primary_text);
+    color: #000;
     z-index: 10;
     transition: opacity 200ms ease;
     .name {
