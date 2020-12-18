@@ -66,7 +66,7 @@ const Container = styled.nav`
     padding: 15px 15px 15px 30px;
     height: calc(100% - 67px);
     grid-auto-rows: min-content;
-    z-index: 15;
+    z-index: 100;
 
     &.active {
       left: 0;
