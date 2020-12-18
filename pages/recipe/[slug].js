@@ -106,7 +106,7 @@ const RecipeContainer = styled(animated.div)`
 `;
 
 const ImageFrame = styled.div`
-  min-width: 350px;
+  /* min-width: 350px; */
   width: 100% !important;
   max-height: initial;
   transition: all ease-in 200ms;
@@ -175,7 +175,7 @@ const ImageFrame = styled.div`
   }
   .gatsby-image-wrapper,
   .carousel {
-    min-width: 350px;
+    /* min-width: 350px; */
     width: 100% !important;
     max-height: initial;
     transition: all ease-in 200ms;
@@ -415,7 +415,7 @@ export default function Post({ post, morePosts, preview, allRecipes }) {
                           key={index}
                           src={o}
                           layout="fill"
-                          objectFit="contain"
+                          objectFit="cover"
                         />
                       </ImageFrame>
                     );
@@ -430,7 +430,7 @@ export default function Post({ post, morePosts, preview, allRecipes }) {
                               key={index}
                               src={o}
                               layout="fill"
-                              objectFit="contain"
+                              objectFit="cover"
                             />
                           ))}
                         </Carousel>
@@ -440,7 +440,7 @@ export default function Post({ post, morePosts, preview, allRecipes }) {
                       <Image
                         src={post.image[0]}
                         layout="fill"
-                        objectFit="contain"
+                        objectFit="cover"
                       />
                     )}
                   </ImageFrame>
