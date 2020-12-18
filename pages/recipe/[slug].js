@@ -111,7 +111,7 @@ const ImageFrame = styled.div`
   max-height: initial;
   transition: all ease-in 200ms;
   margin: 0 0 20px 0;
-  border: 1px solid var(--primary_text);
+  border: 1px solid #000;
   position: relative;
   display: flex;
   border-radius: 4px;
@@ -248,7 +248,7 @@ const MetaData = styled.div`
     .servingSize {
       font-size: 17px;
       width: 50px;
-      border: 1px solid var(--primary_text);
+      border: 1px solid #000;
       color: #000;
       background: var(--bg);
       text-align: center;
@@ -314,14 +314,14 @@ const IngredientsBlk = styled.div`
             content: "";
             height: 12px;
             width: 12px;
-            border: 1.5px solid var(--primary_text);
+            border: 1.5px solid #000;
             margin-right: 10px;
             box-sizing: content-box;
           }
           &::after {
             opacity: 0;
             content: "";
-            background: var(--primary_text);
+            background: #000;
             height: 18px;
             width: 1px;
             transform: rotate(45deg);
