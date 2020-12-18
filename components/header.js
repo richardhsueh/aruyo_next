@@ -19,7 +19,7 @@ const Container = styled.nav`
     color: var(--primary_text);
   }
   .home {
-    color: var(--secondary_text);
+    color: #b1b2b3;
   }
   h2 {
     font-weight: 500;
@@ -28,7 +28,7 @@ const Container = styled.nav`
   }
   ul {
     li {
-      color: var(--secondary_text);
+      color: #b1b2b3;
       font-size: 14px;
       line-height: 17px;
       margin: 4px 0;
