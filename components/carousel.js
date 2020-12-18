@@ -32,11 +32,16 @@ export const CarouselContent = ({
     }
   );
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{ position: "relative", width: "100%", height: "100%" }}>
       {transitions.map(({ item, props, key }) => (
         <animated.div
           key={key}
-          style={{ ...props, position: "absolute", width: "100%" }}
+          style={{
+            ...props,
+            position: "absolute",
+            width: "100%",
+            height: "100%",
+          }}
         >
           {children[item]}
         </animated.div>
@@ -48,7 +53,9 @@ export const CarouselContent = ({
 const HeightTransition = ({ children }) => {
   const props = useSpring({ from: { height: "auto" }, to: { height: "auto" } });
   return (
-    <animated.div style={{ ...props, width: "100%" }}>{children}</animated.div>
+    <animated.div style={{ ...props, width: "100%", height: "100%" }}>
+      {children}
+    </animated.div>
   );
 };
 
@@ -121,10 +128,10 @@ const FadeInOutCarousel = ({
                 </CarouselContent>
               </HeightTransition>
               <button type="button" className={styles.prev} onClick={prevSlide}>
-                <img src={Arrow} alt="prev" />
+                <img src={"/arrow.svg"} alt="prev" />
               </button>
               <button type="button" className={styles.next} onClick={nextSlide}>
-                <img src={Arrow} alt="next" />
+                <img src={"/arrow.svg"} alt="next" />
               </button>
               {breadcrumbComponent && breadcrumbComponent({ ...props })}
             </>

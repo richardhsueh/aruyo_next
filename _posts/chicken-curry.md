@@ -1,6 +1,7 @@
 ---
 recipe_name: "Basic Chicken Curry"
 slug: "chicken-curry"
+status: "draft"
 image: ["/assets/recipe/chicken-curry.jpg"]
 date: "2020-03-01"
 serving: 4

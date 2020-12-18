@@ -1,7 +1,12 @@
 ---
 recipe_name: "Coffee Shochu"
 slug: "coffee-shochu"
-image: ["/assets/recipe/coffee-shochu.jpg"]
+image:
+  [
+    "/assets/recipe/coffee-shochu-1.jpg",
+    "/assets/recipe/coffee-shochu-2.jpg",
+    "/assets/recipe/coffee-shochu-3.jpg",
+  ]
 date: "2020-02-23"
 serving: 1
 serving_size: "700ml bottle"

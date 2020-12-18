@@ -113,6 +113,7 @@ const RecipeListLink = styled.a`
   font-size: 1.1rem;
   font-weight: normal;
   transition: 300ms width ease-in-out;
+  position: relative;
   &:before {
     content: "";
     float: left;
@@ -121,6 +122,57 @@ const RecipeListLink = styled.a`
   &:visited,
   &:active {
     color: #fffaf0;
+  }
+
+  &[data-status="final"]::after {
+    content: "Final";
+    padding: 2px 15px;
+    border-radius: 25px;
+    background: var(--final-color);
+    color: white;
+    font-size: 1rem;
+    line-height: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 90;
+    position: absolute;
+    left: 4px;
+    top: 4px;
+  }
+
+  &[data-status="wip"]::after {
+    content: "WIP";
+    padding: 2px 15px;
+    border-radius: 25px;
+    background: var(--wip-color);
+    color: white;
+    font-size: 1rem;
+    line-height: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 90;
+    position: absolute;
+    left: 4px;
+    top: 4px;
+  }
+
+  &[data-status="draft"]::after {
+    content: "Draft";
+    padding: 2px 15px;
+    border-radius: 25px;
+    background: var(--draft-color);
+    color: white;
+    font-size: 1rem;
+    line-height: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 90;
+    position: absolute;
+    left: 4px;
+    top: 4px;
   }
 
   @media (min-width: 992px) {
@@ -230,7 +282,11 @@ const Home = ({ allRecipes }) => {
                     passHref
                     key={key}
                   >
-                    <RecipeListLink key={item.slug} {...flippedProps}>
+                    <RecipeListLink
+                      key={item.slug}
+                      data-status={item.status}
+                      {...flippedProps}
+                    >
                       <RecipeListItem hrbg={item.image && item.image[0]}>
                         <div className="recipe__pic">
                           {item.image && item.image.length > 0 && (
@@ -265,6 +321,7 @@ export async function getStaticProps() {
     "slug",
     "image",
     "date",
+    "status",
     // "serving",
     // "serving_size",
     "type",

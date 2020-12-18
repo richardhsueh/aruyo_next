@@ -91,7 +91,10 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     body {
-      --pink: #ffb7b7;
+      --pink: hsl(0, 100%, 86%);
+      --draft-color: hsl(44, 88%, 58%);
+      --wip-color: hsl(201, 21%, 46%);
+      --final-color: hsl(337, 100%, 26%);
       background-color:  var(--bg);
       transition: color 0.2s ease-out, background 0.2s ease-out;
       position: relative;

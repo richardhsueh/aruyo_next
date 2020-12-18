@@ -1,6 +1,7 @@
 .carousel {
     display: block;
     position: relative;
+    height: 100%;
 }
 
 .carousel:hover button {
@@ -89,7 +90,7 @@ button.prev>img {
 button.next {
     opacity: 0;
     position: absolute;
-    right: 3.5px;
+    right: 0px;
     width: 34.78px;
     height: 80px;
     border-top-left-radius: 40px;
