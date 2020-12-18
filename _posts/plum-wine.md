@@ -1,13 +1,20 @@
 ---
-recipe_name: '梅酒'
-slug: 'plum-wine'
-image: '/assets/recipe/green-plum-wine.jpg'
-date: '2020-02-06'
+recipe_name: "梅酒"
+slug: "plum-wine"
+image: ["/assets/recipe/green-plum-wine.jpg"]
+date: "2020-02-06"
 serving: 1
-serving_size: '5L酒樽'
-type: 'sweet'
+serving_size: "5L酒樽"
+type: "sweet"
 description: null
-ingredients: [{ 'group': '', 'ingredient': ['1-kg ..... 日本南高青梅', '1.8-L ..... 日本燒酎', '500-g ..... 冰糖'] }]
+ingredients:
+  [
+    {
+      "group": "",
+      "ingredient":
+        ["1-kg ..... 日本南高青梅", "1.8-L ..... 日本燒酎", "500-g ..... 冰糖"],
+    },
+  ]
 ---
 
 ### Steps

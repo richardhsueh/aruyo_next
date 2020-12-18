@@ -1,24 +1,24 @@
 ---
-recipe_name: 'Butter Mochi'
-slug: 'butter-mochi'
-image: '/assets/recipe/butter-mochi1.jpg'
-date: '2020-02-08'
+recipe_name: "Butter Mochi"
+slug: "butter-mochi"
+image: ["/assets/recipe/butter-mochi1.jpg", "/assets/recipe/butter-mochi2.jpg"]
+date: "2020-02-08"
 serving: 1
-serving_size: ''
-type: 'sweet'
-description: ''
+serving_size: ""
+type: "sweet"
+description: ""
 ingredients:
   [
     {
-      'group': '',
-      'ingredient':
+      "group": "",
+      "ingredient":
         [
-          '160-g ..... sugar',
-          '400-g ..... milk',
-          '2 ..... egg',
-          '50-g ..... melted butter',
-          '250-g ..... glutinous rice flour',
-          '1-dash ..... vanilla extract',
+          "160-g ..... sugar",
+          "400-g ..... milk",
+          "2 ..... egg",
+          "50-g ..... melted butter",
+          "250-g ..... glutinous rice flour",
+          "1-dash ..... vanilla extract",
         ],
     },
   ]

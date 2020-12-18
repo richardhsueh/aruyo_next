@@ -1,13 +1,15 @@
 import { useEffect, useContext, useState } from "react";
 import styled from "styled-components";
-import Layout from "../components/layout";
 import Link from "next/link";
+import Image from "next/image";
+import { animated, useTransition, config } from "react-spring";
+import orderBy from "lodash/orderBy";
+import { Flipper, Flipped, spring } from "react-flip-toolkit";
 
+import Layout from "../components/layout";
 import { processIngredient, returnIngredientJson } from "../lib/recipeHelper";
 import RecipeQueryContext from "../lib/RecipeQueryContext";
 import { getAllRecipes } from "../lib/api";
-import { animated, useTransition, config } from "react-spring";
-import orderBy from "lodash/orderBy";
 import SEO from "../components/seo";
 
 const RecipeListItem = styled.li`
@@ -17,14 +19,11 @@ const RecipeListItem = styled.li`
   list-style: none;
   overflow: hidden;
   width: 100%;
-  height: 305px;
-  margin: 7.5px;
-  border-radius: 20px;
+  border-radius: 4px;
   position: relative;
   transition: margin ease-in 100ms;
   flex-direction: column;
-  border: 1.5px solid var(--textNormal);
-  background: var(--textNormal);
+  border: 1px solid #000000;
   box-shadow: var(--form-shadow);
 
   .recipe__pic {
@@ -34,18 +33,8 @@ const RecipeListItem = styled.li`
     position: absolute;
     top: 0;
     width: 100%;
-    height: 60%;
+    height: 100%;
     z-index: 10;
-
-    img {
-      z-index: -1;
-      top: 0;
-      left: 0;
-      position: relative;
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
     &:before {
       content: "";
       float: left;
@@ -70,27 +59,34 @@ const RecipeListItem = styled.li`
     }
   }
   .recipe__name {
-    padding: 5px 10px;
+    padding: 1px 7px;
     position: absolute;
     bottom: 0;
-    height: 40%;
+    height: 88px;
     width: 100%;
     display: block;
-    border-top: 1.5px solid var(--textNormal);
-    /* border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px; */
-    background: var(--bg-secondary);
-    color: var(--textNormal);
+    opacity: 1;
+    background: linear-gradient(
+      180deg,
+      rgba(196, 196, 196, 0) 0%,
+      rgba(77, 77, 77, 0.567708) 56.77%,
+      #646464 100%
+    );
+    color: #000;
+    z-index: 10;
+    transition: opacity 200ms ease;
     .name {
-      /* height: 50%; */
+      color: #ffffff;
       display: block;
+      font-size: 18px;
+      line-height: 18px;
     }
     .remark {
-      margin-top: 5px;
-      height: 3.3rem;
-      font-size: 0.9rem;
-      line-height: 1.1rem;
-      color: #b3b3b3;
+      margin-top: 3px;
+      height: 3rem;
+      font-size: 14px;
+      line-height: 16px;
+      color: #ffffff;
       overflow: hidden;
       display: -webkit-box;
       -webkit-line-clamp: 3;
@@ -98,42 +94,26 @@ const RecipeListItem = styled.li`
     }
   }
 
-  @media (min-width: 576px) {
-    margin: 7.5px;
-    .recipe__pic {
-      height: 70%;
-    }
+  @media (min-width: 961px) {
     .recipe__name {
-      height: 30%;
-      .remark {
-        height: 2.2rem;
-        -webkit-line-clamp: 2;
+      opacity: 0;
+    }
+    &:hover {
+      .recipe__name {
+        opacity: 1;
       }
     }
-  }
-
-  @media (min-width: 768px) {
-    margin: 7.5px;
-    height: 305px;
-  }
-
-  @media (min-width: 992px) {
-    margin: 10px;
-  }
-
-  @media (min-width: 1200px) {
-    margin: 10px;
   }
 `;
 
 const RecipeListLink = styled.a`
   display: flex;
-  width: 50%;
   color: #fffaf0;
   text-decoration: none;
   font-size: 1.1rem;
   font-weight: normal;
   transition: 300ms width ease-in-out;
+  position: relative;
   &:before {
     content: "";
     float: left;
@@ -144,47 +124,87 @@ const RecipeListLink = styled.a`
     color: #fffaf0;
   }
 
-  @media (min-width: 576px) {
-    width: 33.3%;
+  &[data-status="final"]::after {
+    content: "Final";
+    padding: 2px 15px;
+    border-radius: 25px;
+    background: var(--final-color);
+    color: white;
+    font-size: 1rem;
+    line-height: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 90;
+    position: absolute;
+    left: 4px;
+    top: 4px;
   }
 
-  @media (min-width: 768px) {
-    width: 25%;
+  &[data-status="wip"]::after {
+    content: "WIP";
+    padding: 2px 15px;
+    border-radius: 25px;
+    background: var(--wip-color);
+    color: white;
+    font-size: 1rem;
+    line-height: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 90;
+    position: absolute;
+    left: 4px;
+    top: 4px;
+  }
+
+  &[data-status="draft"]::after {
+    content: "Draft";
+    padding: 2px 15px;
+    border-radius: 25px;
+    background: var(--draft-color);
+    color: white;
+    font-size: 1rem;
+    line-height: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 90;
+    position: absolute;
+    left: 4px;
+    top: 4px;
   }
 
   @media (min-width: 992px) {
-    width: 25%;
     font-size: 1.2rem;
   }
 
   @media (min-width: 1200px) {
-    width: 25%;
     font-size: 1.2rem;
   }
 `;
 
 const RecipeList = styled(animated.ul)`
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: start;
-  margin: 0 -7.5px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 50vw;
+  grid-gap: 20px 20px;
 
-  @media (min-width: 576px) {
-    margin: 0 -7.5px;
+  @media (min-width: 767px) {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-rows: 35vw;
+    grid-gap: 26px 26px;
   }
 
-  @media (min-width: 768px) {
-    margin: 0 -7.5px;
+  @media (min-width: 961px) {
+    grid-template-columns: 190px 190px 190px;
+    grid-auto-rows: 225px;
+    grid-gap: 24px 24px;
   }
 
-  @media (min-width: 992px) {
-    margin: 0 -10px;
-  }
-
-  @media (min-width: 1200px) {
-    margin: 0 -10px;
+  @media (min-width: 1441px) {
+    grid-template-columns: 205px 205px 205px 205px;
+    grid-auto-rows: 230px;
   }
 `;
 
@@ -217,35 +237,79 @@ const Home = ({ allRecipes }) => {
       );
   }, [type, query, search]);
 
+  const onElementAppear = (el, index) =>
+    spring({
+      onUpdate: (val) => {
+        el.style.opacity = val;
+      },
+      delay: index * 20,
+    });
+
+  const onExit = (el, index, removeElement) => {
+    spring({
+      config: { overshootClamping: true },
+      onUpdate: (val) => {
+        el.style.opacity = 1 - val;
+      },
+      delay: index * 20,
+      onComplete: removeElement,
+    });
+
+    return () => {
+      el.style.opacity = "";
+      removeElement();
+    };
+  };
+
   return (
     <Layout>
       <SEO title="Recipe Blog" type="website" image={"/screencap.jpg"} />
-      {transitions.map(({ key, props }) => (
-        <RecipeList style={props} key={key}>
-          {filteredAry.map((item, key) => (
-            <Link
-              prefetch
-              href={`/recipe/[slug]`}
-              as={`/recipe/${item.slug}`}
-              passHref
-              key={key}
-            >
-              <RecipeListLink key={item.slug}>
-                <RecipeListItem hrbg={item.image}>
-                  <div className="recipe__pic">
-                    {item.image && (
-                      <img src={item.image} className="recipe__pic" />
-                    )}
-                  </div>
-                  <span className="recipe__name">
-                    <span className="name">{item.recipe_name}</span>
-                    <span className="remark">{item.ingredients}</span>
-                  </span>
-                </RecipeListItem>
-              </RecipeListLink>
-            </Link>
-          ))}
-        </RecipeList>
+      {transitions.map(({ item, key, props }) => (
+        <Flipper flipKey={`${query}-${type}-${filteredAry.length.toString()}`}>
+          <RecipeList style={props} key={key}>
+            {filteredAry.map((item, key) => (
+              <Flipped
+                key={item.slug}
+                flipId={item.slug}
+                onAppear={onElementAppear}
+                onExit={onExit}
+                // shouldInvert={false}
+              >
+                {(flippedProps) => (
+                  <Link
+                    href={`/recipe/[slug]`}
+                    as={`/recipe/${item.slug}`}
+                    passHref
+                    key={key}
+                  >
+                    <RecipeListLink
+                      key={item.slug}
+                      data-status={item.status}
+                      {...flippedProps}
+                    >
+                      <RecipeListItem hrbg={item.image && item.image[0]}>
+                        <div className="recipe__pic">
+                          {item.image && item.image.length > 0 && (
+                            <Image
+                              src={item.image[0]}
+                              layout="fill"
+                              objectFit="cover"
+                              className="recipe__pic"
+                            />
+                          )}
+                        </div>
+                        <span className="recipe__name">
+                          <span className="name">{item.recipe_name}</span>
+                          <span className="remark">{item.ingredients}</span>
+                        </span>
+                      </RecipeListItem>
+                    </RecipeListLink>
+                  </Link>
+                )}
+              </Flipped>
+            ))}
+          </RecipeList>
+        </Flipper>
       ))}
     </Layout>
   );
@@ -257,6 +321,7 @@ export async function getStaticProps() {
     "slug",
     "image",
     "date",
+    "status",
     // "serving",
     // "serving_size",
     "type",

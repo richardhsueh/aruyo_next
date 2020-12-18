@@ -1,48 +1,52 @@
 ---
-recipe_name: 'Basic Chicken Curry'
-slug: 'chicken-curry'
-image: '/assets/recipe/chicken-curry.jpg'
-date: '2020-03-01'
+recipe_name: "Basic Chicken Curry"
+slug: "chicken-curry"
+status: "draft"
+image: ["/assets/recipe/chicken-curry.jpg"]
+date: "2020-03-01"
 serving: 4
-serving_size: 'people'
-type: 'savoury'
-description: ''
+serving_size: "people"
+type: "savoury"
+description: ""
 tags: []
 ingredients:
   [
-    { 'group': '', 'ingredient': ['3-tbsp ..... vegetable oil'] },
-    { 'group': 'Whole Spice', 'ingredient': ['0.5-tsp ..... cumin seed', '0.5-tsp ..... fennel seed'] },
+    { "group": "", "ingredient": ["3-tbsp ..... vegetable oil"] },
     {
-      'group': '',
-      'ingredient':
+      "group": "Whole Spice",
+      "ingredient": ["0.5-tsp ..... cumin seed", "0.5-tsp ..... fennel seed"],
+    },
+    {
+      "group": "",
+      "ingredient":
         [
-          '2-clove ..... garlic',
-          '12-g ..... ginger',
-          '300-g ..... onion',
-          '1-tsp ..... salt',
-          '3-tbsp ..... tomato puree',
+          "2-clove ..... garlic",
+          "12-g ..... ginger",
+          "300-g ..... onion",
+          "1-tsp ..... salt",
+          "3-tbsp ..... tomato puree",
         ],
     },
     {
-      'group': 'Powder Spice',
-      'ingredient':
+      "group": "Powder Spice",
+      "ingredient":
         [
-          '0.5-tsp ..... tumeric',
-          '0.5-tsp ..... cayenne pepper',
-          '1-tbsp ..... coriander',
-          '1-tsp ..... cardamon',
-          '1-tsp ..... paprika (not smoked)',
+          "0.5-tsp ..... tumeric",
+          "0.5-tsp ..... cayenne pepper",
+          "1-tbsp ..... coriander",
+          "1-tsp ..... cardamon",
+          "1-tsp ..... paprika (not smoked)",
         ],
     },
     {
-      'group': '',
-      'ingredient':
+      "group": "",
+      "ingredient":
         [
-          '400-ml ..... chicken stock',
-          '50-ml ..... coconut milk',
-          '30-ml ..... tangerine juice',
-          '500-g ..... chicken meat',
-          'some ..... cilantro (chopped)',
+          "400-ml ..... chicken stock",
+          "50-ml ..... coconut milk",
+          "30-ml ..... tangerine juice",
+          "500-g ..... chicken meat",
+          "some ..... cilantro (chopped)",
         ],
     },
   ]

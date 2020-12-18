@@ -1,28 +1,28 @@
 ---
-recipe_name: 'Dark Chocolate Brownie'
-slug: 'dark-chocolate-brownie'
-image: '/assets/recipe/brownie.jpg'
-date: '2020-02-08'
+recipe_name: "Dark Chocolate Brownie"
+slug: "dark-chocolate-brownie"
+image: ["/assets/recipe/brownie.jpg"]
+date: "2020-02-08"
 serving: null
 serving_size: null
-type: 'sweet'
+type: "sweet"
 description: null
-tags: ['cake']
+tags: ["cake"]
 ingredients:
   [
     {
-      'group': '',
-      'ingredient':
+      "group": "",
+      "ingredient":
         [
-          '170-g ..... unsalted butter',
-          '250-g ..... sugar',
-          '70-g ..... flour',
-          '80-g ..... pure cocoa powder',
-          '1-tsp ..... salt',
-          '1.5-tsp ..... instant coffee',
-          '2 ..... egg',
-          '1-tbsp ..... vanilla extract',
-          '100-g ..... chopped dark chocolate',
+          "170-g ..... unsalted butter",
+          "250-g ..... sugar",
+          "70-g ..... flour",
+          "80-g ..... pure cocoa powder",
+          "1-tsp ..... salt",
+          "1.5-tsp ..... instant coffee",
+          "2 ..... egg",
+          "1-tbsp ..... vanilla extract",
+          "100-g ..... chopped dark chocolate",
         ],
     },
   ]

@@ -1,3 +1,4 @@
+import React from "react";
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
 
@@ -30,74 +31,10 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
+          <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
-            rel="preload"
-            href="/fonts/IBMPlexSansCondensed-Bold.woff2"
-            as="font"
-            crossOrigin=""
-          />
-          <link
-            rel="preload"
-            href="/fonts/IBMPlexSansCondensed-Medium.woff2"
-            as="font"
-            crossOrigin=""
-          />
-          <link
-            rel="preload"
-            href="/fonts/IBMPlexSansCondensed-Regular.woff2"
-            as="font"
-            crossOrigin=""
-          />
-          <link
-            rel="preload"
-            href="/fonts/IBMPlexSansCondensed-SemiBold.woff2"
-            as="font"
-            crossOrigin=""
-          />
-          <link
-            rel="preload"
-            href="/fonts/OpenSans-Regular.woff2"
-            as="font"
-            crossOrigin=""
-          />
-          <style
-            dangerouslySetInnerHTML={{
-              __html: ` @font-face {
-                          font-family: 'IBM Plex Sans Condensed';
-                          src: url('/fonts/IBMPlexSansCondensed-Regular.woff2'); 
-                          font-weight: normal;
-                          font-style: normal;
-                          font-display: swap;
-                        }
-                        @font-face {
-                          font-family: 'IBM Plex Sans Condensed';
-                          src: url('/fonts/IBMPlexSansCondensed-Bold.woff2'); 
-                          font-weight: bold;
-                          font-style: normal;
-                          font-display: swap;
-                        }
-                        @font-face {
-                          font-family: 'IBM Plex Sans Condensed';
-                          src: url('/fonts/IBMPlexSansCondensed-SemiBold.woff2'); 
-                          font-weight: 600;
-                          font-style: normal;
-                          font-display: swap;
-                        }
-                        @font-face {
-                          font-family: 'IBM Plex Sans Condensed';
-                          src: url('/fonts/IBMPlexSansCondensed-Medium.woff2'); 
-                          font-weight: 500;
-                          font-style: normal;
-                          font-display: swap;
-                        }
-                        @font-face {
-                          font-family: 'Open Sans';
-                          src: url('/fonts/OpenSans-Regular.woff2'); 
-                          font-weight: normal;
-                          font-style: normal;
-                          font-display: swap;
-                        }`,
-            }}
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
           />
         </Head>
         <body className="light">

@@ -1,24 +1,24 @@
 ---
-recipe_name: 'Thick Chicken Broth'
-slug: 'thick-chicken-broth'
-image: '/assets/recipe/chicken-broth.jpg'
-date: '2020-02-08'
+recipe_name: "Thick Chicken Broth"
+slug: "thick-chicken-broth"
+image: ["/assets/recipe/chicken-broth.jpg"]
+date: "2020-02-08"
 serving: 1
-serving_size: 'Litre'
-type: 'savoury'
-description: ''
+serving_size: "Litre"
+type: "savoury"
+description: ""
 ingredients:
   [
     {
-      'group': '',
-      'ingredient':
+      "group": "",
+      "ingredient":
         [
-          '6 ..... chicken carcass',
-          '1 ..... carrot',
-          '1 ..... leek (green part)',
-          '1 ..... onion',
-          '10-g ..... ginger',
-          '3-L ..... water',
+          "6 ..... chicken carcass",
+          "1 ..... carrot",
+          "1 ..... leek (green part)",
+          "1 ..... onion",
+          "10-g ..... ginger",
+          "3-L ..... water",
         ],
     },
   ]

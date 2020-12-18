@@ -1,40 +1,31 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import ErrorPage from "next/error";
+import Image from "next/image";
 import { animated, useTransition, config } from "react-spring";
 import styled from "styled-components";
 import { format } from "date-fns";
 import queryString from "query-string";
 
 import { getRecipeBySlug, getAllRecipes } from "../../lib/api";
+import useWindowSize from "../../lib/useWindowSize";
 import { processIngredient } from "../../lib/recipeHelper";
 import markdownToHtml from "../../lib/markdownToHtml";
 import Layout from "../../components/layout";
+import SEO from "../../components/seo";
+import Carousel from "../../components/carousel";
+import RecipeQueryContext from "../../lib/RecipeQueryContext";
 
 const RecipeContainer = styled(animated.div)`
-  h2,
-  h3,
-  h4 {
-    margin-bottom: 10px;
-    color: var(--textNormal);
-  }
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  justify-content: left;
 
-  h2 {
-    font-size: 30px;
-    font-weight: 500;
-    letter-spacing: 2px;
-  }
-  h3 {
-    font-size: 20px;
-    font-weight: 500;
-    letter-spacing: 2px;
-    margin-top: 10px;
-  }
-  h6 {
-    color: var(--textNormal);
-    font-weight: normal;
-    margin-bottom: 10px;
+  #main-content {
+    margin-left: 0;
+    width: auto;
   }
 
   ol {
@@ -44,12 +35,12 @@ const RecipeContainer = styled(animated.div)`
     margin-left: 30px;
     list-style-type: decimal-leading-zero;
     max-width: 650px;
-    color: var(--textNormal);
+    color: #000;
     li {
       margin-bottom: 0;
       font-size: 17px;
       line-height: 20px;
-      margin: 7px 0;
+      margin: 10px 0;
       &:first-letter {
         text-transform: uppercase;
       }
@@ -60,12 +51,12 @@ const RecipeContainer = styled(animated.div)`
     padding: 0px;
     list-style: disc;
     list-style-position: outside;
-    margin-top: 10px;
-    margin-left: 20px;
-    color: var(--textNormal);
+    /* margin-top: 10px;
+    margin-left: 20px; */
+    color: #000;
     li {
       line-height: 20px;
-      margin-bottom: 0;
+      margin: 10px 0;
     }
   }
   .recipe__header {
@@ -75,11 +66,22 @@ const RecipeContainer = styled(animated.div)`
     flex-direction: column;
   }
   .mkd {
-    margin-top: 20px;
+    h2,
+    h3 {
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 22px;
+      letter-spacing: 2px;
+      color: #000;
+      margin-top: 25px;
+    }
     ul,
     ol,
     li {
       font-family: "Open Sans", sans-serif;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 22px;
     }
     ul,
     ol {
@@ -87,8 +89,14 @@ const RecipeContainer = styled(animated.div)`
     }
   }
   @media (min-width: 768px) {
+    flex-direction: row;
+    /* padding: 0 60px 30px; */
+    #main-content {
+      /* margin-left: 30px; */
+      width: 500px;
+    }
     h6 {
-      margin-bottom: 0px;
+      /* margin-bottom: 0px; */
     }
     .recipe__header {
       align-items: center;
@@ -97,103 +105,176 @@ const RecipeContainer = styled(animated.div)`
   }
 `;
 
-const MetaData = styled.div`
+const ImageFrame = styled.div`
+  min-width: 350px;
+  width: 100% !important;
+  max-height: initial;
+  transition: all ease-in 200ms;
+  margin: 0 0 20px 0;
+  border: 1px solid #000;
+  position: relative;
   display: flex;
-  flex-direction: column;
-  justify-content: left;
-  img {
-    order: 1;
-    margin: 0 0 20px 0;
+  border-radius: 4px;
+  overflow: hidden;
+
+  &:before {
+    content: "";
+    float: left;
+    padding-top: 100%;
+  }
+
+  &[data-status="final"]::after {
+    content: "Final";
+    padding: 5px 15px;
+    border-radius: 25px;
+    background: var(--final-color);
+    color: white;
+    font-size: 1rem;
+    line-height: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 90;
+    position: absolute;
+    left: 4px;
+    top: 4px;
+  }
+
+  &[data-status="wip"]::after {
+    content: "Work In Progress";
+    padding: 5px 15px;
+    border-radius: 25px;
+    background: var(--wip-color);
+    color: white;
+    font-size: 1rem;
+    line-height: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 90;
+    position: absolute;
+    left: 4px;
+    top: 4px;
+  }
+
+  &[data-status="draft"]::after {
+    content: "Draft";
+    padding: 5px 15px;
+    border-radius: 25px;
+    background: var(--draft-color);
+    color: white;
+    font-size: 1rem;
+    line-height: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 90;
+    position: absolute;
+    left: 4px;
+    top: 4px;
+  }
+  .gatsby-image-wrapper,
+  .carousel {
     min-width: 350px;
     width: 100% !important;
     max-height: initial;
-    border-radius: 20px;
-    overflow: hidden;
-    display: flex;
+    transition: all ease-in 200ms;
+    /* overflow: hidden; */
     &:before {
       content: "";
       float: left;
       padding-top: 100%;
     }
   }
-  .specification {
+
+  @media (min-width: 767px) {
     order: 2;
-    width: 100%;
-    .servingBlk {
-      font-size: 17px;
-      color: var(--textNormal);
-      strong {
-        font-size: 20px;
-        font-weight: 500;
-        letter-spacing: 2px;
-      }
-      .servingSize {
-        font-size: 17px;
-        width: 50px;
-        border: 1px solid var(--textNormal);
-        color: var(--textNormal);
-        background: var(--bg);
-        text-align: center;
-      }
+    min-width: 230px;
+    width: 230px !important;
+    max-height: 230px;
+    margin-right: 25px;
+    .gatsby-image-wrapper,
+    .carousel {
+      order: 2;
+      min-width: 230px;
+      width: 230px !important;
+      max-height: 230px;
+      /* margin: 0 30px 10px 0; */
     }
   }
 
-  @media (min-width: 576px) {
-    flex-direction: column;
-  }
-
-  @media (min-width: 768px) {
-    flex-direction: row;
-    img {
+  @media (min-width: 1441px) {
+    order: 2;
+    min-width: 350px;
+    width: 350px !important;
+    max-height: 350px;
+    margin-right: 30px;
+    .gatsby-image-wrapper,
+    .carousel {
       order: 2;
       min-width: 350px;
       width: 350px !important;
       max-height: 350px;
-      /* margin: 0 30px 10px 0; */
-    }
-    .specification {
-      order: 1;
-      margin-top: 0px;
-      width: 100%;
-      .servingBlk {
-        strong {
-          margin-bottom: 10px;
-        }
-      }
     }
   }
+`;
 
-  @media (min-width: 992px) {
-    flex-direction: row;
-    .specification {
-      .servingBlk {
-        strong {
-          margin-bottom: 0px;
-        }
-      }
-    }
+const MetaData = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+
+  > h1 {
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 36px;
+    color: #000;
+    margin-bottom: 10px;
   }
 
-  @media (min-width: 1200px) {
-    flex-direction: row;
+  > h3 {
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    color: #000;
+    margin-bottom: 10px;
+  }
+
+  .servingBlk {
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    color: #000;
+    .servingSize {
+      font-size: 17px;
+      width: 50px;
+      border: 1px solid #000;
+      color: #000;
+      background: var(--bg);
+      text-align: center;
+    }
   }
 `;
 
 const IngredientsBlk = styled.div`
-  margin: 20px 0;
+  margin: 20px 0 35px;
   max-width: 600px;
   > span {
-    font-size: 20px;
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
     letter-spacing: 2px;
-    color: var(--textNormal);
+    color: #000;
   }
   .ingredient__group {
     margin-top: 10px;
     > span {
       display: block;
       text-decoration: underline;
-      color: var(--textNormal);
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 19px;
+      color: #000;
     }
   }
   ul {
@@ -214,7 +295,8 @@ const IngredientsBlk = styled.div`
       break-inside: avoid;
 
       label {
-        font-size: 16px;
+        font-size: 14px;
+        line-height: 17px;
         cursor: pointer;
         display: flex;
         input[type="checkbox"] {
@@ -232,20 +314,19 @@ const IngredientsBlk = styled.div`
             content: "";
             height: 12px;
             width: 12px;
-            border: 1.5px solid var(--textNormal);
+            border: 1.5px solid #000;
             margin-right: 10px;
             box-sizing: content-box;
           }
           &::after {
             opacity: 0;
             content: "";
-            background: var(--textNormal);
+            background: #000;
             height: 18px;
-            width: 1.5px;
+            width: 1px;
             transform: rotate(45deg);
             position: absolute;
             left: 7px;
-            top: 0.5px;
             border-radius: 1px;
           }
         }
@@ -254,37 +335,60 @@ const IngredientsBlk = styled.div`
   }
 
   @media screen and (max-width: 767px) {
-    margin: 20px 0 0 0;
+    margin: 20px 0 20px;
     ul {
       column-count: 1;
     }
   }
+
+  @media screen and (min-width: 1200px) {
+    max-width: initial;
+  }
 `;
 
-export default function Post({ post, morePosts, preview }) {
+export default function Post({ post, morePosts, preview, allRecipes }) {
+  const { type, query, search, setRecipeJson } = useContext(RecipeQueryContext);
+  const [serving, setServing] = useState(post.serving || 1);
+
   const transitions = useTransition(null, null, {
     enter: { opacity: 1 },
     leave: { opacity: 0 },
-    from: { opacity: 0 },
+    from: { opacity: 1 },
     config: config.stiff,
   });
+
+  useEffect(() => {
+    setRecipeJson(allRecipes);
+  }, [allRecipes]);
+
+  useEffect(() => {
+    if (process.browser && queryString.parse(window.location.search).s) {
+      setServing(queryString.parse(window.location.search).s);
+    }
+  }, []);
+
+  const size = useWindowSize();
 
   const router = useRouter();
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />;
   }
-  
-  let s;
-  if (process.browser) {
-    s = queryString.parse(window.location.search).s;
-  }
-  const [serving, setServing] = useState(post.serving || 1);
 
-  useEffect(() => {
-    if (s) {
-      setServing(s);
+  const onChangeHandler = (e) => {
+    setServing(e.target.value);
+    window.history.replaceState(
+      {},
+      "",
+      location.pathname + "?s=" + e.target.value
+    );
+  };
+
+  const onBlurHandler = (e) => {
+    if (!serving) {
+      setServing(1);
+      window.history.replaceState({}, "", location.pathname);
     }
-  }, [s]);
+  };
 
   return (
     <Layout>
@@ -292,90 +396,113 @@ export default function Post({ post, morePosts, preview }) {
         <PostTitle>Loading…</PostTitle>
       ) : (
         <>
-          <article className="mb-32">
-            <Head>
-              <title>{post.recipe_name} Recipe | Aruyo*</title>
-            </Head>
-            {transitions.map(({ item, key, props }) => (
-              <RecipeContainer style={props} key={key}>
-                <div className="recipe__header">
-                  <h2>{post.recipe_name}</h2>
-                  <h6>{format(new Date(post.date), "yyyy - MM - dd")}</h6>
-                </div>
+          <SEO
+            title={`${post.recipe_name} Recipe`}
+            description={post.description}
+            image={post.image && post.image[0] ? post.image[0] : null}
+            url={`/recipe/${post.slug}`}
+            type="article"
+          />
+          {transitions.map(({ item, key, props }) => (
+            <RecipeContainer style={props} key={key}>
+              <div>
+                {size.width > 768 &&
+                  post.image &&
+                  post.image.map((o, index) => {
+                    return (
+                      <ImageFrame data-status={status}>
+                        <Image
+                          key={index}
+                          src={o}
+                          layout="fill"
+                          objectFit="contain"
+                        />
+                      </ImageFrame>
+                    );
+                  })}
+                {size.width <= 768 && post.image && (
+                  <ImageFrame data-status={status}>
+                    {post.image && post.image.length > 1 && (
+                      <div className="carousel">
+                        <Carousel autoScroll>
+                          {post.image.map((o, index) => (
+                            <Image
+                              key={index}
+                              src={o}
+                              layout="fill"
+                              objectFit="contain"
+                            />
+                          ))}
+                        </Carousel>
+                      </div>
+                    )}
+                    {post.image && post.image.length === 1 && (
+                      <Image
+                        src={post.image[0]}
+                        layout="fill"
+                        objectFit="contain"
+                      />
+                    )}
+                  </ImageFrame>
+                )}
+              </div>
+
+              <div id="main-content">
                 <MetaData className="section">
-                  <div className="specification">
-                    <div className="servingBlk">
-                      <strong>Serving Size: </strong>
-                      <input
-                        className="servingSize"
-                        type="number"
-                        value={serving}
-                        onChange={(e) => {
-                          setServing(e.target.value);
-                          window.history.replaceState(
-                            {},
-                            "",
-                            location.pathname + "?s=" + e.target.value
-                          );
-                        }}
-                        onBlur={() => {
-                          if (!serving) {
-                            setServing(1);
-                            window.history.replaceState(
-                              {},
-                              "",
-                              location.pathname
-                            );
-                          }
-                        }}
-                        min={1}
-                      />{" "}
-                      <span>{post.serving_size && post.serving_size}</span>
-                    </div>
-                    <IngredientsBlk>
-                      <span>Ingredients</span>
-                      {post.ingredients.map((group, index) => (
-                        <div
-                          className="ingredient__group"
-                          key={`ingredient__group${index}`}
-                        >
-                          <span>{group.group}</span>
-                          <ul>
-                            {group.ingredient.map((item, index) => (
-                              <li key={index} className="ingredient">
-                                <label>
-                                  <input
-                                    type="checkbox"
-                                    name={item.ingredientName}
-                                  />
-                                  <span>
-                                    {`${
-                                      item.amount
-                                        ? item.amount * serving + " "
-                                        : ""
-                                    }`}
-                                    {`${item.scale ? item.scale + " " : ""}`}
-                                    {`${item.ingredientName}`}
-                                  </span>
-                                </label>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
-                    </IngredientsBlk>
+                  <h1>{post.recipe_name}</h1>
+                  <h3>{format(new Date(post.date), "yyyy - MM - dd")}</h3>
+                  <div className="servingBlk">
+                    <strong>Serving Size: </strong>
+                    <input
+                      className="servingSize"
+                      type="number"
+                      value={serving}
+                      onChange={onChangeHandler}
+                      onBlur={onBlurHandler}
+                      min={1}
+                    />{" "}
+                    <span>{post.serving_size && post.serving_size}</span>
                   </div>
-                  {post.image && (
-                    <img
-                      src={post.image}
-                      style={{ width: "auto", height: "auto" }}
-                    />
-                  )}
                 </MetaData>
-                <div className="mkd" dangerouslySetInnerHTML={{ __html: post.content }}></div>
-              </RecipeContainer>
-            ))}
-          </article>
+                <IngredientsBlk>
+                  <span>Ingredients</span>
+                  {post.ingredients.map((group, index) => (
+                    <div
+                      className="ingredient__group"
+                      key={`ingredient__group${index}`}
+                    >
+                      <span>{group.group}</span>
+                      <ul>
+                        {group.ingredient.map(
+                          ({ ingredientName, amount, scale }, index) => (
+                            <li key={index} className="ingredient">
+                              <label>
+                                <input type="checkbox" name={ingredientName} />
+                                <span>
+                                  {`${
+                                    amount
+                                      ? Math.round(amount * serving * 10) / 10 +
+                                        " "
+                                      : ""
+                                  }`}
+                                  {`${scale ? scale + " " : ""}`}
+                                  {`${ingredientName}`}
+                                </span>
+                              </label>
+                            </li>
+                          )
+                        )}
+                      </ul>
+                    </div>
+                  ))}
+                </IngredientsBlk>
+                <div
+                  className="section mkd"
+                  dangerouslySetInnerHTML={{ __html: post.content }}
+                />
+              </div>
+            </RecipeContainer>
+          ))}
         </>
       )}
     </Layout>
@@ -383,6 +510,16 @@ export default function Post({ post, morePosts, preview }) {
 }
 
 export async function getStaticProps({ params }) {
+  const allRecipes = getAllRecipes([
+    "recipe_name",
+    "slug",
+    "image",
+    "date",
+    "type",
+    "description",
+    "tags",
+    "ingredients",
+  ]);
   const post = getRecipeBySlug(params.slug, [
     "recipe_name",
     "slug",
@@ -400,6 +537,16 @@ export async function getStaticProps({ params }) {
 
   return {
     props: {
+      allRecipes: allRecipes.map((post) => {
+        return {
+          ...post,
+          ingredients: processIngredient(post.ingredients, post.serving)
+            .map((item) =>
+              item.ingredient.map((o) => o.ingredientName).join(" ‧ ")
+            )
+            .join(" ‧ "),
+        };
+      }),
       post: {
         ...post,
         ingredients: processIngredient(post.ingredients, post.serving),

@@ -1,24 +1,24 @@
 ---
-recipe_name: 'Rice Cooker Bread'
-slug: 'rc-bread'
-image: '/assets/recipe/bread.jpg'
-date: '2020-02-09'
+recipe_name: "Rice Cooker Bread"
+slug: "rc-bread"
+image: ["/assets/recipe/bread.jpg"]
+date: "2020-02-09"
 serving: 1
-serving_size: ''
-type: 'savoury'
-description: ''
+serving_size: ""
+type: "savoury"
+description: ""
 ingredients:
   [
     {
-      'group': '',
-      'ingredient':
+      "group": "",
+      "ingredient":
         [
-          '400-g ..... bread flour',
-          '240-g ..... water',
-          '20-g ..... oil',
-          '20-g ..... sugar',
-          '4-g ..... salt',
-          '4-g ..... yeast',
+          "400-g ..... bread flour",
+          "240-g ..... water",
+          "20-g ..... oil",
+          "20-g ..... sugar",
+          "4-g ..... salt",
+          "4-g ..... yeast",
         ],
     },
   ]

@@ -1,40 +1,40 @@
 ---
-recipe_name: 'Cream Stew'
-slug: 'cream-stew'
-image: '/assets/recipe/cream-stew.jpg'
-date: '2020-02-23'
+recipe_name: "Cream Stew"
+slug: "cream-stew"
+image: ["/assets/recipe/cream-stew.jpg"]
+date: "2020-02-23"
 serving: 4
-serving_size: 'people'
-type: 'savoury'
-description: ''
-tags: ['rice']
+serving_size: "people"
+type: "savoury"
+description: ""
+tags: ["rice"]
 ingredients:
   [
     {
-      'group': '',
-      'ingredient':
+      "group": "",
+      "ingredient":
         [
-          '1 ..... onion',
-          '1 ..... carrot',
-          '1 ..... potato',
-          '5 ..... button mushrooms',
-          '400-g ..... choice of meat',
-          '400-ml ..... chicken broth/water',
-          '2-tbsp ..... olive oil',
-          '1-tsp ..... salt',
-          'some ..... black pepper',
+          "1 ..... onion",
+          "1 ..... carrot",
+          "1 ..... potato",
+          "5 ..... button mushrooms",
+          "400-g ..... choice of meat",
+          "400-ml ..... chicken broth/water",
+          "2-tbsp ..... olive oil",
+          "1-tsp ..... salt",
+          "some ..... black pepper",
         ],
     },
     {
-      'group': 'For White Sauce',
-      'ingredient':
+      "group": "For White Sauce",
+      "ingredient":
         [
-          '45-g ..... unsalted butter',
-          '45-g ..... all-purpose flour',
-          '240-ml ..... milk',
-          '1-tsp ..... salt',
-          '0.5-tsp ..... black pepper',
-          '0.5-tsp ..... ground nutmeg',
+          "45-g ..... unsalted butter",
+          "45-g ..... all-purpose flour",
+          "240-ml ..... milk",
+          "1-tsp ..... salt",
+          "0.5-tsp ..... black pepper",
+          "0.5-tsp ..... ground nutmeg",
         ],
     },
   ]

@@ -37,7 +37,7 @@ function SEO({ description, lang, meta, title, image, url, type }) {
     },
     {
       property: `og:url`,
-      content: url,
+      content: `${siteMetadata.siteUrl}${url}`,
     },
     {
       property: `og:image`,
@@ -72,7 +72,7 @@ function SEO({ description, lang, meta, title, image, url, type }) {
   return (
     <Head>
       <title>{`${title} | ${siteMetadata.title}`}</title>
-      {metas.map((o) => React.createElement("meta", {...o}))}
+      {metas.map((o) => React.createElement("meta", { ...o }))}
     </Head>
   );
 }

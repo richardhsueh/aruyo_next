@@ -1,34 +1,34 @@
 ---
-recipe_name: 'Braised Moroccan Lamb Shank'
-slug: 'braised-moroccan-lamb-shank'
-image: null
-date: '2020-03-05'
+recipe_name: "Braised Moroccan Lamb Shank"
+slug: "braised-moroccan-lamb-shank"
+image: []
+date: "2020-03-05"
 serving: 4
-serving_size: 'people'
-type: 'savoury'
-description: ''
+serving_size: "people"
+type: "savoury"
+description: ""
 tags: []
 ingredients:
   [
     {
-      'group': '',
-      'ingredient':
+      "group": "",
+      "ingredient":
         [
-          '2 ..... lamb shank',
-          '1-clove ..... garlic',
-          '2 ..... onion',
-          '1 ..... carrot',
-          '500-ml ..... tomato sauce',
-          '1-tbsp ..... tomato paste',
-          '1 ..... chicken stock cube',
-          '1-tsp ..... sweet paprika powder',
-          '1-tsp ..... coriander powder',
-          '1-tsp ..... garam masala powder',
-          '1-tsp ..... cumin seed',
-          '1-tsp ..... fennel seed',
-          'some ..... salt',
-          'some ..... black pepper',
-          'some ..... sugar',
+          "2 ..... lamb shank",
+          "1-clove ..... garlic",
+          "2 ..... onion",
+          "1 ..... carrot",
+          "500-ml ..... tomato sauce",
+          "1-tbsp ..... tomato paste",
+          "1 ..... chicken stock cube",
+          "1-tsp ..... sweet paprika powder",
+          "1-tsp ..... coriander powder",
+          "1-tsp ..... garam masala powder",
+          "1-tsp ..... cumin seed",
+          "1-tsp ..... fennel seed",
+          "some ..... salt",
+          "some ..... black pepper",
+          "some ..... sugar",
         ],
     },
   ]

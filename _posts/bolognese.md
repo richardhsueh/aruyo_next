@@ -1,32 +1,32 @@
 ---
-recipe_name: 'Bolognese'
-slug: 'bolognese'
-image: '/assets/recipe/bolognese.jpg'
-date: '2020-02-28T05:35:07.322Z'
+recipe_name: "Bolognese"
+slug: "bolognese"
+image: ["/assets/recipe/bolognese.jpg"]
+date: "2020-02-28T05:35:07.322Z"
 serving: 4
-serving_size: 'pasta'
-type: 'savoury'
-description: ''
-tags: ['pasta']
+serving_size: "pasta"
+type: "savoury"
+description: ""
+tags: ["pasta"]
 ingredients:
   [
     {
-      'group': '',
-      'ingredient':
+      "group": "",
+      "ingredient":
         [
-          '240-g ..... onion',
-          '120-g ..... celery',
-          '120-g ..... carrot',
-          '400-g ..... ground beef',
-          '1.5-cup ..... milk',
-          '2-cup ..... white wine',
-          '2-can ..... crushed tomato',
-          'some ..... salt',
-          'some ..... black pepper',
-          'some ..... paprika',
-          'some ..... nutmeg',
-          '1-tbsp ..... olive oil',
-          '2-tbsp ..... butter',
+          "240-g ..... onion",
+          "120-g ..... celery",
+          "120-g ..... carrot",
+          "400-g ..... ground beef",
+          "1.5-cup ..... milk",
+          "2-cup ..... white wine",
+          "2-can ..... crushed tomato",
+          "some ..... salt",
+          "some ..... black pepper",
+          "some ..... paprika",
+          "some ..... nutmeg",
+          "1-tbsp ..... olive oil",
+          "2-tbsp ..... butter",
         ],
     },
   ]

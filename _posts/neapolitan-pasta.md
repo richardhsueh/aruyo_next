@@ -1,24 +1,24 @@
 ---
-recipe_name: 'Neapolitan Pasta'
-slug: 'neapolitan-pasta'
-image: '/assets/recipe/neapolitan-pasta.jpg'
-date: '2020-02-17'
+recipe_name: "Neapolitan Pasta"
+slug: "neapolitan-pasta"
+image: ["/assets/recipe/neapolitan-pasta.jpg"]
+date: "2020-02-17"
 serving: 1
-serving_size: ''
-type: 'savoury'
-description: ''
-tags: ['pasta']
+serving_size: ""
+type: "savoury"
+description: ""
+tags: ["pasta"]
 ingredients:
   [
     {
-      'group': '',
-      'ingredient':
+      "group": "",
+      "ingredient":
         [
-          '100-g ..... pasta',
-          '0.5 ..... green bell pepper',
-          '50-g ..... bacon/sausage',
-          '4-tbsp ..... ketchup',
-          '1-tbsp ..... japanese worcestershire sauce',
+          "100-g ..... pasta",
+          "0.5 ..... green bell pepper",
+          "50-g ..... bacon/sausage",
+          "4-tbsp ..... ketchup",
+          "1-tbsp ..... japanese worcestershire sauce",
         ],
     },
   ]

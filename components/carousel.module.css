@@ -1,0 +1,111 @@
+.carousel {
+    display: block;
+    position: relative;
+    height: 100%;
+}
+
+.carousel:hover button {
+    opacity: 1;
+}
+
+.carousel[data-status='final']::after {
+    content: 'Final';
+    padding: 5px 15px;
+    border-radius: 25px;
+    background: pink;
+    color: white;
+    font-size: 1rem;
+    line-height: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 90;
+    position: absolute;
+    left: -25px;
+    top: -16px;
+}
+
+.carousel[data-status='wip']::after {
+    content: 'Work In Progress';
+    padding: 5px 15px;
+    border-radius: 25px;
+    background: grey;
+    color: white;
+    font-size: 1rem;
+    line-height: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 90;
+    position: absolute;
+    left: -25px;
+    top: -16px;
+}
+
+.carousel[data-status='draft']::after {
+    content: 'Draft';
+    padding: 5px 15px;
+    border-radius: 25px;
+    background: lightskyblue;
+    color: white;
+    font-size: 1rem;
+    line-height: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 90;
+    position: absolute;
+    left: -25px;
+    top: -16px;
+}
+
+button.prev:hover,
+button.next:hover {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+button.prev {
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    width: 34.78px;
+    height: 80px;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    background: rgba(0, 0, 0, 0.2);
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 200ms ease-in-out;
+}
+
+button.prev>img {
+    width: 13.91px;
+    height: 27.83px;
+    position: absolute;
+    left: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+button.next {
+    opacity: 0;
+    position: absolute;
+    right: 0px;
+    width: 34.78px;
+    height: 80px;
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
+    background: rgba(0, 0, 0, 0.2);
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 200ms ease-in-out;
+}
+
+button.next img {
+    width: 13.91px;
+    height: 27.83px;
+    transform: translateY(-50%)rotate(180deg);
+    position: absolute;
+    right: 6px;
+    top: 50%;
+}

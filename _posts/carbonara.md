@@ -1,25 +1,25 @@
 ---
-recipe_name: 'Carbonara'
-slug: 'carbonara'
-image: '/assets/recipe/carbonara.jpg'
-date: '2020-02-23'
+recipe_name: "Carbonara"
+slug: "carbonara"
+image: ["/assets/recipe/carbonara.jpg"]
+date: "2020-02-23"
 serving: 2
-serving_size: 'people'
-type: 'savoury'
-description: ''
-tags: ['pasta']
+serving_size: "people"
+type: "savoury"
+description: ""
+tags: ["pasta"]
 ingredients:
   [
     {
-      'group': '',
-      'ingredient':
+      "group": "",
+      "ingredient":
         [
-          '200-g ..... spaghetti',
-          '2 ..... egg',
-          '4-strip ..... of bacon',
-          '2-tbsp ..... olive oil',
-          '50-g ..... grated parmesan cheese',
-          'some ..... black pepper',
+          "200-g ..... spaghetti",
+          "2 ..... egg",
+          "4-strip ..... of bacon",
+          "2-tbsp ..... olive oil",
+          "50-g ..... grated parmesan cheese",
+          "some ..... black pepper",
         ],
     },
   ]
