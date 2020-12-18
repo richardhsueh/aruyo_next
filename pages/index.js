@@ -18,8 +18,6 @@ const RecipeListItem = styled.li`
   list-style: none;
   overflow: hidden;
   width: 100%;
-  /* height: 232.92px; */
-  /* margin: 7.5px; */
   border-radius: 4px;
   position: relative;
   transition: margin ease-in 100ms;
@@ -36,16 +34,6 @@ const RecipeListItem = styled.li`
     width: 100%;
     height: 100%;
     z-index: 10;
-
-    /* img {
-      z-index: -1;
-      top: 0;
-      left: 0;
-      position: relative;
-      display: block;
-      width: 100%;
-      height: 100%;
-    } */
     &:before {
       content: "";
       float: left;
@@ -115,18 +103,6 @@ const RecipeListItem = styled.li`
       }
     }
   }
-
-  @media (min-width: 768px) {
-    /* margin: 7.5px; */
-  }
-
-  @media (min-width: 992px) {
-    /* margin: 10px; */
-  }
-
-  @media (min-width: 1200px) {
-    /* margin: 10px; */
-  }
 `;
 
 const RecipeListLink = styled.a`
@@ -144,12 +120,6 @@ const RecipeListLink = styled.a`
   &:visited,
   &:active {
     color: #fffaf0;
-  }
-
-  @media (min-width: 576px) {
-  }
-
-  @media (min-width: 768px) {
   }
 
   @media (min-width: 992px) {
