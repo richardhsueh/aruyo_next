@@ -19,7 +19,7 @@ const Container = styled.nav`
     color: #000;
   }
   .home {
-    color: #b1b2b3;
+    color: #595959;
   }
   h2 {
     font-weight: 500;
@@ -28,7 +28,7 @@ const Container = styled.nav`
   }
   ul {
     li {
-      color: #b1b2b3;
+      color: #595959;
       font-size: 14px;
       line-height: 17px;
       margin: 4px 0;

@@ -112,7 +112,7 @@ export const GlobalStyle = createGlobalStyle`
     body.light {
       --background: #fff;
       --primary_text: #000;
-      --secondary_text: #B1B2B3;
+      --secondary_text: #595959;
     }
 
     body.dark {
