@@ -1,11 +1,15 @@
 {
-  "name": "aruyo_next",
-  "version": "0.1.0",
+  "name": "aruyo",
   "private": true,
+  "description": "This is a blog for all kinds of recipe.",
+  "version": "1.0.0",
+  "author": "Richard H",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "generate": "plop --plopfile generator/index.js",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\""
   },
   "dependencies": {
     "@material-ui/core": "^4.9.7",
@@ -37,6 +41,8 @@
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.11.1",
-    "sass": "^1.29.0"
+    "sass": "^1.29.0",
+    "plop": "2.6.0",
+    "prettier": "2.0.5"
   }
 }

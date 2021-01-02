@@ -64,7 +64,6 @@ const Container = styled.nav`
     box-shadow: 3px 3px 40px rgba(0, 0, 0, 0.15);
     border-radius: 0px 4px 4px 0px;
     padding: 15px 15px 15px 30px;
-    height: calc(100% - 67px);
     grid-auto-rows: min-content;
     z-index: 100;
 

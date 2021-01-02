@@ -59,10 +59,10 @@ const RecipeListItem = styled.li`
     }
   }
   .recipe__name {
-    padding: 1px 7px;
+    padding: 7px 7px;
     position: absolute;
     bottom: 0;
-    height: 88px;
+    /* height: 88px; */
     width: 100%;
     display: block;
     opacity: 1;
