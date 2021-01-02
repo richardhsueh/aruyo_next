@@ -19,7 +19,7 @@ ingredients:
           "80-g ..... sugar",
           "20-g ..... butter",
           "1-tsp ..... cinnamon powder",
-          "pinch of ..... salt",
+          "some ..... salt",
         ],
     },
     {
