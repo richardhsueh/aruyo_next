@@ -2,7 +2,7 @@
 recipe_name: "Apple Sauce Upside Down Cake"
 slug: "apple-sauce-upside-down-cake"
 status: "draft"
-image: []
+image: ["/assets/recipe/apple-sauce-cake-1.jpg"]
 date: "2021-01-01"
 serving: 1
 serving_size: "5 cup rice cooker"
