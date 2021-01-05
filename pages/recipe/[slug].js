@@ -7,6 +7,9 @@ import { animated, useTransition, config } from "react-spring";
 import styled from "styled-components";
 import { format } from "date-fns";
 import queryString from "query-string";
+import { createCanvas, loadImage } from "canvas";
+import fs from "fs";
+import canvasTxt from "canvas-txt";
 
 import { getRecipeBySlug, getAllRecipes } from "../../lib/api";
 import useWindowSize from "../../lib/useWindowSize";
@@ -16,6 +19,7 @@ import Layout from "../../components/layout";
 import SEO from "../../components/seo";
 import Carousel from "../../components/carousel";
 import RecipeQueryContext from "../../lib/RecipeQueryContext";
+import { roundRect } from "../../lib/canvasHelper";
 
 const RecipeContainer = styled(animated.div)`
   display: flex;
@@ -390,6 +394,8 @@ export default function Post({ post, morePosts, preview, allRecipes }) {
     }
   };
 
+  const previewImg = `/assets/recipe/${post.slug}-preview.png`;
+
   return (
     <Layout>
       {router.isFallback ? (
@@ -399,7 +405,7 @@ export default function Post({ post, morePosts, preview, allRecipes }) {
           <SEO
             title={`${post.recipe_name} Recipe`}
             description={post.description}
-            image={post.image && post.image[0] ? post.image[0] : null}
+            image={previewImg}
             url={`/recipe/${post.slug}`}
             type="article"
           />
@@ -534,6 +540,69 @@ export async function getStaticProps({ params }) {
     "content",
   ]);
   const content = await markdownToHtml(post.content || "");
+
+  const width = 540;
+  const height = 281;
+
+  const canvas = createCanvas(width, height);
+  const context = canvas.getContext("2d");
+
+  context.fillStyle = "#fff";
+  context.fillRect(0, 0, width, height);
+
+  if (post.image && post.image[0]) {
+    const txt = post.recipe_name;
+    context.font = "Inter";
+    context.fillStyle = "#000";
+    canvasTxt.fontSize = 30;
+    canvasTxt.lineHeight = 35;
+    canvasTxt.fontWeight = "bold";
+    canvasTxt.align = "left";
+    canvasTxt.vAlign = "top";
+    canvasTxt.drawText(context, txt, 280, 30, 230, 90);
+
+    if (post.serving_size) {
+      const servingSize = `Serving: ${post.serving} * ${post.serving_size}`;
+      canvasTxt.fontSize = 18;
+      canvasTxt.lineHeight = 18;
+      canvasTxt.fontWeight = "regular";
+      canvasTxt.drawText(context, servingSize, 280, 160, 230, 200);
+    }
+
+    canvasTxt.fontSize = 18;
+    canvasTxt.fontWeight = "regular";
+    canvasTxt.drawText(context, post.date, 280, 225, 230, 200);
+
+    context.fillStyle = "transparent";
+    roundRect(context, 30, 30, 220, 220, 3, "#000", true);
+    context.clip();
+
+    loadImage(`./public/${post.image[0]}`).then((image) => {
+      context.drawImage(image, 20, 20, 240, 240);
+      const buffer = canvas.toBuffer("image/png");
+      fs.writeFileSync(
+        `./public/assets/recipe/${post.slug}-preview.png`,
+        buffer
+      );
+    });
+  } else {
+    const txt = post.recipe_name;
+    context.font = "Inter";
+    context.fillStyle = "#000";
+    canvasTxt.fontSize = 30;
+    canvasTxt.lineHeight = 35;
+    canvasTxt.fontWeight = "bold";
+    canvasTxt.align = "left";
+    canvasTxt.vAlign = "top";
+    canvasTxt.drawText(context, txt, 30, 30, 250, 90);
+
+    canvasTxt.fontSize = 18;
+    canvasTxt.fontWeight = "regular";
+    canvasTxt.drawText(context, post.date, 30, 225, 250, 200);
+
+    const buffer = canvas.toBuffer("image/png");
+    fs.writeFileSync(`./public/assets/recipe/${post.slug}_preview.png`, buffer);
+  }
 
   return {
     props: {
