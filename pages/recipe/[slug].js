@@ -559,26 +559,39 @@ export async function getStaticProps({ params }) {
     canvasTxt.fontWeight = "bold";
     canvasTxt.align = "left";
     canvasTxt.vAlign = "top";
-    canvasTxt.drawText(context, txt, 280, 30, 230, 90);
+    canvasTxt.drawText(context, txt, 280, 40, 230, 90);
 
-    if (post.serving_size) {
-      const servingSize = `Serving: ${post.serving} * ${post.serving_size}`;
-      canvasTxt.fontSize = 18;
-      canvasTxt.lineHeight = 18;
-      canvasTxt.fontWeight = "regular";
-      canvasTxt.drawText(context, servingSize, 280, 160, 230, 200);
-    }
+    // if (post.serving_size) {
+    //   const servingSize = `Serving: ${post.serving} * ${post.serving_size}`;
+    //   canvasTxt.fontSize = 18;
+    //   canvasTxt.lineHeight = 18;
+    //   canvasTxt.fontWeight = "regular";
+    //   canvasTxt.drawText(context, servingSize, 280, 160, 230, 200);
+    // }
 
     canvasTxt.fontSize = 18;
     canvasTxt.fontWeight = "regular";
-    canvasTxt.drawText(context, post.date, 280, 225, 230, 200);
+    canvasTxt.drawText(context, post.date, 280, 220, 230, 200);
+
+    canvasTxt.fontSize = 18;
+    canvasTxt.fontWeight = "bold";
+    canvasTxt.drawText(
+      context,
+      `${capitalizeFirstLetter(post.type)} recipe`,
+      280,
+      200,
+      230,
+      200
+    );
 
     context.fillStyle = "transparent";
-    roundRect(context, 30, 30, 220, 220, 3, "#000", true);
+    roundRect(context, 20, 20, 500, 240, 6, "#000", true);
+
+    roundRect(context, 40, 40, 220, 200, 3, "#fff", true);
     context.clip();
 
     loadImage(`./public/${post.image[0]}`).then((image) => {
-      context.drawImage(image, 20, 20, 240, 240);
+      context.drawImage(image, 40, 40, 220, 200);
       const buffer = canvas.toBuffer("image/png");
       fs.writeFileSync(
         `./public/assets/recipe/${post.slug}-preview.png`,
@@ -638,4 +651,8 @@ export async function getStaticPaths() {
     }),
     fallback: false,
   };
+}
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
