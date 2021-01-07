@@ -614,7 +614,7 @@ export async function getStaticProps({ params }) {
     canvasTxt.drawText(context, post.date, 30, 225, 250, 200);
 
     const buffer = canvas.toBuffer("image/png");
-    fs.writeFileSync(`./public/assets/recipe/${post.slug}_preview.png`, buffer);
+    fs.writeFileSync(`./public/assets/recipe/${post.slug}-preview.png`, buffer);
   }
 
   return {
