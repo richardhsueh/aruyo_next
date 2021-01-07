@@ -607,11 +607,25 @@ export async function getStaticProps({ params }) {
     canvasTxt.fontWeight = "bold";
     canvasTxt.align = "left";
     canvasTxt.vAlign = "top";
-    canvasTxt.drawText(context, txt, 30, 30, 250, 90);
+    canvasTxt.drawText(context, txt, 40, 40, 250, 90);
 
     canvasTxt.fontSize = 18;
     canvasTxt.fontWeight = "regular";
-    canvasTxt.drawText(context, post.date, 30, 225, 250, 200);
+    canvasTxt.drawText(context, post.date, 40, 220, 230, 200);
+
+    canvasTxt.fontSize = 18;
+    canvasTxt.fontWeight = "bold";
+    canvasTxt.drawText(
+      context,
+      `${capitalizeFirstLetter(post.type)} recipe`,
+      40,
+      200,
+      230,
+      200
+    );
+
+    context.fillStyle = "transparent";
+    roundRect(context, 20, 20, 500, 240, 6, "#000", true);
 
     const buffer = canvas.toBuffer("image/png");
     fs.writeFileSync(`./public/assets/recipe/${post.slug}-preview.png`, buffer);
