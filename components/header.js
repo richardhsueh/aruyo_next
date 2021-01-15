@@ -225,7 +225,7 @@ const Header = () => {
             </a>
           </Link>{" "}
           /{" "}
-          <Link href="/recipe" onClick={reset}>
+          <Link href="/" onClick={reset}>
             Recipe
           </Link>
         </h1>
