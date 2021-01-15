@@ -14,6 +14,35 @@ import SEO from "../components/seo";
 
 const RecipeListItem = styled.li`
   display: flex;
+  color: #fffaf0;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: normal;
+  transition: 300ms width ease-in-out;
+  position: relative;
+  &:before {
+    content: "";
+    float: left;
+    padding-top: 100%;
+  }
+  &:visited,
+  &:active {
+    color: #fffaf0;
+  }
+
+  
+
+  @media (min-width: 992px) {
+    font-size: 1.2rem;
+  }
+
+  @media (min-width: 1200px) {
+    font-size: 1.2rem;
+  }
+`;
+
+const RecipeListLink = styled.a`
+  display: flex;
   align-items: center;
   justify-content: center;
   list-style: none;
@@ -94,36 +123,6 @@ const RecipeListItem = styled.li`
     }
   }
 
-  @media (min-width: 961px) {
-    .recipe__name {
-      opacity: 0;
-    }
-    &:hover {
-      .recipe__name {
-        opacity: 1;
-      }
-    }
-  }
-`;
-
-const RecipeListLink = styled.a`
-  display: flex;
-  color: #fffaf0;
-  text-decoration: none;
-  font-size: 1.1rem;
-  font-weight: normal;
-  transition: 300ms width ease-in-out;
-  position: relative;
-  &:before {
-    content: "";
-    float: left;
-    padding-top: 100%;
-  }
-  &:visited,
-  &:active {
-    color: #fffaf0;
-  }
-
   &[data-status="final"]::after {
     content: "Final";
     padding: 2px 15px;
@@ -175,12 +174,15 @@ const RecipeListLink = styled.a`
     top: 4px;
   }
 
-  @media (min-width: 992px) {
-    font-size: 1.2rem;
-  }
-
-  @media (min-width: 1200px) {
-    font-size: 1.2rem;
+  @media (min-width: 961px) {
+    .recipe__name {
+      opacity: 0;
+    }
+    &:hover {
+      .recipe__name {
+        opacity: 1;
+      }
+    }
   }
 `;
 
@@ -276,18 +278,18 @@ const Home = ({ allRecipes }) => {
                 // shouldInvert={false}
               >
                 {(flippedProps) => (
-                  <Link
-                    href={`/recipe/[slug]`}
-                    as={`/recipe/${item.slug}`}
-                    passHref
-                    key={key}
-                  >
-                    <RecipeListLink
-                      key={item.slug}
-                      data-status={item.status}
-                      {...flippedProps}
+                  <RecipeListItem hrbg={item.image && item.image[0]}>
+                    <Link
+                      href={`/recipe/[slug]`}
+                      as={`/recipe/${item.slug}`}
+                      passHref
+                      key={key}
                     >
-                      <RecipeListItem hrbg={item.image && item.image[0]}>
+                      <RecipeListLink
+                        key={item.slug}
+                        data-status={item.status}
+                        {...flippedProps}
+                      >
                         <div className="recipe__pic">
                           {item.image && item.image.length > 0 && (
                             <Image
@@ -295,6 +297,7 @@ const Home = ({ allRecipes }) => {
                               layout="fill"
                               objectFit="cover"
                               className="recipe__pic"
+                              alt={item.recipe_name}
                             />
                           )}
                         </div>
@@ -302,9 +305,9 @@ const Home = ({ allRecipes }) => {
                           <span className="name">{item.recipe_name}</span>
                           <span className="remark">{item.ingredients}</span>
                         </span>
-                      </RecipeListItem>
-                    </RecipeListLink>
-                  </Link>
+                      </RecipeListLink>
+                    </Link>
+                  </RecipeListItem>
                 )}
               </Flipped>
             ))}

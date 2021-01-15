@@ -261,15 +261,17 @@ const Header = () => {
           <h2>Recipe</h2>
           <ul>
             {recipes.map((o) => (
+              <li>
               <Link href={`/recipe/${o.slug}`} passHref key={o.slug}>
                 <a
                   onClick={() => {
                     setShow(false);
                   }}
                 >
-                  <li>{o.recipe_name}</li>
+                  {o.recipe_name}
                 </a>
               </Link>
+              </li>
             ))}
           </ul>
         </div>
