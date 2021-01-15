@@ -261,7 +261,6 @@ const Home = ({ allRecipes }) => {
   };
 
   return (
-    // <Layout>
     <>
       <SEO title="Recipe Blog" type="website" image={"/screencap.png"} />
       {transitions.map(({ item, key, props }) => (
@@ -273,7 +272,6 @@ const Home = ({ allRecipes }) => {
                 flipId={item.slug}
                 onAppear={onElementAppear}
                 onExit={onExit}
-                // shouldInvert={false}
               >
                 {(flippedProps) => (
                   <RecipeListItem hrbg={item.image && item.image[0]}>
@@ -313,7 +311,6 @@ const Home = ({ allRecipes }) => {
         </Flipper>
       ))}
     </>
-    // </Layout>
   );
 };
 

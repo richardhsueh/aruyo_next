@@ -401,7 +401,6 @@ export default function Post({ post, morePosts, preview, allRecipes }) {
   const previewImg = `/assets/recipe/${post.slug}-preview.png`;
 
   return (
-    // <Layout>
     <>
       {router.isFallback ? (
         <PostTitle>Loading…</PostTitle>
@@ -431,9 +430,9 @@ export default function Post({ post, morePosts, preview, allRecipes }) {
                       </ImageFrame>
                     );
                   })}
-                {size.width <= 768 && post.image && (
+                {size.width <= 768 && post.image.length > 0 && (
                   <ImageFrame data-status={status}>
-                    {post.image && post.image.length > 1 && (
+                    {post.image.length > 1 && (
                       <div className="carousel">
                         <Carousel autoScroll>
                           {post.image.map((o, index) => (
@@ -447,7 +446,7 @@ export default function Post({ post, morePosts, preview, allRecipes }) {
                         </Carousel>
                       </div>
                     )}
-                    {post.image && post.image.length === 1 && (
+                    {post.image.length === 1 && (
                       <Image
                         src={post.image[0]}
                         layout="fill"
@@ -516,7 +515,6 @@ export default function Post({ post, morePosts, preview, allRecipes }) {
           ))}
         </>
       )}
-      {/* </Layout> */}
     </>
   );
 }
