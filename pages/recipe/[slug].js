@@ -39,7 +39,7 @@ const RecipeContainer = styled(animated.div)`
     margin-left: 30px;
     list-style-type: decimal-leading-zero;
     max-width: 650px;
-    color: #222;
+    color: var(--primary_text);
     li {
       margin-bottom: 0;
       font-size: 17px;
@@ -57,7 +57,7 @@ const RecipeContainer = styled(animated.div)`
     list-style-position: outside;
     /* margin-top: 10px;
     margin-left: 20px; */
-    color: #222;
+    color: var(--primary_text);
     li {
       line-height: 20px;
       margin: 10px 0;
@@ -76,7 +76,7 @@ const RecipeContainer = styled(animated.div)`
       font-size: 18px;
       line-height: 22px;
       letter-spacing: 2px;
-      color: #222;
+      color: var(--primary_text);
       margin-top: 25px;
     }
     ul,
@@ -115,7 +115,7 @@ const ImageFrame = styled.div`
   max-height: initial;
   transition: all ease-in 200ms;
   margin: 0 0 20px 0;
-  border: 1px solid #222;
+  border: 1px solid var(--primary_text);
   position: relative;
   display: flex;
   border-radius: 4px;
@@ -232,7 +232,7 @@ const MetaData = styled.div`
     font-weight: bold;
     font-size: 30px;
     line-height: 36px;
-    color: #222;
+    color: var(--primary_text);
     margin-bottom: 10px;
   }
 
@@ -240,7 +240,7 @@ const MetaData = styled.div`
     font-weight: normal;
     font-size: 18px;
     line-height: 22px;
-    color: #222;
+    color: var(--primary_text);
     margin-bottom: 10px;
   }
 
@@ -248,13 +248,13 @@ const MetaData = styled.div`
     font-weight: normal;
     font-size: 18px;
     line-height: 22px;
-    color: #222;
+    color: var(--primary_text);
     .servingSize {
       font-size: 17px;
       width: 70px;
-      border: 1px solid #222;
+      border: 1px solid var(--primary_text);
       border-radius: 3px;
-      color: #222;
+      color: var(--primary_text);
       background: var(--bg);
       text-align: center;
       &::-webkit-inner-spin-button {
@@ -272,7 +272,7 @@ const IngredientsBlk = styled.div`
     font-size: 18px;
     line-height: 22px;
     letter-spacing: 2px;
-    color: #222;
+    color: var(--primary_text);
   }
   .ingredient__group {
     margin-top: 10px;
@@ -282,7 +282,7 @@ const IngredientsBlk = styled.div`
       font-weight: normal;
       font-size: 16px;
       line-height: 19px;
-      color: #222;
+      color: var(--primary_text);
     }
   }
   ul {
@@ -322,14 +322,14 @@ const IngredientsBlk = styled.div`
             content: "";
             height: 12px;
             width: 12px;
-            border: 1.5px solid #222;
+            border: 1.5px solid var(--primary_text);
             margin-right: 10px;
             box-sizing: content-box;
           }
           &::after {
             opacity: 0;
             content: "";
-            background: #222;
+            background: var(--primary_text);
             height: 18px;
             width: 1px;
             transform: rotate(45deg);
@@ -401,7 +401,8 @@ export default function Post({ post, morePosts, preview, allRecipes }) {
   const previewImg = `/assets/recipe/${post.slug}-preview.png`;
 
   return (
-    <Layout>
+    // <Layout>
+    <>
       {router.isFallback ? (
         <PostTitle>Loading…</PostTitle>
       ) : (
@@ -515,7 +516,8 @@ export default function Post({ post, morePosts, preview, allRecipes }) {
           ))}
         </>
       )}
-    </Layout>
+      {/* </Layout> */}
+    </>
   );
 }
 
@@ -551,7 +553,7 @@ export async function getStaticProps({ params }) {
   const canvas = createCanvas(width, height);
   const context = canvas.getContext("2d");
 
-  context.fillStyle = "#fff";
+  context.fillStyle = "var(--background)";
   context.fillRect(0, 0, width, height);
 
   if (post.image && post.image[0]) {
@@ -591,7 +593,7 @@ export async function getStaticProps({ params }) {
     context.fillStyle = "transparent";
     roundRect(context, 20, 20, 500, 240, 6, "#000", true);
 
-    roundRect(context, 40, 40, 220, 200, 3, "#fff", true);
+    roundRect(context, 40, 40, 220, 200, 3, "var(--background)", true);
     context.clip();
 
     loadImage(`./public/${post.image[0]}`).then((image) => {

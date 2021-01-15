@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { ResetStyle, GlobalStyle } from "./globalStyle";
 import Header from "./header";
+import DarkModeSelector from "./DarkModeSelector";
 
 const Wrapper = styled.div`
   display: grid;
@@ -46,6 +47,7 @@ const Layout = ({ children }) => {
       <Wrapper>
         <Header />
         <main>{children}</main>
+        <DarkModeSelector />
       </Wrapper>
     </>
   );

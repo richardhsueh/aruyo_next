@@ -1,6 +1,7 @@
 import App from "next/app";
 import React from "react";
 import { ThemeProvider } from "styled-components";
+import Layout from "../components/layout";
 import "../components/toggle.css";
 import { RecipeQueryProvider } from "../lib/RecipeQueryContext";
 
@@ -16,7 +17,9 @@ export default class MyApp extends App {
     return (
       <ThemeProvider theme={theme}>
         <RecipeQueryProvider>
-          <Component {...pageProps} />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
         </RecipeQueryProvider>
       </ThemeProvider>
     );
