@@ -263,7 +263,7 @@ const Home = ({ allRecipes }) => {
 
   return (
     <Layout>
-      <SEO title="Recipe Blog" type="website" image={"/screencap.jpg"} />
+      <SEO title="Recipe Blog" type="website" image={"/screencap.png"} />
       {transitions.map(({ item, key, props }) => (
         <Flipper flipKey={`${query}-${type}-${filteredAry.length.toString()}`}>
           <RecipeList style={props} key={key}>
