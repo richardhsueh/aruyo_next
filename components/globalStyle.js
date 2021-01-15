@@ -73,13 +73,12 @@ export const ResetStyle = createGlobalStyle`
 
     a {
       text-decoration: none;
-      color: black;
+      color: #222;
       &:visited,
       &:active {
-        color: black;
+        color: #222;
       }
     }
-
 `;
 
 export const GlobalStyle = createGlobalStyle`
@@ -111,7 +110,7 @@ export const GlobalStyle = createGlobalStyle`
 
     body.light {
       --background: #fff;
-      --primary_text: #000;
+      --primary_text: #222;
       --secondary_text: #595959;
     }
 

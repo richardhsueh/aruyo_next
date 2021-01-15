@@ -16,7 +16,7 @@ const Container = styled.nav`
     font-weight: normal;
     font-size: 20px;
     line-height: 24px;
-    color: #000;
+    color: #222;
   }
   .home {
     color: #595959;
@@ -34,7 +34,7 @@ const Container = styled.nav`
       margin: 4px 0;
 
       &.active {
-        color: #000;
+        color: #222;
       }
     }
   }
@@ -43,7 +43,7 @@ const Container = styled.nav`
       li {
         cursor: pointer;
         &.active {
-          color: #000;
+          color: #222;
         }
       }
     }
@@ -139,7 +139,7 @@ const BurgerMenuButton = styled.div`
   z-index: 12;
 
   .b-bun {
-    background: black;
+    background: #222;
     position: relative;
     transition: all 0.4s ease;
 
@@ -164,7 +164,7 @@ const BurgerMenuButton = styled.div`
 
   &.open {
     .b-bun--top {
-      background: black;
+      background: #222;
       top: 9px;
       transform: rotate(45deg);
     }
@@ -174,7 +174,7 @@ const BurgerMenuButton = styled.div`
     }
 
     .b-bun--bottom {
-      background: black;
+      background: #222;
       top: 5px;
       transform: rotate(-45deg);
     }

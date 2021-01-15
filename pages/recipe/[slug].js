@@ -39,7 +39,7 @@ const RecipeContainer = styled(animated.div)`
     margin-left: 30px;
     list-style-type: decimal-leading-zero;
     max-width: 650px;
-    color: #000;
+    color: #222;
     li {
       margin-bottom: 0;
       font-size: 17px;
@@ -57,7 +57,7 @@ const RecipeContainer = styled(animated.div)`
     list-style-position: outside;
     /* margin-top: 10px;
     margin-left: 20px; */
-    color: #000;
+    color: #222;
     li {
       line-height: 20px;
       margin: 10px 0;
@@ -76,7 +76,7 @@ const RecipeContainer = styled(animated.div)`
       font-size: 18px;
       line-height: 22px;
       letter-spacing: 2px;
-      color: #000;
+      color: #222;
       margin-top: 25px;
     }
     ul,
@@ -115,7 +115,7 @@ const ImageFrame = styled.div`
   max-height: initial;
   transition: all ease-in 200ms;
   margin: 0 0 20px 0;
-  border: 1px solid #000;
+  border: 1px solid #222;
   position: relative;
   display: flex;
   border-radius: 4px;
@@ -232,7 +232,7 @@ const MetaData = styled.div`
     font-weight: bold;
     font-size: 30px;
     line-height: 36px;
-    color: #000;
+    color: #222;
     margin-bottom: 10px;
   }
 
@@ -240,7 +240,7 @@ const MetaData = styled.div`
     font-weight: normal;
     font-size: 18px;
     line-height: 22px;
-    color: #000;
+    color: #222;
     margin-bottom: 10px;
   }
 
@@ -248,14 +248,18 @@ const MetaData = styled.div`
     font-weight: normal;
     font-size: 18px;
     line-height: 22px;
-    color: #000;
+    color: #222;
     .servingSize {
       font-size: 17px;
-      width: 50px;
-      border: 1px solid #000;
-      color: #000;
+      width: 70px;
+      border: 1px solid #222;
+      border-radius: 3px;
+      color: #222;
       background: var(--bg);
       text-align: center;
+      &::-webkit-inner-spin-button {
+        opacity: 1;
+      }
     }
   }
 `;
@@ -268,7 +272,7 @@ const IngredientsBlk = styled.div`
     font-size: 18px;
     line-height: 22px;
     letter-spacing: 2px;
-    color: #000;
+    color: #222;
   }
   .ingredient__group {
     margin-top: 10px;
@@ -278,7 +282,7 @@ const IngredientsBlk = styled.div`
       font-weight: normal;
       font-size: 16px;
       line-height: 19px;
-      color: #000;
+      color: #222;
     }
   }
   ul {
@@ -318,14 +322,14 @@ const IngredientsBlk = styled.div`
             content: "";
             height: 12px;
             width: 12px;
-            border: 1.5px solid #000;
+            border: 1.5px solid #222;
             margin-right: 10px;
             box-sizing: content-box;
           }
           &::after {
             opacity: 0;
             content: "";
-            background: #000;
+            background: #222;
             height: 18px;
             width: 1px;
             transform: rotate(45deg);

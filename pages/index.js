@@ -23,7 +23,7 @@ const RecipeListItem = styled.li`
   position: relative;
   transition: margin ease-in 100ms;
   flex-direction: column;
-  border: 1px solid #000000;
+  border: 1px solid #222;
   box-shadow: var(--form-shadow);
 
   .recipe__pic {
@@ -72,7 +72,7 @@ const RecipeListItem = styled.li`
       rgba(77, 77, 77, 0.567708) 56.77%,
       #646464 100%
     );
-    color: #000;
+    color: #222;
     z-index: 10;
     transition: opacity 200ms ease;
     .name {
