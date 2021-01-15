@@ -551,7 +551,7 @@ export async function getStaticProps({ params }) {
   const canvas = createCanvas(width, height);
   const context = canvas.getContext("2d");
 
-  context.fillStyle = "var(--background)";
+  context.fillStyle = "#fff";
   context.fillRect(0, 0, width, height);
 
   if (post.image && post.image[0]) {
@@ -591,7 +591,7 @@ export async function getStaticProps({ params }) {
     context.fillStyle = "transparent";
     roundRect(context, 20, 20, 500, 240, 6, "#000", true);
 
-    roundRect(context, 40, 40, 220, 200, 3, "var(--background)", true);
+    roundRect(context, 40, 40, 220, 200, 3, "#fff", true);
     context.clip();
 
     loadImage(`./public/${post.image[0]}`).then((image) => {
