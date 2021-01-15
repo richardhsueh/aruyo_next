@@ -16,25 +16,28 @@ const Container = styled.nav`
     font-weight: normal;
     font-size: 20px;
     line-height: 24px;
-    color: #222;
+    color: var(--primary_text);
+    padding: 3px 0;
+    order: 2;
   }
   .home {
-    color: #595959;
+    color: var(--secondary_text);
   }
   h2 {
     font-weight: 500;
     font-size: 14px;
     line-height: 17px;
+    color: var(--primary_text);
   }
   ul {
     li {
-      color: #595959;
+      color: var(--secondary_text);
       font-size: 14px;
       line-height: 17px;
       margin: 4px 0;
 
       &.active {
-        color: #222;
+        color: var(--primary_text);
       }
     }
   }
@@ -43,14 +46,14 @@ const Container = styled.nav`
       li {
         cursor: pointer;
         &.active {
-          color: #222;
+          color: var(--primary_text);
         }
       }
     }
   }
   .head_ctrl {
     display: flex;
-    justify-content: space-between;
+    justify-content: left;
   }
   .nav_ctrl {
     display: grid;
@@ -58,9 +61,9 @@ const Container = styled.nav`
     position: absolute;
     top: 67px;
     left: -100%;
-    transition: left 0.4s ease;
+    transition: left 0.2s ease, background 0.2s ease-out;
     width: 260px;
-    background: #ffffff;
+    background: var(--background);
     box-shadow: 3px 3px 40px rgba(0, 0, 0, 0.15);
     border-radius: 0px 4px 4px 0px;
     padding: 15px 15px 15px 30px;
@@ -128,18 +131,20 @@ const BurgerMenuButton = styled.div`
     }
   }
   display: inline-block;
-  background: white;
+  /* background: var(--background); */
   cursor: pointer;
   height: 30px;
   padding: 5px 3px;
   position: relative;
-  transition: all 0.4s ease;
+  transition: all 0.2s ease-out;
   user-select: none;
   width: 30px;
   z-index: 12;
+  order: 1;
+  margin-right: 10px;
 
   .b-bun {
-    background: #222;
+    background: var(--primary_text);
     position: relative;
     transition: all 0.4s ease;
 
@@ -164,7 +169,7 @@ const BurgerMenuButton = styled.div`
 
   &.open {
     .b-bun--top {
-      background: #222;
+      background: var(--primary_text);
       top: 9px;
       transform: rotate(45deg);
     }
@@ -174,7 +179,7 @@ const BurgerMenuButton = styled.div`
     }
 
     .b-bun--bottom {
-      background: #222;
+      background: var(--primary_text);
       top: 5px;
       transform: rotate(-45deg);
     }
@@ -220,7 +225,7 @@ const Header = () => {
             </a>
           </Link>{" "}
           /{" "}
-          <Link href="/recipe" onClick={reset}>
+          <Link href="/" onClick={reset}>
             Recipe
           </Link>
         </h1>
@@ -262,15 +267,15 @@ const Header = () => {
           <ul>
             {recipes.map((o) => (
               <li>
-              <Link href={`/recipe/${o.slug}`} passHref key={o.slug}>
-                <a
-                  onClick={() => {
-                    setShow(false);
-                  }}
-                >
-                  {o.recipe_name}
-                </a>
-              </Link>
+                <Link href={`/recipe/${o.slug}`} passHref key={o.slug}>
+                  <a
+                    onClick={() => {
+                      setShow(false);
+                    }}
+                  >
+                    {o.recipe_name}
+                  </a>
+                </Link>
               </li>
             ))}
           </ul>

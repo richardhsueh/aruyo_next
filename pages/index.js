@@ -14,7 +14,7 @@ import SEO from "../components/seo";
 
 const RecipeListItem = styled.li`
   display: flex;
-  color: #fffaf0;
+  color: var(--background);
   text-decoration: none;
   font-size: 1.1rem;
   font-weight: normal;
@@ -27,10 +27,8 @@ const RecipeListItem = styled.li`
   }
   &:visited,
   &:active {
-    color: #fffaf0;
+    color: var(--background);
   }
-
-  
 
   @media (min-width: 992px) {
     font-size: 1.2rem;
@@ -52,7 +50,7 @@ const RecipeListLink = styled.a`
   position: relative;
   transition: margin ease-in 100ms;
   flex-direction: column;
-  border: 1px solid #222;
+  border: 1px solid var(--primary_text);
   box-shadow: var(--form-shadow);
 
   .recipe__pic {
@@ -91,7 +89,6 @@ const RecipeListLink = styled.a`
     padding: 7px 7px;
     position: absolute;
     bottom: 0;
-    /* height: 88px; */
     width: 100%;
     display: block;
     opacity: 1;
@@ -101,11 +98,11 @@ const RecipeListLink = styled.a`
       rgba(77, 77, 77, 0.567708) 56.77%,
       #646464 100%
     );
-    color: #222;
+    color: #fff;
     z-index: 10;
     transition: opacity 200ms ease;
     .name {
-      color: #ffffff;
+      color: #fff;
       display: block;
       font-size: 18px;
       line-height: 18px;
@@ -115,7 +112,7 @@ const RecipeListLink = styled.a`
       height: 3rem;
       font-size: 14px;
       line-height: 16px;
-      color: #ffffff;
+      color: #fff;
       overflow: hidden;
       display: -webkit-box;
       -webkit-line-clamp: 3;
@@ -264,7 +261,7 @@ const Home = ({ allRecipes }) => {
   };
 
   return (
-    <Layout>
+    <>
       <SEO title="Recipe Blog" type="website" image={"/screencap.png"} />
       {transitions.map(({ item, key, props }) => (
         <Flipper flipKey={`${query}-${type}-${filteredAry.length.toString()}`}>
@@ -275,7 +272,6 @@ const Home = ({ allRecipes }) => {
                 flipId={item.slug}
                 onAppear={onElementAppear}
                 onExit={onExit}
-                // shouldInvert={false}
               >
                 {(flippedProps) => (
                   <RecipeListItem hrbg={item.image && item.image[0]}>
@@ -314,7 +310,7 @@ const Home = ({ allRecipes }) => {
           </RecipeList>
         </Flipper>
       ))}
-    </Layout>
+    </>
   );
 };
 

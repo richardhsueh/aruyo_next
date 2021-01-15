@@ -73,10 +73,10 @@ export const ResetStyle = createGlobalStyle`
 
     a {
       text-decoration: none;
-      color: #222;
+      color: var(--primary_text);
       &:visited,
       &:active {
-        color: #222;
+        color: var(--primary_text);
       }
     }
 `;
@@ -106,6 +106,7 @@ export const GlobalStyle = createGlobalStyle`
         background-size: 20px 20px;
       }
       height: 100vh;
+      background: var(--background);
     }
 
     body.light {
