@@ -114,7 +114,7 @@ const RecipeListLink = styled.a`
       line-height: 16px;
       color: #fff;
       overflow: hidden;
-      display: -webkit-box;
+      display: none;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
     }
@@ -174,6 +174,9 @@ const RecipeListLink = styled.a`
   @media (min-width: 961px) {
     .recipe__name {
       opacity: 0;
+      .remark {
+        display: -webkit-box;
+      }
     }
     &:hover {
       .recipe__name {
@@ -196,7 +199,7 @@ const RecipeList = styled(animated.ul)`
   }
 
   @media (min-width: 961px) {
-    grid-template-columns: 190px 190px 190px;
+    grid-template-columns: 190px 190px 190px 190px;
     grid-auto-rows: 225px;
     grid-gap: 24px 24px;
   }
