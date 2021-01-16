@@ -361,7 +361,7 @@ export default function Post({ post, morePosts, preview, allRecipes }) {
   const transitions = useTransition(null, null, {
     enter: { opacity: 1 },
     leave: { opacity: 0 },
-    from: { opacity: 1 },
+    from: { opacity: 0 },
     config: config.stiff,
   });
 
