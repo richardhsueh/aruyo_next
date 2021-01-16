@@ -52,6 +52,7 @@ const DarkModeSelector = styled.label`
   position: fixed;
   top: -50px;
   right: -50px;
+  z-index: 100;
 
   animation: ${(props) => (props.mode === "light" ? spin2 : spin)} 600ms
     forwards;

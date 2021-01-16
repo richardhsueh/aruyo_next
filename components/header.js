@@ -34,7 +34,7 @@ const Container = styled.nav`
       color: var(--secondary_text);
       font-size: 14px;
       line-height: 17px;
-      margin: 4px 0;
+      margin: 8px 0;
 
       &.active {
         color: var(--primary_text);
@@ -87,6 +87,11 @@ const Container = styled.nav`
       height: auto;
       box-shadow: none;
       padding: 0;
+    }
+    ul {
+      li {
+        margin: 6px 0;
+      }
     }
     /* > div {
       flex-direction: column;
@@ -212,6 +217,7 @@ const Header = () => {
       selectedOption = "all";
     }
     Router.push("/");
+    toggle();
     changeType(selectedOption);
   };
 
