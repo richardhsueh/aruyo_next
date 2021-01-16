@@ -33,7 +33,7 @@ ingredients:
     },
     {
       "group": "For Caramel",
-      "ingredient": ["70-g     ..... sugar", "3-tbsp   ..... water"],
+      "ingredient": ["60-g     ..... sugar", "3-tbsp   ..... water"],
     },
   ]
 ---
@@ -44,8 +44,8 @@ ingredients:
 2. Add the pudding portion sugar to the beaten egg, mix well and set aside
 3. Next add the caramel portion sugar and water to a small pot
 4. use low heat to cook the sugar until it turns to caramel
-5. When the caramel is ready,turn of the heat divide the caramel evenly to the ramekin, DON'T wash the pot at this point
-6. Add the milk to the pot, heat the mixture to melt all remaining caramel and turn off the heat just before boil
+5. When the caramel is ready, remove from heat, divide the caramel evenly to the ramekin, DON'T wash the pot at this point
+6. Add the milk to the pot, heat the milk to melt all remaining caramel and turn off the heat just before boil
 7. Mix the warm milk mixture with the egg mixture, stir well
 8. Add the vanilla extract and rum to the mixture
 9. Remove air bubble by passing the mixture through sifter 5 times
