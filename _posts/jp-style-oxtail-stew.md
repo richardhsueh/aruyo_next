@@ -4,9 +4,9 @@ slug: "jp-style-oxtail-stew"
 status: "wip"
 image:
   [
-    "/assets/recipe/oxtail-stew-1.JPG",
-    "/assets/recipe/oxtail-stew-2.JPG",
-    "/assets/recipe/oxtail-stew-3.JPG",
+    "/assets/recipe/oxtail-stew-1.jpg",
+    "/assets/recipe/oxtail-stew-2.jpg",
+    "/assets/recipe/oxtail-stew-3.jpg",
   ]
 date: "2020-04-10"
 serving: 4

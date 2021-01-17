@@ -7,9 +7,6 @@ import { animated, useTransition, config } from "react-spring";
 import styled from "styled-components";
 import { format } from "date-fns";
 import queryString from "query-string";
-import { createCanvas, loadImage } from "canvas";
-import fs from "fs";
-import canvasTxt from "canvas-txt";
 
 import { getRecipeBySlug, getAllRecipes } from "../../lib/api";
 import useWindowSize from "../../lib/useWindowSize";
@@ -19,6 +16,10 @@ import Layout from "../../components/layout";
 import SEO from "../../components/seo";
 import Carousel from "../../components/carousel";
 import RecipeQueryContext from "../../lib/RecipeQueryContext";
+// import previewImageGenerator from "../../lib/previewImgGenerator";
+import fs from "fs";
+import canvasTxt from "canvas-txt";
+import { createCanvas, loadImage, registerFont } from "canvas";
 import { roundRect } from "../../lib/canvasHelper";
 
 const RecipeContainer = styled(animated.div)`
@@ -398,7 +399,7 @@ export default function Post({ post, morePosts, preview, allRecipes }) {
     }
   };
 
-  const previewImg = `/assets/recipe/${post.slug}-preview.png`;
+  const previewImg = `/assets/recipe/${post.slug}-preview.webp`;
 
   return (
     <>
@@ -548,6 +549,15 @@ export async function getStaticProps({ params }) {
   const width = 540;
   const height = 281;
 
+  registerFont("./public/fonts/Inter-Regular.ttf", {
+    family: "Inter",
+    weight: "regular",
+  });
+  registerFont("./public/fonts/Inter-Bold.ttf", {
+    family: "Inter",
+    weight: "bold",
+  });
+
   const canvas = createCanvas(width, height);
   const context = canvas.getContext("2d");
 
@@ -564,14 +574,6 @@ export async function getStaticProps({ params }) {
     canvasTxt.align = "left";
     canvasTxt.vAlign = "top";
     canvasTxt.drawText(context, txt, 280, 40, 230, 90);
-
-    // if (post.serving_size) {
-    //   const servingSize = `Serving: ${post.serving} * ${post.serving_size}`;
-    //   canvasTxt.fontSize = 18;
-    //   canvasTxt.lineHeight = 18;
-    //   canvasTxt.fontWeight = "regular";
-    //   canvasTxt.drawText(context, servingSize, 280, 160, 230, 200);
-    // }
 
     canvasTxt.fontSize = 18;
     canvasTxt.fontWeight = "regular";
@@ -597,8 +599,9 @@ export async function getStaticProps({ params }) {
     loadImage(`./public/${post.image[0]}`).then((image) => {
       context.drawImage(image, 40, 40, 220, 200);
       const buffer = canvas.toBuffer("image/png");
+
       fs.writeFileSync(
-        `./public/assets/recipe/${post.slug}-preview.png`,
+        `./public/assets/recipe/preview-${post.slug}.png`,
         buffer
       );
     });
@@ -632,7 +635,8 @@ export async function getStaticProps({ params }) {
     roundRect(context, 20, 20, 500, 240, 6, "#000", true);
 
     const buffer = canvas.toBuffer("image/png");
-    fs.writeFileSync(`./public/assets/recipe/${post.slug}-preview.png`, buffer);
+
+    fs.writeFileSync(`./public/assets/recipe/preview-${post.slug}.png`, buffer);
   }
 
   return {
