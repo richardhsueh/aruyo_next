@@ -399,7 +399,7 @@ export default function Post({ post, morePosts, preview, allRecipes }) {
     }
   };
 
-  const previewImg = `/assets/recipe/${post.slug}-preview.webp`;
+  const previewImg = `/assets/recipe/preview-${post.slug}.png`;
 
   return (
     <>
