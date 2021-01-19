@@ -47,6 +47,37 @@ export default class MyDocument extends Document {
         `,
             }}
           />
+          <style
+            dangerouslySetInnerHTML={{
+              __html: `
+              @font-face {
+                font-family: "Inter";
+                src: url("/fonts/Inter-Regular.woff2");
+                font-weight: regular;
+              }
+              @font-face {
+                font-family: "Inter";
+                src: url("/fonts/Inter-Medium.woff2");
+                font-weight: 500;
+              }
+              @font-face {
+                font-family: "Inter";
+                src: url("/fonts/Inter-SemiBold.woff2");
+                font-weight: 600;
+              }
+              @font-face {
+                font-family: "Inter";
+                src: url("/fonts/Inter-Bold.woff2");
+                font-weight: 700;
+              }
+              @font-face {
+                font-family: "Open Sans";
+                src: url("/fonts/OpenSans-Regular.woff2");
+                font-weight: regular;
+              }
+              `,
+            }}
+          ></style>
         </Head>
         <body className="light">
           <script
