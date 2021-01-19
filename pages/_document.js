@@ -54,26 +54,31 @@ export default class MyDocument extends Document {
                 font-family: "Inter";
                 src: url("/fonts/Inter-Regular.woff2");
                 font-weight: regular;
+                font-display: fallback;
               }
               @font-face {
                 font-family: "Inter";
                 src: url("/fonts/Inter-Medium.woff2");
                 font-weight: 500;
+                font-display: fallback;
               }
               @font-face {
                 font-family: "Inter";
                 src: url("/fonts/Inter-SemiBold.woff2");
                 font-weight: 600;
+                font-display: fallback;
               }
               @font-face {
                 font-family: "Inter";
                 src: url("/fonts/Inter-Bold.woff2");
                 font-weight: 700;
+                font-display: fallback;
               }
               @font-face {
                 font-family: "Open Sans";
                 src: url("/fonts/OpenSans-Regular.woff2");
                 font-weight: regular;
+                font-display: fallback;
               }
               `,
             }}
