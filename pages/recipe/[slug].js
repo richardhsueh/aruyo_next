@@ -1,5 +1,4 @@
 import { useEffect, useState, useContext } from "react";
-import Head from "next/head";
 import { useRouter } from "next/router";
 import ErrorPage from "next/error";
 import Image from "next/image";
@@ -7,19 +6,17 @@ import { animated, useTransition, config } from "react-spring";
 import styled from "styled-components";
 import { format } from "date-fns";
 import queryString from "query-string";
-
-import { getRecipeBySlug, getAllRecipes } from "../../lib/api";
-import useWindowSize from "../../lib/useWindowSize";
-import { processIngredient } from "../../lib/recipeHelper";
-import markdownToHtml from "../../lib/markdownToHtml";
-import Layout from "../../components/layout";
-import SEO from "../../components/seo";
-import Carousel from "../../components/carousel";
-import RecipeQueryContext from "../../lib/RecipeQueryContext";
-// import previewImageGenerator from "../../lib/previewImgGenerator";
-import fs from "fs";
 import canvasTxt from "canvas-txt";
 import { createCanvas, loadImage, registerFont } from "canvas";
+import fs from "fs";
+
+import SEO from "../../components/seo";
+import Carousel from "../../components/carousel";
+import { getRecipeBySlug, getAllRecipes } from "../../lib/api";
+import RecipeQueryContext from "../../lib/RecipeQueryContext";
+import { processIngredient } from "../../lib/recipeHelper";
+import markdownToHtml from "../../lib/markdownToHtml";
+import useWindowSize from "../../lib/useWindowSize";
 import { roundRect } from "../../lib/canvasHelper";
 
 const RecipeContainer = styled(animated.div)`
@@ -237,7 +234,7 @@ const MetaData = styled.div`
     margin-bottom: 10px;
   }
 
-  > h3 {
+  > h2 {
     font-weight: normal;
     font-size: 18px;
     line-height: 22px;
@@ -427,6 +424,7 @@ export default function Post({ post, morePosts, preview, allRecipes }) {
                           src={o}
                           layout="fill"
                           objectFit="cover"
+                          alt={post.slug}
                         />
                       </ImageFrame>
                     );
@@ -442,6 +440,7 @@ export default function Post({ post, morePosts, preview, allRecipes }) {
                               src={o}
                               layout="fill"
                               objectFit="cover"
+                              alt={post.slug}
                             />
                           ))}
                         </Carousel>
@@ -452,6 +451,7 @@ export default function Post({ post, morePosts, preview, allRecipes }) {
                         src={post.image[0]}
                         layout="fill"
                         objectFit="cover"
+                        alt={post.slug}
                       />
                     )}
                   </ImageFrame>
@@ -461,10 +461,11 @@ export default function Post({ post, morePosts, preview, allRecipes }) {
               <div id="main-content">
                 <MetaData className="section">
                   <h1>{post.recipe_name}</h1>
-                  <h3>{format(new Date(post.date), "yyyy - MM - dd")}</h3>
-                  <div className="servingBlk">
+                  <h2>{format(new Date(post.date), "yyyy - MM - dd")}</h2>
+                  <label className="servingBlk" htmlFor="servingSize">
                     <strong>Serving Size: </strong>
                     <input
+                      id="servingSize"
                       className="servingSize"
                       type="number"
                       value={serving}
@@ -473,7 +474,7 @@ export default function Post({ post, morePosts, preview, allRecipes }) {
                       min={1}
                     />{" "}
                     <span>{post.serving_size && post.serving_size}</span>
-                  </div>
+                  </label>
                 </MetaData>
                 <IngredientsBlk>
                   <span>Ingredients</span>

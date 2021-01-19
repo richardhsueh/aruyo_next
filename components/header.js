@@ -1,11 +1,9 @@
 import Link from "next/link";
-import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
-import Toggle from "../components/toggle";
 import RecipeQueryContext from "../lib/RecipeQueryContext";
-import Selector from "./selector";
 import Router from "next/router";
+import { useTransition, config } from "react-spring";
 
 const Container = styled.nav`
   grid-area: auto / 1 / auto / end;
@@ -201,6 +199,13 @@ const Header = () => {
   );
   const [theme, setTheme] = React.useState(null);
   const [show, setShow] = React.useState(false);
+  const transitions = useTransition(null, null, {
+    enter: { opacity: 1 },
+    leave: { opacity: 0 },
+    from: { opacity: 0 },
+    config: config.stiff,
+  });
+
   React.useEffect(() => {
     setTheme(window.__theme);
     window.__onThemeChange = () => {
@@ -270,54 +275,25 @@ const Header = () => {
         </div>
         <div>
           <h2>Recipe</h2>
-          <ul>
-            {recipes.map((o) => (
-              <li>
-                <Link href={`/recipe/${o.slug}`} passHref key={o.slug}>
-                  <a
-                    onClick={() => {
-                      setShow(false);
-                    }}
-                  >
-                    {o.recipe_name}
-                  </a>
-                </Link>
-              </li>
-            ))}
-          </ul>
+          {transitions.map(({ item, key, props }) => (
+            <ul style={props} key={key}>
+              {recipes.map((o) => (
+                <li>
+                  <Link href={`/recipe/${o.slug}`} passHref key={o.slug}>
+                    <a
+                      onClick={() => {
+                        setShow(false);
+                      }}
+                    >
+                      {o.recipe_name}
+                    </a>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          ))}
         </div>
       </div>
-      {/* <Selector /> */}
-      {/* {theme !== null ? (
-        <Toggle
-          icons={{
-            checked: (
-              <img
-                src="/moon.png"
-                width="16"
-                height="16"
-                role="presentation"
-                style={{ pointerEvents: "none" }}
-              />
-            ),
-            unchecked: (
-              <img
-                src="/sun.png"
-                width="16"
-                height="16"
-                role="presentation"
-                style={{ pointerEvents: "none" }}
-              />
-            ),
-          }}
-          checked={theme === "dark"}
-          onChange={(e) =>
-            window.__setPreferredTheme(e.target.checked ? "dark" : "light")
-          }
-        />
-      ) : (
-        <div style={{ height: "24px" }} />
-      )} */}
     </Container>
   );
 };

@@ -6,11 +6,10 @@ import { animated, useTransition, config } from "react-spring";
 import orderBy from "lodash/orderBy";
 import { Flipper, Flipped, spring } from "react-flip-toolkit";
 
-import Layout from "../components/layout";
+import SEO from "../components/seo";
 import { processIngredient, returnIngredientJson } from "../lib/recipeHelper";
 import RecipeQueryContext from "../lib/RecipeQueryContext";
 import { getAllRecipes } from "../lib/api";
-import SEO from "../components/seo";
 
 const RecipeListItem = styled.li`
   display: flex;
@@ -199,8 +198,8 @@ const RecipeList = styled(animated.ul)`
   }
 
   @media (min-width: 961px) {
-    grid-template-columns: 190px 190px 190px 190px;
-    grid-auto-rows: 225px;
+    grid-template-columns: 205px 205px 205px;
+    grid-auto-rows: 230px;
     grid-gap: 24px 24px;
   }
 
@@ -327,10 +326,8 @@ export async function getStaticProps() {
     "serving",
     "serving_size",
     "type",
-    // "description",
     "tags",
     "ingredients",
-    // "content",
   ]);
 
   return {
