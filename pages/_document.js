@@ -32,7 +32,6 @@ export default class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <meta charset="UTF-8" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link rel="icon" type="image/png" href="/icon.png" />
           <script
             async
@@ -61,12 +60,6 @@ export default class MyDocument extends Document {
                 font-family: "Inter";
                 src: url("/fonts/Inter-Medium.woff2");
                 font-weight: 500;
-                font-display: fallback;
-              }
-              @font-face {
-                font-family: "Inter";
-                src: url("/fonts/Inter-SemiBold.woff2");
-                font-weight: 600;
                 font-display: fallback;
               }
               @font-face {

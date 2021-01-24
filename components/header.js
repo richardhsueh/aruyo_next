@@ -22,7 +22,7 @@ const Container = styled.nav`
     color: var(--secondary_text);
   }
   h2 {
-    font-weight: 500;
+    font-weight: bold;
     font-size: 14px;
     line-height: 17px;
     color: var(--primary_text);
@@ -39,14 +39,10 @@ const Container = styled.nav`
       }
     }
   }
-  .selector {
-    ul {
-      li {
-        cursor: pointer;
-        &.active {
-          color: var(--primary_text);
-        }
-      }
+  .selector ul li {
+    cursor: pointer;
+    &.active {
+      color: var(--primary_text);
     }
   }
   .head_ctrl {
@@ -75,7 +71,8 @@ const Container = styled.nav`
 
   @media screen and (min-width: 961px) {
     grid-area: auto / 1 / auto / 4;
-    position: fixed;
+    position: absolute;
+    top: 0;
     .nav_ctrl {
       display: grid;
       row-gap: 40px;
@@ -91,23 +88,6 @@ const Container = styled.nav`
         margin: 6px 0;
       }
     }
-    /* > div {
-      flex-direction: column;
-      align-items: flex-start;
-      > a {
-        order: 1;
-        margin: 0 0 10px 0;
-      }
-      [class*="SelectorContainer"] {
-        order: 3;
-      }
-    }
-    .react-toggle {
-      order: 2;
-      position: absolute;
-      top: 37px;
-      right: 0;
-    } */
   }
 `;
 
@@ -278,7 +258,7 @@ const Header = () => {
           {transitions.map(({ item, key, props }) => (
             <ul style={props} key={key}>
               {recipes.map((o) => (
-                <li>
+                <li key={o.slug}>
                   <Link href={`/recipe/${o.slug}`} passHref key={o.slug}>
                     <a
                       onClick={() => {

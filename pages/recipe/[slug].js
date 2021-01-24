@@ -70,7 +70,7 @@ const RecipeContainer = styled(animated.div)`
   .mkd {
     h2,
     h3 {
-      font-weight: 600;
+      font-weight: bold;
       font-size: 18px;
       line-height: 22px;
       letter-spacing: 2px;
@@ -266,7 +266,7 @@ const IngredientsBlk = styled.div`
   margin: 20px 0 35px;
   max-width: 600px;
   > span {
-    font-weight: 600;
+    font-weight: bold;
     font-size: 18px;
     line-height: 22px;
     letter-spacing: 2px;
@@ -418,9 +418,8 @@ export default function Post({ post, morePosts, preview, allRecipes }) {
                   post.image &&
                   post.image.map((o, index) => {
                     return (
-                      <ImageFrame data-status={status}>
+                      <ImageFrame data-status={status} key={index}>
                         <Image
-                          key={index}
                           src={o}
                           layout="fill"
                           objectFit="cover"
@@ -574,18 +573,18 @@ export async function getStaticProps({ params }) {
     canvasTxt.fontWeight = "bold";
     canvasTxt.align = "left";
     canvasTxt.vAlign = "top";
-    canvasTxt.drawText(context, txt, 280, 40, 230, 90);
+    canvasTxt.drawText(context, txt, 260, 40, 230, 90);
 
     canvasTxt.fontSize = 18;
     canvasTxt.fontWeight = "regular";
-    canvasTxt.drawText(context, post.date, 280, 220, 230, 200);
+    canvasTxt.drawText(context, post.date, 260, 220, 230, 200);
 
     canvasTxt.fontSize = 18;
     canvasTxt.fontWeight = "bold";
     canvasTxt.drawText(
       context,
       `${capitalizeFirstLetter(post.type)} recipe`,
-      280,
+      260,
       200,
       230,
       200
@@ -594,11 +593,11 @@ export async function getStaticProps({ params }) {
     context.fillStyle = "transparent";
     roundRect(context, 20, 20, 500, 240, 6, "#000", true);
 
-    roundRect(context, 40, 40, 220, 200, 3, "#fff", true);
+    roundRect(context, 40, 40, 200, 200, 3, "#fff", true);
     context.clip();
 
     loadImage(`./public/${post.image[0]}`).then((image) => {
-      context.drawImage(image, 40, 40, 220, 200);
+      context.drawImage(image, 40, 40, 200, 200);
       const buffer = canvas.toBuffer("image/png");
 
       fs.writeFileSync(

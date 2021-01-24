@@ -73,10 +73,7 @@ const RecipeListLink = styled.a`
       left: 0px;
       width: 100%;
       height: 100%;
-      background: ${({ hrbg }) =>
-        hrbg
-          ? `none`
-          : "repeating-linear-gradient(45deg,#b2b2b2, #b2b2b2 10px,#ccc 10px,#ccc 20px)"};
+      background: "none";
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center;
@@ -91,12 +88,7 @@ const RecipeListLink = styled.a`
     width: 100%;
     display: block;
     opacity: 1;
-    background: linear-gradient(
-      180deg,
-      rgba(196, 196, 196, 0) 0%,
-      rgba(77, 77, 77, 0.567708) 56.77%,
-      #646464 100%
-    );
+    background: transparent;
     color: #fff;
     z-index: 10;
     transition: opacity 200ms ease;
@@ -116,6 +108,23 @@ const RecipeListLink = styled.a`
       display: none;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
+    }
+  }
+
+  &.noimg {
+    .recipe__pic {
+      &::after {
+      }
+    }
+    .recipe__name {
+      .name {
+        color: var(--primary_text);
+        font-size: 20px;
+        line-height: 20px;
+      }
+      .remark {
+        color: var(--primary_text);
+      }
     }
   }
 
@@ -175,6 +184,15 @@ const RecipeListLink = styled.a`
       opacity: 0;
       .remark {
         display: -webkit-box;
+      }
+    }
+    &.noimg {
+      .recipe__name {
+        opacity: 1;
+        .name {
+          font-size: 24px;
+          line-height: 24px;
+        }
       }
     }
     &:hover {
@@ -266,9 +284,12 @@ const Home = ({ allRecipes }) => {
     <>
       <SEO title="Recipe Blog" type="website" image={"/screencap.png"} />
       {transitions.map(({ item, key, props }) => (
-        <Flipper flipKey={`${query}-${type}-${filteredAry.length.toString()}`}>
+        <Flipper
+          key="first_flipper"
+          flipKey={`${query}-${type}-${filteredAry.length.toString()}`}
+        >
           <RecipeList style={props} key={key}>
-            {filteredAry.map((item, key) => (
+            {filteredAry.map((item) => (
               <Flipped
                 key={item.slug}
                 flipId={item.slug}
@@ -276,15 +297,14 @@ const Home = ({ allRecipes }) => {
                 onExit={onExit}
               >
                 {(flippedProps) => (
-                  <RecipeListItem hrbg={item.image && item.image[0]}>
+                  <RecipeListItem>
                     <Link
                       href={`/recipe/[slug]`}
                       as={`/recipe/${item.slug}`}
                       passHref
-                      key={key}
                     >
                       <RecipeListLink
-                        key={item.slug}
+                        className={item.image && item.image[0] ? "" : "noimg"}
                         data-status={item.status}
                         {...flippedProps}
                       >

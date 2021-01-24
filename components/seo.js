@@ -72,7 +72,9 @@ function SEO({ description, lang, meta, title, image, url, type }) {
   return (
     <Head>
       <title>{`${title} | ${siteMetadata.title}`}</title>
-      {metas.map((o) => React.createElement("meta", { ...o }))}
+      {metas.map((o, i) =>
+        React.createElement("meta", { ...o, key: `${i}${o.name}` })
+      )}
     </Head>
   );
 }

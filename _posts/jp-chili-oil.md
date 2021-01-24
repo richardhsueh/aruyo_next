@@ -6,7 +6,7 @@ image:
   [
     "/assets/recipe/jp-chili-oil-1.jpg",
     "/assets/recipe/jp-chili-oil-2.jpg",
-    "/assets/recipe/jp-chili-oil-3.ipg",
+    "/assets/recipe/jp-chili-oil-3.jpg",
     "/assets/recipe/jp-chili-oil-4.jpg",
   ]
 date: "2020-10-04"
