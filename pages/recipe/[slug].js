@@ -551,14 +551,14 @@ export async function getStaticProps({ params }) {
   const width = 540;
   const height = 281;
 
-  registerFont(path.resolve("./public/fonts/Inter-Regular.ttf"), {
-    family: "Inter",
-    weight: "regular",
-  });
-  registerFont(path.resolve("./public/fonts/Inter-Bold.ttf"), {
-    family: "Inter",
-    weight: "bold",
-  });
+  // registerFont(path.resolve("./public/fonts/Inter-Regular.ttf"), {
+  //   family: "Inter",
+  //   weight: "regular",
+  // });
+  // registerFont(path.resolve("./public/fonts/Inter-Bold.ttf"), {
+  //   family: "Inter",
+  //   weight: "bold",
+  // });
 
   registerFont(path.resolve("./public/fonts/NotoSansTC-Regular.otf"), {
     family: "NotoSansTC",
