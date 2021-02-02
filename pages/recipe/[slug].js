@@ -9,7 +9,6 @@ import queryString from "query-string";
 import canvasTxt from "canvas-txt";
 import { createCanvas, loadImage, registerFont } from "canvas";
 import fs from "fs";
-// import path from "path";
 
 import SEO from "../../components/seo";
 import Carousel from "../../components/carousel";
@@ -25,12 +24,10 @@ const RecipeContainer = styled(animated.div)`
   flex-direction: column;
   padding: 0;
   justify-content: left;
-
   #main-content {
     margin-left: 0;
     width: auto;
   }
-
   ol {
     padding: 0px;
     list-style-position: outside;
@@ -49,7 +46,6 @@ const RecipeContainer = styled(animated.div)`
       }
     }
   }
-
   ul {
     padding: 0px;
     list-style: disc;
@@ -119,13 +115,11 @@ const ImageFrame = styled.div`
   display: flex;
   border-radius: 4px;
   overflow: hidden;
-
   &:before {
     content: "";
     float: left;
     padding-top: 100%;
   }
-
   &[data-status="final"]::after {
     content: "Final";
     padding: 5px 15px;
@@ -142,7 +136,6 @@ const ImageFrame = styled.div`
     left: 4px;
     top: 4px;
   }
-
   &[data-status="wip"]::after {
     content: "Work In Progress";
     padding: 5px 15px;
@@ -159,7 +152,6 @@ const ImageFrame = styled.div`
     left: 4px;
     top: 4px;
   }
-
   &[data-status="draft"]::after {
     content: "Draft";
     padding: 5px 15px;
@@ -189,7 +181,6 @@ const ImageFrame = styled.div`
       padding-top: 100%;
     }
   }
-
   @media (min-width: 767px) {
     order: 2;
     min-width: 230px;
@@ -205,7 +196,6 @@ const ImageFrame = styled.div`
       /* margin: 0 30px 10px 0; */
     }
   }
-
   @media (min-width: 1441px) {
     order: 2;
     min-width: 350px;
@@ -226,7 +216,6 @@ const MetaData = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: left;
-
   > h1 {
     font-weight: bold;
     font-size: 30px;
@@ -234,7 +223,6 @@ const MetaData = styled.div`
     color: var(--primary_text);
     margin-bottom: 10px;
   }
-
   > h2 {
     font-weight: normal;
     font-size: 18px;
@@ -242,7 +230,6 @@ const MetaData = styled.div`
     color: var(--primary_text);
     margin-bottom: 10px;
   }
-
   .servingBlk {
     font-weight: normal;
     font-size: 18px;
@@ -300,7 +287,6 @@ const IngredientsBlk = styled.div`
       -webkit-column-break-inside: avoid;
       page-break-inside: avoid;
       break-inside: avoid;
-
       label {
         font-size: 14px;
         line-height: 17px;
@@ -340,14 +326,12 @@ const IngredientsBlk = styled.div`
       }
     }
   }
-
   @media screen and (max-width: 767px) {
     margin: 20px 0 20px;
     ul {
       column-count: 1;
     }
   }
-
   @media screen and (min-width: 1200px) {
     max-width: initial;
   }
@@ -545,20 +529,11 @@ export async function getStaticProps({ params }) {
     "ingredients",
     "content",
   ]);
-
   const content = await markdownToHtml(post.content || "");
 
   const width = 540;
   const height = 281;
 
-  // registerFont(path.resolve("./public/fonts/Inter-Regular.ttf"), {
-  //   family: "Inter",
-  //   weight: "regular",
-  // });
-  // registerFont(path.resolve("./public/fonts/Inter-Bold.ttf"), {
-  //   family: "Inter",
-  //   weight: "bold",
-  // });
   registerFont("./public/fonts/Inter-Regular.ttf", {
     family: "Inter",
     weight: "regular",
@@ -567,15 +542,6 @@ export async function getStaticProps({ params }) {
     family: "Inter",
     weight: "bold",
   });
-
-  // registerFont(path.resolve("./public/fonts/NotoSansTC-Regular.otf"), {
-  //   family: "NotoSansTC",
-  //   weight: "regular",
-  // });
-  // registerFont(path.resolve("./public/fonts/NotoSansTC-Bold.otf"), {
-  //   family: "NotoSansTC",
-  //   weight: "bold",
-  // });
 
   const canvas = createCanvas(width, height);
   const context = canvas.getContext("2d");
