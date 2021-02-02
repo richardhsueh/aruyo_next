@@ -6,8 +6,8 @@ import { animated, useTransition, config } from "react-spring";
 import styled from "styled-components";
 import { format } from "date-fns";
 import queryString from "query-string";
-import canvasTxt from "canvas-txt";
-import { createCanvas, loadImage, registerFont } from "canvas";
+// import canvasTxt from "canvas-txt";
+// import { createCanvas, loadImage, registerFont } from "canvas";
 // import fs from "fs";
 
 import SEO from "../../components/seo";
@@ -17,7 +17,7 @@ import RecipeQueryContext from "../../lib/RecipeQueryContext";
 import { processIngredient } from "../../lib/recipeHelper";
 import markdownToHtml from "../../lib/markdownToHtml";
 import useWindowSize from "../../lib/useWindowSize";
-import { roundRect } from "../../lib/canvasHelper";
+// import { roundRect } from "../../lib/canvasHelper";
 
 const RecipeContainer = styled(animated.div)`
   display: flex;
