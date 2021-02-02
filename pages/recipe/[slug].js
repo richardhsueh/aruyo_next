@@ -9,7 +9,7 @@ import queryString from "query-string";
 import canvasTxt from "canvas-txt";
 import { createCanvas, loadImage, registerFont } from "canvas";
 import fs from "fs";
-import path from "path";
+// import path from "path";
 
 import SEO from "../../components/seo";
 import Carousel from "../../components/carousel";
@@ -551,11 +551,19 @@ export async function getStaticProps({ params }) {
   const width = 540;
   const height = 281;
 
-  registerFont(path.resolve("./public/fonts/Inter-Regular.ttf"), {
+  // registerFont(path.resolve("./public/fonts/Inter-Regular.ttf"), {
+  //   family: "Inter",
+  //   weight: "regular",
+  // });
+  // registerFont(path.resolve("./public/fonts/Inter-Bold.ttf"), {
+  //   family: "Inter",
+  //   weight: "bold",
+  // });
+  registerFont("./public/fonts/Inter-Regular.ttf", {
     family: "Inter",
     weight: "regular",
   });
-  registerFont(path.resolve("./public/fonts/Inter-Bold.ttf"), {
+  registerFont("./public/fonts/Inter-Bold.ttf", {
     family: "Inter",
     weight: "bold",
   });
