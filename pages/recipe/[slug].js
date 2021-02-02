@@ -8,7 +8,7 @@ import { format } from "date-fns";
 import queryString from "query-string";
 import canvasTxt from "canvas-txt";
 import { createCanvas, loadImage, registerFont } from "canvas";
-import fs from "fs";
+// import fs from "fs";
 
 import SEO from "../../components/seo";
 import Carousel from "../../components/carousel";
