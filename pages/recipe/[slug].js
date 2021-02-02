@@ -9,6 +9,7 @@ import queryString from "query-string";
 import canvasTxt from "canvas-txt";
 import { createCanvas, loadImage, registerFont } from "canvas";
 import fs from "fs";
+import path from "path";
 
 import SEO from "../../components/seo";
 import Carousel from "../../components/carousel";
@@ -559,11 +560,11 @@ export async function getStaticProps({ params }) {
     weight: "bold",
   });
 
-  registerFont(path.resolve("./public/fonts/NotoSansTC-Regular.ttf"), {
+  registerFont(path.resolve("./public/fonts/NotoSansTC-Regular.otf"), {
     family: "NotoSansTC",
     weight: "regular",
   });
-  registerFont(path.resolve("./public/fonts/NotoSansTC-Bold.ttf"), {
+  registerFont(path.resolve("./public/fonts/NotoSansTC-Bold.otf"), {
     family: "NotoSansTC",
     weight: "bold",
   });
