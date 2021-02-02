@@ -551,23 +551,23 @@ export async function getStaticProps({ params }) {
   const width = 540;
   const height = 281;
 
-  // registerFont(path.resolve("./public/fonts/Inter-Regular.ttf"), {
-  //   family: "Inter",
-  //   weight: "regular",
-  // });
-  // registerFont(path.resolve("./public/fonts/Inter-Bold.ttf"), {
-  //   family: "Inter",
-  //   weight: "bold",
-  // });
-
-  registerFont(path.resolve("./public/fonts/NotoSansTC-Regular.otf"), {
-    family: "NotoSansTC",
+  registerFont(path.resolve("./public/fonts/Inter-Regular.ttf"), {
+    family: "Inter",
     weight: "regular",
   });
-  registerFont(path.resolve("./public/fonts/NotoSansTC-Bold.otf"), {
-    family: "NotoSansTC",
+  registerFont(path.resolve("./public/fonts/Inter-Bold.ttf"), {
+    family: "Inter",
     weight: "bold",
   });
+
+  // registerFont(path.resolve("./public/fonts/NotoSansTC-Regular.otf"), {
+  //   family: "NotoSansTC",
+  //   weight: "regular",
+  // });
+  // registerFont(path.resolve("./public/fonts/NotoSansTC-Bold.otf"), {
+  //   family: "NotoSansTC",
+  //   weight: "bold",
+  // });
 
   const canvas = createCanvas(width, height);
   const context = canvas.getContext("2d");
@@ -577,7 +577,7 @@ export async function getStaticProps({ params }) {
 
   if (post.image && post.image[0]) {
     const txt = post.recipe_name;
-    context.font = "NotoSansTC";
+    context.font = "Inter";
     context.fillStyle = "#000";
     canvasTxt.fontSize = 30;
     canvasTxt.lineHeight = 35;
@@ -618,7 +618,7 @@ export async function getStaticProps({ params }) {
     });
   } else {
     const txt = post.recipe_name;
-    context.font = "NotoSansTC";
+    context.font = "Inter";
     context.fillStyle = "#000";
     canvasTxt.fontSize = 30;
     canvasTxt.lineHeight = 35;
