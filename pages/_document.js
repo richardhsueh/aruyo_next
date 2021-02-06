@@ -31,7 +31,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <meta charset="UTF-8" />
+          <meta charSet="UTF-8" />
           <link rel="icon" type="image/png" href="/icon.png" />
           <script
             async

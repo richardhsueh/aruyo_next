@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
 import Head from "next/head";
 
 const GOOGLE_TRACKING_ID = "UA-158052933-1";
-const SITE_URL = "https://aruyo.site";
+const SITE_URL = "https://recipe.aruyo.site";
 
 const siteMetadata = {
   title: `Aruyo*`,
