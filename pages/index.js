@@ -51,6 +51,8 @@ const RecipeListLink = styled.a`
   flex-direction: column;
   border: 1px solid var(--primary_text);
   box-shadow: var(--form-shadow);
+  color: var(--background);
+  /* background: #d3d3d375; */
 
   .recipe__pic {
     display: flex;

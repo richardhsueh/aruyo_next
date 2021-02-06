@@ -6,9 +6,6 @@ import { animated, useTransition, config } from "react-spring";
 import styled from "styled-components";
 import { format } from "date-fns";
 import queryString from "query-string";
-// import canvasTxt from "canvas-txt";
-// import { createCanvas, loadImage, registerFont } from "canvas";
-// import fs from "fs";
 
 import SEO from "../../components/seo";
 import Carousel from "../../components/carousel";
@@ -17,19 +14,16 @@ import RecipeQueryContext from "../../lib/RecipeQueryContext";
 import { processIngredient } from "../../lib/recipeHelper";
 import markdownToHtml from "../../lib/markdownToHtml";
 import useWindowSize from "../../lib/useWindowSize";
-// import { roundRect } from "../../lib/canvasHelper";
 
 const RecipeContainer = styled(animated.div)`
   display: flex;
   flex-direction: column;
   padding: 0;
   justify-content: left;
-
   #main-content {
     margin-left: 0;
     width: auto;
   }
-
   ol {
     padding: 0px;
     list-style-position: outside;
@@ -48,7 +42,6 @@ const RecipeContainer = styled(animated.div)`
       }
     }
   }
-
   ul {
     padding: 0px;
     list-style: disc;
@@ -118,13 +111,11 @@ const ImageFrame = styled.div`
   display: flex;
   border-radius: 4px;
   overflow: hidden;
-
   &:before {
     content: "";
     float: left;
     padding-top: 100%;
   }
-
   &[data-status="final"]::after {
     content: "Final";
     padding: 5px 15px;
@@ -141,7 +132,6 @@ const ImageFrame = styled.div`
     left: 4px;
     top: 4px;
   }
-
   &[data-status="wip"]::after {
     content: "Work In Progress";
     padding: 5px 15px;
@@ -158,7 +148,6 @@ const ImageFrame = styled.div`
     left: 4px;
     top: 4px;
   }
-
   &[data-status="draft"]::after {
     content: "Draft";
     padding: 5px 15px;
@@ -188,7 +177,6 @@ const ImageFrame = styled.div`
       padding-top: 100%;
     }
   }
-
   @media (min-width: 767px) {
     order: 2;
     min-width: 230px;
@@ -204,7 +192,6 @@ const ImageFrame = styled.div`
       /* margin: 0 30px 10px 0; */
     }
   }
-
   @media (min-width: 1441px) {
     order: 2;
     min-width: 350px;
@@ -225,7 +212,6 @@ const MetaData = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: left;
-
   > h1 {
     font-weight: bold;
     font-size: 30px;
@@ -233,7 +219,6 @@ const MetaData = styled.div`
     color: var(--primary_text);
     margin-bottom: 10px;
   }
-
   > h2 {
     font-weight: normal;
     font-size: 18px;
@@ -241,7 +226,6 @@ const MetaData = styled.div`
     color: var(--primary_text);
     margin-bottom: 10px;
   }
-
   .servingBlk {
     font-weight: normal;
     font-size: 18px;
@@ -299,7 +283,6 @@ const IngredientsBlk = styled.div`
       -webkit-column-break-inside: avoid;
       page-break-inside: avoid;
       break-inside: avoid;
-
       label {
         font-size: 14px;
         line-height: 17px;
@@ -339,14 +322,12 @@ const IngredientsBlk = styled.div`
       }
     }
   }
-
   @media screen and (max-width: 767px) {
     margin: 20px 0 20px;
     ul {
       column-count: 1;
     }
   }
-
   @media screen and (min-width: 1200px) {
     max-width: initial;
   }
@@ -544,102 +525,7 @@ export async function getStaticProps({ params }) {
     "ingredients",
     "content",
   ]);
-
-
   const content = await markdownToHtml(post.content || "");
-
-  // const width = 540;
-  // const height = 281;
-
-  // registerFont("./public/fonts/Inter-Regular.ttf", {
-  //   family: "Inter",
-  //   weight: "regular",
-  // });
-  // registerFont("./public/fonts/Inter-Bold.ttf", {
-  //   family: "Inter",
-  //   weight: "bold",
-  // });
-
-  // const canvas = createCanvas(width, height);
-  // const context = canvas.getContext("2d");
-
-  // context.fillStyle = "#fff";
-  // context.fillRect(0, 0, width, height);
-
-  // if (post.image && post.image[0]) {
-  //   const txt = post.recipe_name;
-  //   context.font = "Inter";
-  //   context.fillStyle = "#000";
-  //   canvasTxt.fontSize = 30;
-  //   canvasTxt.lineHeight = 35;
-  //   canvasTxt.fontWeight = "bold";
-  //   canvasTxt.align = "left";
-  //   canvasTxt.vAlign = "top";
-  //   canvasTxt.drawText(context, txt, 260, 40, 230, 90);
-
-  //   canvasTxt.fontSize = 18;
-  //   canvasTxt.fontWeight = "regular";
-  //   canvasTxt.drawText(context, post.date, 260, 220, 230, 200);
-
-  //   canvasTxt.fontSize = 18;
-  //   canvasTxt.fontWeight = "bold";
-  //   canvasTxt.drawText(
-  //     context,
-  //     `${capitalizeFirstLetter(post.type)} recipe`,
-  //     260,
-  //     200,
-  //     230,
-  //     200
-  //   );
-
-  //   context.fillStyle = "transparent";
-  //   roundRect(context, 20, 20, 500, 240, 6, "#000", true);
-
-  //   roundRect(context, 40, 40, 200, 200, 3, "#fff", true);
-  //   context.clip();
-
-  //   loadImage(`./public/${post.image[0]}`).then((image) => {
-  //     context.drawImage(image, 40, 40, 200, 200);
-  //     const buffer = canvas.toBuffer("image/png");
-
-  //     fs.writeFileSync(
-  //       `./public/assets/recipe/preview-${post.slug}.png`,
-  //       buffer
-  //     );
-  //   });
-  // } else {
-  //   const txt = post.recipe_name;
-  //   context.font = "Inter";
-  //   context.fillStyle = "#000";
-  //   canvasTxt.fontSize = 30;
-  //   canvasTxt.lineHeight = 35;
-  //   canvasTxt.fontWeight = "bold";
-  //   canvasTxt.align = "left";
-  //   canvasTxt.vAlign = "top";
-  //   canvasTxt.drawText(context, txt, 40, 40, 250, 90);
-
-  //   canvasTxt.fontSize = 18;
-  //   canvasTxt.fontWeight = "regular";
-  //   canvasTxt.drawText(context, post.date, 40, 220, 230, 200);
-
-  //   canvasTxt.fontSize = 18;
-  //   canvasTxt.fontWeight = "bold";
-  //   canvasTxt.drawText(
-  //     context,
-  //     `${capitalizeFirstLetter(post.type)} recipe`,
-  //     40,
-  //     200,
-  //     230,
-  //     200
-  //   );
-
-  //   context.fillStyle = "transparent";
-  //   roundRect(context, 20, 20, 500, 240, 6, "#000", true);
-
-  //   const buffer = canvas.toBuffer("image/png");
-
-  //   fs.writeFileSync(`./public/assets/recipe/preview-${post.slug}.png`, buffer);
-  // }
 
   return {
     props: {
@@ -675,8 +561,4 @@ export async function getStaticPaths() {
     }),
     fallback: false,
   };
-}
-
-function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
 }
