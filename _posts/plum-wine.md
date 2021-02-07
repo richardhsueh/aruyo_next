@@ -1,7 +1,7 @@
 ---
 recipe_name: "梅酒"
 slug: "plum-wine"
-image: ["/assets/recipe/green-plum-wine.jpg"]
+image: ["green-plum-wine.jpg"]
 date: "2020-02-06"
 serving: 1
 serving_size: "5L酒樽"

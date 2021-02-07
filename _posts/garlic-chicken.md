@@ -1,7 +1,7 @@
 ---
 recipe_name: "Garlic Chicken"
 slug: "garlic-chicken"
-image: ["/assets/recipe/garlic-chicken.jpg"]
+image: ["garlic-chicken.jpg"]
 date: "2020-02-06"
 serving: null
 serving_size: null

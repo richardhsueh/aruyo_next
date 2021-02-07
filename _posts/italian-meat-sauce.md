@@ -1,7 +1,7 @@
 ---
 recipe_name: "Italian Meat Sauce"
 slug: "italian-meat-sauce"
-image: ["/assets/recipe/italian-meat-sauce.jpg"]
+image: ["italian-meat-sauce.jpg"]
 date: "2020-02-14"
 serving: 1
 serving_size: ""

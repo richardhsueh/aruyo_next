@@ -94,6 +94,7 @@ const RecipeListLink = styled.a`
     color: #fff;
     z-index: 10;
     transition: opacity 200ms ease;
+    backdrop-filter: blur(3px) brightness(90%);
     .name {
       color: #fff;
       display: block;
@@ -119,6 +120,7 @@ const RecipeListLink = styled.a`
       }
     }
     .recipe__name {
+      backdrop-filter: none;
       .name {
         color: var(--primary_text);
         font-size: 20px;
@@ -313,7 +315,7 @@ const Home = ({ allRecipes }) => {
                         <div className="recipe__pic">
                           {item.image && item.image.length > 0 && (
                             <Image
-                              src={item.image[0]}
+                              src={`/assets/recipe/${item.image[0]}`}
                               layout="fill"
                               objectFit="cover"
                               className="recipe__pic"

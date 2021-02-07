@@ -401,7 +401,7 @@ export default function Post({ post, morePosts, preview, allRecipes }) {
                     return (
                       <ImageFrame data-status={status} key={index}>
                         <Image
-                          src={o}
+                          src={`/assets/recipe/${o}`}
                           layout="fill"
                           objectFit="cover"
                           alt={post.slug}
@@ -417,7 +417,7 @@ export default function Post({ post, morePosts, preview, allRecipes }) {
                           {post.image.map((o, index) => (
                             <Image
                               key={index}
-                              src={o}
+                              src={`/assets/recipe/${o}`}
                               layout="fill"
                               objectFit="cover"
                               alt={post.slug}
@@ -428,7 +428,7 @@ export default function Post({ post, morePosts, preview, allRecipes }) {
                     )}
                     {post.image.length === 1 && (
                       <Image
-                        src={post.image[0]}
+                        src={`/assets/recipe/${post.image[0]}`}
                         layout="fill"
                         objectFit="cover"
                         alt={post.slug}

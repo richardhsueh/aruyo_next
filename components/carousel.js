@@ -11,26 +11,26 @@ export const CarouselContent = ({
   prevIndex,
   direction,
 }) => {
-  const transitions = useTransition(
-    activeIndex < 0 ? activeIndex * -1 : activeIndex,
-    (p) => p,
-    {
-      initial: {
-        opacity: 1,
-      },
-      from: {
-        opacity: 0,
-      },
-      enter: {
-        opacity: 1,
-      },
-      leave: {
-        opacity: 0,
-        pointerEvents: "none",
-      },
-      config: { duration: 250, easing: easeCubicOut },
-    }
-  );
+  const transitions = useTransition(activeIndex < 0 ? activeIndex * -1 : activeIndex, p => p, {
+    initial: {
+      opacity: 1,
+      transform: 'translate3d(0%,0,0)'
+    },
+    from: {
+      opacity: 0,
+      transform: direction === 'right' ? 'translate3d(100%,0,0)' : 'translate3d(-100%,0,0)'
+    },
+    enter: {
+      opacity: 1,
+      transform: 'translate3d(0%,0,0)'
+    },
+    leave: {
+      opacity: 0,
+      transform: direction === 'right' ? 'translate3d(-100%,0,0)' : 'translate3d(100%,0,0)',
+      pointerEvents: 'none'
+    },
+    config: { duration: 250, easing: easeCubicOut }
+  });
   return (
     <div style={{ position: "relative", width: "100%", height: "100%" }}>
       {transitions.map(({ item, props, key }) => (
@@ -65,11 +65,11 @@ const FadeInOutCarousel = ({
   nextCtrl,
   autoScroll,
   breadcrumbComponent,
-  speed = 3000,
+  speed = 5000,
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [prevIndex, setPrevIndex] = useState(-1);
-  const [direction, setDirection] = useState("");
+  const [direction, setDirection] = useState("right");
 
   const getItemProps = React.useCallback(
     (itemProps = {}) => ({

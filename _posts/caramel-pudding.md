@@ -4,14 +4,14 @@ slug: "caramel-pudding"
 status: "final"
 image:
   [
-    "/assets/recipe/pudding.jpg",
-    "/assets/recipe/pudding-1.jpg",
-    "/assets/recipe/pudding-2.jpg",
-    "/assets/recipe/pudding-3.jpg",
-    "/assets/recipe/pudding-4.jpg",
-    "/assets/recipe/pudding-5.jpg",
-    "/assets/recipe/pudding-6.jpg",
-    "/assets/recipe/pudding-7.jpg",
+    "pudding.jpg",
+    "pudding-1.jpg",
+    "pudding-2.jpg",
+    "pudding-3.jpg",
+    "pudding-4.jpg",
+    "pudding-5.jpg",
+    "pudding-6.jpg",
+    "pudding-7.jpg",
   ]
 date: "2020-02-06"
 serving: 4

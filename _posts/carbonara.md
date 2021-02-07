@@ -1,7 +1,7 @@
 ---
 recipe_name: "Carbonara"
 slug: "carbonara"
-image: ["/assets/recipe/carbonara.jpg"]
+image: ["carbonara.jpg"]
 date: "2020-02-23"
 serving: 2
 serving_size: "people"

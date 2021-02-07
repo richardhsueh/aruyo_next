@@ -1,7 +1,7 @@
 ---
 recipe_name: "Dark Chocolate Brownie"
 slug: "dark-chocolate-brownie"
-image: ["/assets/recipe/brownie.jpg"]
+image: ["brownie.jpg"]
 date: "2020-02-08"
 serving: null
 serving_size: null

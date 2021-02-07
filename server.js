@@ -71,7 +71,7 @@ allRecipes.forEach((post) => {
     roundRect(context, 40, 40, 200, 200, 3, "#fff", true);
     context.clip();
 
-    loadImage(`./public/${post.image[0]}`).then((image) => {
+    loadImage(`./public/assets/recipe/${post.image[0]}`).then((image) => {
       context.drawImage(image, 40, 40, 200, 200);
       const buffer = cnvs.toBuffer("image/png");
 

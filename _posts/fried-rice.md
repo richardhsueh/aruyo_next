@@ -1,7 +1,7 @@
 ---
 recipe_name: "Fried Rice"
 slug: "fried-rice"
-image: ["/assets/recipe/fried-rice.jpg"]
+image: ["fried-rice.jpg"]
 date: "2020-02-23"
 serving: 1
 serving_size: "people"

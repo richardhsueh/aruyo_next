@@ -4,10 +4,10 @@ slug: "jp-chili-oil"
 status: "wip"
 image:
   [
-    "/assets/recipe/jp-chili-oil-1.jpg",
-    "/assets/recipe/jp-chili-oil-2.jpg",
-    "/assets/recipe/jp-chili-oil-3.jpg",
-    "/assets/recipe/jp-chili-oil-4.jpg",
+    "jp-chili-oil-1.jpg",
+    "jp-chili-oil-2.jpg",
+    "jp-chili-oil-3.jpg",
+    "jp-chili-oil-4.jpg",
   ]
 date: "2020-10-04"
 serving: 1

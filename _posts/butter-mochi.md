@@ -1,7 +1,7 @@
 ---
 recipe_name: "Butter Mochi"
 slug: "butter-mochi"
-image: ["/assets/recipe/butter-mochi1.jpg", "/assets/recipe/butter-mochi2.jpg"]
+image: ["butter-mochi1.jpg", "butter-mochi2.jpg"]
 date: "2020-02-08"
 serving: 1
 serving_size: ""
