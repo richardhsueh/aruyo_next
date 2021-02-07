@@ -1,7 +1,7 @@
 ---
 recipe_name: "JP-Style Curry Meat Sauce"
 slug: "jp-style-curry-meat-sauce"
-image: ["/assets/recipe/curry-meat-sauce.jpg"]
+image: ["curry-meat-sauce.jpg"]
 date: "2020-02-09"
 serving: 4
 serving_size: "dish"

@@ -1,7 +1,7 @@
 ---
 recipe_name: "Rice Cooker Bread"
 slug: "rc-bread"
-image: ["/assets/recipe/bread.jpg"]
+image: ["bread.jpg"]
 date: "2020-02-09"
 serving: 1
 serving_size: ""

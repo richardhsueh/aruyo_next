@@ -1,7 +1,7 @@
 ---
 recipe_name: "Neapolitan Pasta"
 slug: "neapolitan-pasta"
-image: ["/assets/recipe/neapolitan-pasta.jpg"]
+image: ["neapolitan-pasta.jpg"]
 date: "2020-02-17"
 serving: 1
 serving_size: ""

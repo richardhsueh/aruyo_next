@@ -1,7 +1,7 @@
 ---
 recipe_name: "Bob叔蘿蔔糕"
 slug: "uncle-bob-turnip-cake"
-image: ["/assets/recipe/turnip-cake.jpg"]
+image: ["turnip-cake.jpg"]
 date: "2020-02-06"
 serving: 1
 serving_size: '7" x 7" 錫紙兜'

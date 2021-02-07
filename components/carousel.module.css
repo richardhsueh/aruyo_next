@@ -2,10 +2,7 @@
     display: block;
     position: relative;
     height: 100%;
-}
-
-.carousel:hover button {
-    opacity: 1;
+    background: #c5c5c575;
 }
 
 .carousel[data-status='final']::after {
@@ -65,7 +62,7 @@ button.next:hover {
 }
 
 button.prev {
-    opacity: 0;
+    opacity: 1;
     position: absolute;
     left: 0;
     width: 34.78px;
@@ -88,7 +85,7 @@ button.prev>img {
 }
 
 button.next {
-    opacity: 0;
+    opacity: 1;
     position: absolute;
     right: 0px;
     width: 34.78px;

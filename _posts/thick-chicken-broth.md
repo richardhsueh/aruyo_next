@@ -1,7 +1,7 @@
 ---
 recipe_name: "Thick Chicken Broth"
 slug: "thick-chicken-broth"
-image: ["/assets/recipe/chicken-broth.jpg"]
+image: ["chicken-broth.jpg"]
 date: "2020-02-08"
 serving: 1
 serving_size: "Litre"

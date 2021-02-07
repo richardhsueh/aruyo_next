@@ -2,7 +2,7 @@
 recipe_name: "Mr. Cheesecake"
 slug: "mr-cheesecake"
 status: "wip"
-image: ["/assets/recipe/mr-cheesecake.jpg"]
+image: ["mr-cheesecake.jpg"]
 date: "2020-05-17"
 serving: 1
 serving_size: "22cm rectangle bake mould "

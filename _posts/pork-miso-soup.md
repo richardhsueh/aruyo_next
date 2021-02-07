@@ -1,7 +1,7 @@
 ---
 recipe_name: "Pork Miso Soup"
 slug: "pork-miso-soup"
-image: ["/assets/recipe/pork-miso-soup.jpg"]
+image: ["pork-miso-soup.jpg"]
 date: "2020-03-14"
 serving: 4
 serving_size: "people"

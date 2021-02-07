@@ -1,7 +1,7 @@
 ---
 recipe_name: "Bolognese"
 slug: "bolognese"
-image: ["/assets/recipe/bolognese.jpg"]
+image: ["bolognese.jpg"]
 date: "2020-02-28"
 serving: 4
 serving_size: "pasta"

@@ -1,7 +1,7 @@
 ---
 recipe_name: "Cream Stew"
 slug: "cream-stew"
-image: ["/assets/recipe/cream-stew.jpg"]
+image: ["cream-stew.jpg"]
 date: "2020-02-23"
 serving: 4
 serving_size: "people"
