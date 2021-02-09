@@ -4,7 +4,7 @@ const run = require("gulp-run");
 const { watch, series } = gulp;
 
 function generatePreviewImage(cb) {
-  return run("node server.js").exec().pipe(gulp.dest("output"));
+  return run("node server.js").exec();
 }
 
 exports.default = function () {
