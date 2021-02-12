@@ -5,6 +5,27 @@ import RecipeQueryContext from "../lib/RecipeQueryContext";
 import Router from "next/router";
 import { useTransition, config } from "react-spring";
 
+const SearchBtn = styled.button`
+  order: 3;
+  margin-left: 20px;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 24px;
+  position: relative;
+  width: 30px;
+  padding: 0 5px;
+  span {
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 24px;
+    color: var(--primary_text);
+    transform: translate(-50%, -50%) rotate(-45deg) scale(1.5);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+`;
+
 const Container = styled.nav`
   grid-area: auto / 1 / auto / end;
   display: grid;
@@ -56,7 +77,7 @@ const Container = styled.nav`
     top: 67px;
     left: -100%;
     transition: left 0.2s ease, background 0.2s ease-out;
-    width: 260px;
+    /* width: 260px; */
     background: var(--background);
     box-shadow: 3px 3px 40px rgba(0, 0, 0, 0.15);
     border-radius: 0px 4px 4px 0px;
@@ -174,7 +195,7 @@ const BurgerMenuButton = styled.div`
 `;
 
 const Header = () => {
-  const { type, changeType, recipes, reset } = React.useContext(
+  const { type, changeType, recipes, reset, toggle, isOpen } = React.useContext(
     RecipeQueryContext
   );
   const [theme, setTheme] = React.useState(null);
@@ -193,7 +214,7 @@ const Header = () => {
     };
   }, []);
 
-  const toggle = () => {
+  const toggleSideMenu = () => {
     setShow(!show);
   };
 
@@ -202,7 +223,7 @@ const Header = () => {
       selectedOption = "all";
     }
     Router.push("/");
-    toggle();
+    toggleSideMenu();
     changeType(selectedOption);
   };
 
@@ -220,9 +241,16 @@ const Header = () => {
             Recipe
           </Link>
         </h1>
+        <SearchBtn
+          onClick={() => {
+            toggle(true);
+          }}
+        >
+          <span className="head_search-icon ">⚲</span>
+        </SearchBtn>
         <BurgerMenuButton
           className={`b-menu ${show ? "open" : ""}`}
-          onClick={toggle}
+          onClick={toggleSideMenu}
         >
           <div className="b-bun b-bun--top"></div>
           <div className="b-bun b-bun--mid"></div>

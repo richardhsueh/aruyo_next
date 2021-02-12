@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { ResetStyle, GlobalStyle } from "./globalStyle";
 import Header from "./header";
 import DarkModeSelector from "./DarkModeSelector";
+import SearchComponent from "./SearchComponent";
 
 const Wrapper = styled.div`
   display: grid;
@@ -32,6 +33,12 @@ const Wrapper = styled.div`
       margin-bottom: 10em;
     }
   }
+
+  @media (min-width: 1080px) {
+    main {
+      grid-column-start: 5;
+    }
+  }
   @media (min-width: 1441px) {
     main {
       grid-column-start: 4;
@@ -48,6 +55,7 @@ const Layout = ({ children }) => {
         <Header />
         <main>{children}</main>
         <DarkModeSelector />
+        <SearchComponent />
       </Wrapper>
     </>
   );

@@ -220,7 +220,7 @@ const RecipeList = styled(animated.ul)`
   }
 
   @media (min-width: 961px) {
-    grid-template-columns: 205px 205px 205px;
+    grid-template-columns: 205px 205px 205px ;
     grid-auto-rows: 230px;
     grid-gap: 24px 24px;
   }
