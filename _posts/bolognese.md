@@ -7,7 +7,7 @@ serving: 4
 serving_size: "pasta"
 type: "savoury"
 description: ""
-tags: ["pasta"]
+tags: ["pasta", "beef"]
 ingredients:
   [
     {
@@ -17,7 +17,7 @@ ingredients:
           "240-g ..... onion",
           "120-g ..... celery",
           "120-g ..... carrot",
-          "400-g ..... ground beef",
+          "400-g ..... mince beef",
           "1.5-cup ..... milk",
           "2-cup ..... white wine",
           "2-can ..... crushed tomato",

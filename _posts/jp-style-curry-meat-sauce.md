@@ -7,6 +7,7 @@ serving: 4
 serving_size: "dish"
 type: "savoury"
 description: ""
+tags: ["easy"]
 ingredients:
   [
     {

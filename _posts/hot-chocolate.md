@@ -6,6 +6,7 @@ serving: null
 serving_size: null
 type: 'sweet'
 description: null
+tags: ["easy"]
 ingredients:
   [
     {

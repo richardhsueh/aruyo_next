@@ -14,7 +14,7 @@ serving: 1
 serving_size: "450g"
 type: "savoury"
 description: ""
-tags: []
+tags: ["dressing"]
 ingredients:
   [
     {

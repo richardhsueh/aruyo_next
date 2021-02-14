@@ -18,6 +18,7 @@ serving: 4
 serving_size: "4oz/120ml medium size ramekin"
 type: "sweet"
 description: ""
+tags: ["easy"]
 ingredients:
   [
     {

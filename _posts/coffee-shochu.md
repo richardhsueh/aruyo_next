@@ -12,7 +12,7 @@ serving: 1
 serving_size: "700ml bottle"
 type: "sweet"
 description: ""
-tags: []
+tags: ["alcohol"]
 ingredients:
   [
     {

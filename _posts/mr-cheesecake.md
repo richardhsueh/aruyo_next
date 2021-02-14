@@ -8,7 +8,7 @@ serving: 1
 serving_size: "22cm rectangle bake mould "
 type: "sweet"
 description: ""
-tags: []
+tags: ["cake"]
 ingredients:
   [
     {

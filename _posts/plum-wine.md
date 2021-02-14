@@ -7,6 +7,7 @@ serving: 1
 serving_size: "5L酒樽"
 type: "sweet"
 description: null
+tags: ["alcohol"]
 ingredients:
   [
     {

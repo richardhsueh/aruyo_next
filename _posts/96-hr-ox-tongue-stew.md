@@ -8,7 +8,7 @@ serving: 4
 serving_size: "people"
 type: "savoury"
 description: ""
-tags: []
+tags: ["beef", "stew"]
 ingredients:
   [
     {

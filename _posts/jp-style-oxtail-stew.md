@@ -13,7 +13,7 @@ serving: 4
 serving_size: ""
 type: "savoury"
 description: ""
-tags: []
+tags: ["stew"]
 ingredients:
   [
     {

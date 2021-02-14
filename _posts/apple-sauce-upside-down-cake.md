@@ -8,7 +8,7 @@ serving: 1
 serving_size: "5 cup rice cooker"
 type: "sweet"
 description: ""
-tags: []
+tags: ["cake"]
 ingredients:
   [
     {

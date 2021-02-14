@@ -7,6 +7,7 @@ serving: 1
 serving_size: "Litre"
 type: "savoury"
 description: ""
+tags: []
 ingredients:
   [
     {

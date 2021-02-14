@@ -7,6 +7,7 @@ serving: null
 serving_size: null
 type: "savoury"
 description: null
+tags: ["chicken"]
 ingredients:
   [
     {

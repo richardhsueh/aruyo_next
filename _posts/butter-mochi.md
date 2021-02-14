@@ -7,6 +7,7 @@ serving: 1
 serving_size: ""
 type: "sweet"
 description: ""
+tags: ["easy"]
 ingredients:
   [
     {

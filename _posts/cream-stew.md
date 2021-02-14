@@ -7,7 +7,7 @@ serving: 4
 serving_size: "people"
 type: "savoury"
 description: ""
-tags: ["rice"]
+tags: ["rice", "stew"]
 ingredients:
   [
     {
