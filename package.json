@@ -17,7 +17,6 @@
     "@material-ui/icons": "^4.11.2",
     "@material-ui/styles": "^4.11.2",
     "@mdx-js/mdx": "^1.6.22",
-    "@zeit/next-mdx": "^1.2.0",
     "canvas": "^2.6.1",
     "canvas-txt": "^3.0.0",
     "classnames": "2.2.6",
