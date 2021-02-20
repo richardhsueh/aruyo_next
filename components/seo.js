@@ -19,7 +19,7 @@ const siteMetadata = {
   siteUrl: SITE_URL,
 };
 
-function SEO({ description, lang, meta, title, image, url, type }) {
+function SEO({ description, lang, meta, title, image, url = "", type }) {
   const metaDescription = description || siteMetadata.description;
 
   const metas = [
