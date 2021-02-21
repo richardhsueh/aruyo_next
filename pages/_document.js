@@ -1,8 +1,8 @@
 import React from "react";
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
-const APP_NAME = 'Aruyo'
-const APP_DESCRIPTION = 'This is a blog for all kinds of recipe.'
+const APP_NAME = "Aruyo";
+const APP_DESCRIPTION = "This is a blog for all kinds of recipe.";
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const sheet = new ServerStyleSheet();
@@ -34,15 +34,19 @@ export default class MyDocument extends Document {
         <Head>
           <meta charSet="UTF-8" />
           <link rel="icon" type="image/png" href="/icon.png" />
-          <meta name='application-name' content={APP_NAME} />
-          <meta name='apple-mobile-web-app-capable' content='yes' />
-          <meta name='apple-mobile-web-app-status-bar-style' content='default' />
-          <meta name='apple-mobile-web-app-title' content={APP_NAME} />
-          <meta name='description' content={APP_DESCRIPTION} />
-          <meta name='format-detection' content='telephone=no' />
-          <meta name='mobile-web-app-capable' content='yes' />
-          <meta name='theme-color' content='#FFFFFF' />
-          <link rel='manifest' href='/manifest.json' />
+          <link rel="apple-touch-icon" href="/icon-192x192.png" />
+          <meta name="application-name" content={APP_NAME} />
+          <meta name="apple-mobile-web-app-capable" content="yes" />
+          <meta
+            name="apple-mobile-web-app-status-bar-style"
+            content="default"
+          />
+          <meta name="apple-mobile-web-app-title" content={APP_NAME} />
+          <meta name="description" content={APP_DESCRIPTION} />
+          <meta name="format-detection" content="telephone=no" />
+          <meta name="mobile-web-app-capable" content="yes" />
+          <meta name="theme-color" content="#FFFFFF" />
+          <link rel="manifest" href="/manifest.json" />
           <script
             async
             src="https://www.googletagmanager.com/gtag/js?id=UA-158052933-1"
