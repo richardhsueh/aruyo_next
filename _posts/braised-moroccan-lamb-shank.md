@@ -1,7 +1,7 @@
 ---
 recipe_name: "Braised Moroccan Lamb Shank"
 slug: "braised-moroccan-lamb-shank"
-image: []
+image: ["lamb-shank-1.jpg", "lamb-shank-2.jpg"]
 date: "2020-03-05"
 serving: 4
 serving_size: "people"
