@@ -14,6 +14,7 @@ const SearchBtn = styled.button`
   position: relative;
   width: 30px;
   padding: 0 5px;
+  cursor: pointer;
   span {
     font-weight: normal;
     font-size: 20px;
@@ -242,6 +243,7 @@ const Header = () => {
           </Link>
         </h1>
         <SearchBtn
+          title="cmd+f"
           onClick={() => {
             toggle(true);
           }}

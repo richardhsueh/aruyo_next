@@ -105,6 +105,7 @@ function SearchComponent(props) {
       }
       toggle(true);
       document.getElementById("search").focus();
+      Router.push("/");
     });
 
     Mousetrap.bind("enter", function (e) {
