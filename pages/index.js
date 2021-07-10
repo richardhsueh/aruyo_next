@@ -220,7 +220,7 @@ const RecipeList = styled(animated.ul)`
   }
 
   @media (min-width: 961px) {
-    grid-template-columns: 205px 205px 205px ;
+    grid-template-columns: 205px 205px 205px;
     grid-auto-rows: 230px;
     grid-gap: 24px 24px;
   }
@@ -287,55 +287,58 @@ const Home = ({ allRecipes }) => {
   return (
     <>
       <SEO title="Recipe Blog" type="website" image={"/screencap.png"} />
-      {transitions.map(({ item, key, props }) => (
-        <Flipper
-          key="first_flipper"
-          flipKey={`${query}-${type}-${filteredAry.length.toString()}`}
+      {/* {transitions.map(({ item, key, props }) => ( */}
+      <Flipper
+        key="first_flipper"
+        flipKey={`${query}-${type}-${filteredAry.length.toString()}`}
+      >
+        <RecipeList
+        // style={props}
+        // key={key}
         >
-          <RecipeList style={props} key={key}>
-            {filteredAry.map((item) => (
-              <Flipped
-                key={item.slug}
-                flipId={item.slug}
-                onAppear={onElementAppear}
-                onExit={onExit}
-              >
-                {(flippedProps) => (
-                  <RecipeListItem>
-                    <Link
-                      href={`/recipe/[slug]`}
-                      as={`/recipe/${item.slug}`}
-                      passHref
+          {filteredAry.map((item) => (
+            <Flipped
+              key={item.slug}
+              flipId={item.slug}
+              onAppear={onElementAppear}
+              onExit={onExit}
+            >
+              {(flippedProps) => (
+                <RecipeListItem>
+                  <Link
+                    href={`/recipe/[slug]`}
+                    as={`/recipe/${item.slug}`}
+                    passHref
+                  >
+                    <RecipeListLink
+                      className={item.image && item.image[0] ? "" : "noimg"}
+                      data-status={item.status}
+                      {...flippedProps}
                     >
-                      <RecipeListLink
-                        className={item.image && item.image[0] ? "" : "noimg"}
-                        data-status={item.status}
-                        {...flippedProps}
-                      >
-                        <div className="recipe__pic">
-                          {item.image && item.image.length > 0 && (
-                            <Image
-                              src={`/assets/recipe/${item.image[0]}`}
-                              layout="fill"
-                              objectFit="cover"
-                              className="recipe__pic"
-                              alt={item.recipe_name}
-                            />
-                          )}
-                        </div>
-                        <span className="recipe__name">
-                          <span className="name">{item.recipe_name}</span>
-                          <span className="remark">{item.ingredients}</span>
-                        </span>
-                      </RecipeListLink>
-                    </Link>
-                  </RecipeListItem>
-                )}
-              </Flipped>
-            ))}
-          </RecipeList>
-        </Flipper>
-      ))}
+                      <div className="recipe__pic">
+                        {item.image && item.image.length > 0 && (
+                          <Image
+                            src={`/assets/recipe/${item.image[0]}`}
+                            layout="fill"
+                            objectFit="cover"
+                            className="recipe__pic"
+                            alt={item.recipe_name}
+                          />
+                        )}
+                      </div>
+                      <span className="recipe__name">
+                        <span className="name">{item.recipe_name}</span>
+                        <span className="remark">{item.ingredients}</span>
+                      </span>
+                    </RecipeListLink>
+                  </Link>
+                </RecipeListItem>
+              )}
+            </Flipped>
+          ))}
+        </RecipeList>
+      </Flipper>
+      {/* ))} */}
     </>
   );
 };
